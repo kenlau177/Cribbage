@@ -1,0 +1,286 @@
+ 1  using System;
+  2  using System.Collections.Generic;
+  3  using System.Text;
+  4  
+  5  namespace CribLib {
+  6      /// <summary>
+  7      /// Class used to contain the static methods that can be called to score and evaluate a hand.
+  8      /// </summary>
+  9      public class Hand {
+ 10          #region Binary Sets
+ 11          //  1 - {1, 0, 0, 0, 0}     Set of 1
+ 12          //  2 - {0, 1, 0, 0, 0}     Set of 1
+ 13          //  3 - {1, 1, 0, 0, 0}     Set of 2
+ 14          //  4 - {0, 0, 1, 0, 0}     Set of 1
+ 15          //  5 - {1, 0, 1, 0, 0}     Set of 2
+ 16          //  6 - {0, 1, 1, 0, 0}     Set of 2
+ 17          //  7 - {1, 1, 1, 0, 0}     Set of 3
+ 18          //  8 - {0, 0, 0, 1, 0}     Set of 1
+ 19          //  9 - {1, 0, 0, 1, 0}     Set of 2
+ 20          // 10 - {0, 1, 0, 1, 0}     Set of 2
+ 21          // 11 - {1, 1, 0, 1, 0}     Set of 3
+ 22          // 12 - {0, 0, 1, 1, 0}     Set of 2
+ 23          // 13 - {1, 0, 1, 1, 0}     Set of 3
+ 24          // 14 - {0, 1, 1, 1, 0}     Set of 3
+ 25          // 15 - {1, 1, 1, 1, 0}     Set of 4
+ 26          // 16 - {0, 0, 0, 0, 1}     Set of 1
+ 27          // 17 - {1, 0, 0, 0, 1}     Set of 2
+ 28          // 18 - {0, 1, 0, 0, 1}     Set of 2
+ 29          // 19 - {1, 1, 0, 0, 1}     Set of 3
+ 30          // 20 - {0, 0, 1, 0, 1}     Set of 2
+ 31          // 21 - {1, 0, 1, 0, 1}     Set of 3
+ 32          // 22 - {0, 1, 1, 0, 1}     Set of 3
+ 33          // 23 - {1, 1, 1, 0, 1}     Set of 4
+ 34          // 24 - {0, 0, 0, 1, 1}     Set of 2
+ 35          // 25 - {1, 0, 0, 1, 1}     Set of 3
+ 36          // 26 - {0, 1, 0, 1, 1}     Set of 3
+ 37          // 27 - {1, 1, 0, 1, 1}     Set of 4
+ 38          // 28 - {0, 0, 1, 1, 1}     Set of 3
+ 39          // 29 - {1, 0, 1, 1, 1}     Set of 4
+ 40          // 30 - {0, 1, 1, 1, 1}     Set of 4
+ 41          // 31 - {1, 1, 1, 1, 1}     Set of 5
+ 42          #endregion
+ 43  
+ 44          /// <summary>
+ 45          /// Create a 
+ 46          /// </summary>
+ 47          private static Int32[][][] _setMatrix = new Int32[][][] {
+ 48              new Int32[][] {},  // Empty, no 0-length sets
+ 49              new Int32[][] {new Int32[] {0},     // Sets of 1 card.
+ 50                             new Int32[] {1},     // Not necessary; not used by the library,
+ 51                             new Int32[] {2},     // but included for clarity of thought.
+ 52                             new Int32[] {3},
+ 53                             new Int32[] {4}},               
+ 54              new Int32[][] {new Int32[] {0, 1},          // Sets of 2
+ 55                             new Int32[] {0, 2},
+ 56                             new Int32[] {0, 3},
+ 57                             new Int32[] {0, 4},
+ 58                             new Int32[] {1, 2},
+ 59                             new Int32[] {1, 3},
+ 60                             new Int32[] {1, 4},
+ 61                             new Int32[] {2, 3},
+ 62                             new Int32[] {2, 4},
+ 63                             new Int32[] {3, 4}}, 
+ 64              new Int32[][] {new Int32[] {0, 1, 2},       // Sets of 3
+ 65                             new Int32[] {0, 1, 3},
+ 66                             new Int32[] {0, 2, 3},
+ 67                             new Int32[] {1, 2, 3},
+ 68                             new Int32[] {0, 1, 4},
+ 69                             new Int32[] {0, 2, 4},
+ 70                             new Int32[] {1, 2, 4},
+ 71                             new Int32[] {0, 3, 4},
+ 72                             new Int32[] {1, 3, 4},
+ 73                             new Int32[] {2, 3, 4}},
+ 74              new Int32[][] {new Int32[] {0, 1, 2, 3},    // Sets of 4
+ 75                             new Int32[] {0, 1, 2, 4},
+ 76                             new Int32[] {0, 1, 3, 4},
+ 77                             new Int32[] {0, 2, 3, 4},
+ 78                             new Int32[] {1, 2, 3, 4}},
+ 79              new Int32[][] {new Int32[] {0, 1, 2, 3, 4}}};   // Set of 5
+ 80  
+ 81          /// <summary>
+ 82          /// Method to call to score a hand full of cards.
+ 83          /// </summary>
+ 84          /// <param name="hand">An array of Card objects describing a player's hand.</param>
+ 85          /// <param name="cutCard">The cut, or community, card shared by both players</param>
+ 86          /// <param name="scoringPlays">An ArrayList of ScoringPlay objects, for display
+ 87          /// to the player to justify the scoring.</param>
+ 88          /// <param name="isCrib">A bool that determines whether the cards will be scored
+ 89          /// as a "regular" hand or as a crib.  Slight difference in scoring, explained below.</param>
+ 90          /// <returns></returns>
+ 91          public static Int32 Count(Card[] hand, Card cutCard, List<ScoreSet> scoringPlays, bool isCrib) {
+ 92              Int32 score = 0;
+ 93  
+ 94              // Do basic validation
+ 95              if (hand.Length != 4)
+ 96                  throw new InvalidOperationException("A hand must have 4 cards in it.");
+ 97  
+ 98              // Append the cut card to the hand strictly for hand scoring purposes.
+ 99              Card[] fullHand = new Card[5];
+100              for(Int32 i = 0; i < 4; i++)
+101                  fullHand[i] = hand[i];
+102  
+103              fullHand[4] = cutCard;
+104  
+105              // Sort the hand to make looking for runs easier.
+106              Array.Sort(fullHand);
+107  
+108              // Validate the hand.  Ensure no two cards are the same.
+109              // Look through the sets of indicies in the "2" set.
+110              for (Int32 setLength = 0; setLength < _setMatrix[2].Length; setLength++)
+111                  // Check the two cards pointed at by the indicies and see if they're the same             
+112                  if (fullHand[_setMatrix[2][setLength][0]].Equals(fullHand[_setMatrix[2][setLength][1]]))
+113                      throw new InvalidOperationException("Invalid hand (duplicate cards in the hand).");
+114  
+115              // Actually do the counting.
+116              score = Count15s(fullHand, scoringPlays);
+117              score += CountRuns(fullHand, scoringPlays);
+118              score += CountPairs(fullHand, scoringPlays);
+119  
+120              if (isCrib)
+121                  score += CountFlush(fullHand, scoringPlays);
+122              else
+123                  if (hand[0].Suit == cutCard.Suit)
+124                      score += CountFlush(fullHand, scoringPlays);
+125                  else
+126                      score += CountFlush(hand, scoringPlays);
+127  
+128              score += CountNobs(hand, cutCard, scoringPlays);
+129  
+130              return score;
+131          }
+132  
+133  
+134          private static Int32 CountRuns(Card[] hand, List<ScoreSet> scoringPlays) {
+135              bool runFound = false;
+136              Int32 score = 0;
+137  
+138              // Look for 5 card runs first, then 4 then 3.
+139              for (Int32 i = 5; i > 2; i--) {
+140                  Int32[][] sets = _setMatrix[i];
+141  
+142                  // Iterate over each of the sets available for the length under examination.
+143                  for (Int32 setIndex = 0; setIndex < sets.Length; setIndex++) {
+144                      bool localRunFound = true;
+145  
+146                      // Look at each each index in the set, from the first to the second-
+147                      // to-last.
+148                      for (Int32 setMember = 0; setMember < sets[setIndex].Length - 1; setMember++) {
+149                          Card first = hand[sets[setIndex][setMember]];
+150                          Card second = hand[sets[setIndex][setMember + 1]];
+151  
+152                          // Check to see if the second card is only 1 more than the current
+153                          // card.  If it isn't, skip out of the loop.  The two cards are
+154                          // not consecutive, so we can't have a run of this length.
+155                          if (second.Ordinal - first.Ordinal != 1) {
+156                              localRunFound = false;
+157                              break;
+158                          }
+159                      }
+160  
+161                      // If we're this far and the localRunFound flag has not been reset, 
+162                      // the current set defines a group of array indicies that are a run.
+163                      if (localRunFound) {
+164                          Card[] localRun = new Card[i];
+165  
+166                          // Copy the cards of the set into an array.
+167                          for (Int32 setMember = 0; setMember < i; setMember++)
+168                              localRun[setMember] = hand[sets[setIndex][setMember]];
+169  
+170                          scoringPlays.Add(new ScoreSet(localRun, "Run of " + i.ToString(), i));
+171                          score += i;
+172                          runFound = true;
+173                      }
+174                  }
+175  
+176                  // If a run has been found, don't look at smaller runs.
+177                  if (runFound)
+178                      break;
+179              }
+180  
+181              return score;
+182          }
+183  
+184          /// <summary>
+185          /// Method to call to determine if the hand is entitled to a point for nobs.
+186          /// The hand gets 1 point if it has a Jack in the same suit as the cut card.
+187          /// </summary>
+188          /// <param name="hand">An array of Card objects that constitute a crib hand.</param>
+189          /// <param name="cutCard">A Card object representing the cut card.</param>
+190          /// <param name="scoringPlays">A List of scoring plays accumulated by the hand.</param>
+191          /// <returns>1 if the hand has a Jack of the same suit as the cut card, or
+192          /// 0 if not.</returns>
+193          private static Int32 CountNobs(Card[] hand, Card cutCard, List<ScoreSet> scoringPlays) {
+194              // Loop over all the cards in the hand, check to see if it's a Jack, and if it
+195              // is check the suit.
+196              for (Int32 i = 0; i < hand.Length; i++) {
+197                  if (hand[i].Name == 'J' && hand[i].Suit == cutCard.Suit) {
+198                      scoringPlays.Add(new ScoreSet(new Card[] { hand[i], cutCard }, "Nobs", 1));
+199                      return 1;
+200                  }
+201              }
+202  
+203              // We haven't left the routine yet, so the right jack is not in the hand.
+204              return 0;
+205          }
+206  
+207          /// <summary>
+208          /// A method to determine if the hand is entitled to points for a flush.
+209          /// A flush is a hand all of the same suit.
+210          /// </summary>
+211          /// <param name="hand">The hand to analyze.</param>
+212          /// <param name="scoringPlays">A List of scoring plays accumulated by the hand.</param>
+213          /// <returns>A single point for each card of the flush, if one exists, or 0
+214          /// if no flush is present.</returns>
+215          private static Int32 CountFlush(Card[] hand, List<ScoreSet> scoringPlays) {
+216              char suit = hand[0].Suit;
+217  
+218              // Check the suit of each Card in the hand against the suit of the first
+219              // card.  As soon as they don't match, skip out of the routine.
+220              for (Int32 i = 1; i < hand.Length; i++)
+221                  if (hand[i].Suit != suit)
+222                      return 0;
+223  
+224              // If we're here, a flush exists.
+225              scoringPlays.Add(new ScoreSet(hand, "Flush", hand.Length));
+226  
+227              return hand.Length;
+228          }
+229  
+230          /// <summary>
+231          /// A method to call to count the number of pairs in the hand.
+232          /// </summary>
+233          /// <param name="hand">An array of Card objects to check for pairs.</param>
+234          /// <param name="scoringPlays">A List of scoring plays accumulated by the hand.</param>
+235          /// <returns>2 points for every pair in the hand.</returns>
+236          private static Int32 CountPairs(Card[] hand, List<ScoreSet> scoringPlays) {
+237              Int32 score = 0;
+238  
+239              // Look through the sets of indicies in the "2" set.
+240              for (Int32 setLength = 0; setLength < _setMatrix[2].Length; setLength++) {
+241                  // Check the two cards pointed at by the indicies and see if they're the same             
+242                  if (hand[_setMatrix[2][setLength][0]].Name == hand[_setMatrix[2][setLength][1]].Name) {
+243                      scoringPlays.Add(new ScoreSet(new Card[] { hand[_setMatrix[2][setLength][0]], hand[_setMatrix[2][setLength][1]] }, "Pair", 2));
+244                      score += 2;
+245                  }
+246              }
+247  
+248              return score;
+249          }
+250  
+251          /// <summary>
+252          /// A method to call to count the number of 15s in the hand.
+253          /// </summary>
+254          /// <param name="hand">An array of Card objects to check for pairs.</param>
+255          /// <param name="scoringPlays">A List of scoring plays accumulated by the hand.</param>
+256          /// <returns>2 points for every pair in the hand.</returns>
+257          private static Int32 Count15s(Card[] hand, List<ScoreSet> scoringPlays) {
+258              Int32 score = 0;
+259  
+260              // Look through the "2" sets, then the 3, 4 and 5
+261              for (Int32 setIndex = 2; setIndex < 6; setIndex++) {
+262                  for (Int32 setLength = 0; setLength < _setMatrix[setIndex].Length; setLength++ ) {
+263                      Int32 sum = 0;
+264  
+265                      // Add up the cards pointed to by the indicies of the set.
+266                      for (Int32 setMember = 0; setMember < _setMatrix[setIndex][setLength].Length; setMember++ ) 
+267                          sum += hand[_setMatrix[setIndex][setLength][setMember]].Value;
+268  
+269                      if (sum == 15) {
+270                          // They added up to 15.  Make note of the cards.
+271                          Card[] temp = new Card[_setMatrix[setIndex][setLength].Length];
+272                          for (Int32 setMember = 0; setMember < _setMatrix[setIndex][setLength].Length; setMember++)
+273                              temp[setMember] = hand[_setMatrix[setIndex][setLength][setMember]];
+274  
+275                          // Add two points for a 15 to the list of scoring plays.
+276                          scoringPlays.Add(new ScoreSet(temp, "15", 2));
+277                          score += 2;
+278                      }
+279                  }
+280              }
+281  
+282              return score;
+283          }
+284      }
+285  }
+
