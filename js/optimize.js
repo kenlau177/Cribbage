@@ -41,13 +41,11 @@ function compute_expected_crib_hand_helper(fh, card, suit) {
 	}
   return tot_score/count;
 }
-
+/***** KEEP THIS *****
 function compute_expected_crib_hand(hand_names, hand_suits) {
 
-	full_hand_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-	//full_hand_names = ['K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2', 'A'];
-	//full_hand_names = ['4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-	full_hand_suits = ['S', 'H', 'C', 'D'];
+	var full_hand_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+	var full_hand_suits = ['S', 'H', 'C', 'D'];
 
 	var fh = [];
 	for (n in full_hand_names) {
@@ -55,11 +53,6 @@ function compute_expected_crib_hand(hand_names, hand_suits) {
 			fh.push(full_hand_names[n].concat('-').concat(full_hand_suits[s]));
 		}
 	}
-	
-	//var hand_names_suits = [];
-	//for (n in hand_names) {
-	//	hand_names_suits.push(hand_names[n].concat(hand_suits[n]));
-	//}
 
 	for (i=0; i<hand_names.length; i++) {
 		fh.splice(fh.indexOf(hand_names[i].concat('-').concat(hand_suits[i])), 1);		
@@ -72,6 +65,41 @@ function compute_expected_crib_hand(hand_names, hand_suits) {
 	var score5 = compute_expected_crib_hand_helper(fh, hand_names[4], hand_suits[4]);
 	
 	return [score1, score2, score3, score4, score5];
+}
+*/
+function compute_theoretical_crib_hand_tmp(card) {
+	var full_hand_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+	var full_hand_suits = ['S', 'H', 'C', 'D'];
+	var fh = [];
+	for (n in full_hand_names) {
+		for (s in full_hand_suits) {
+			fh.push(full_hand_names[n].concat('-').concat(full_hand_suits[s]));
+		}
+	}
+	fh.splice(fh.indexOf(card.concat('-').concat('S')), 1);		
+	
+	var out = compute_expected_crib_hand_helper(fh, card, 'S');
+	return out;
+}
+
+function compute_expected_crib_hand(hand_names, hand_suits) {
+	var theo_crib = {
+		'A': 4.758,
+		'2': 4.983,
+		'3': 5.14,
+		'4': 5.146,
+		'5': 6.96,
+		'6': 5.1,
+		'7': 4.989,
+		'8': 4.956,
+		'9': 4.838,
+		'10': 4.767,
+		'J': 4.936,
+		'Q': 4.602,
+		'K': 4.408 };
+
+	return [theo_crib[hand_names[0]], theo_crib[hand_names[1]], theo_crib[hand_names[2]], 
+					theo_crib[hand_names[3]], theo_crib[hand_names[4]]];
 }
 
 function compute_expected_hand_helper(fh, cards_keep, suits_keep) {
