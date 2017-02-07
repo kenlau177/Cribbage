@@ -146,6 +146,7 @@ function compute_expected_hand(hand_names, hand_suits) {
 	return [score1, score2, score3, score4, score5];
 }
 
+/*
 function findIndicesOfMax(inp, count) {
   var outp = [];
   for (var i = 0; i < inp.length; i++) {
@@ -156,6 +157,16 @@ function findIndicesOfMax(inp, count) {
     }
   }
   return outp;
+}
+*/
+
+function find_indices_ordered(inp) {
+	var outp = [];
+	for (var i=0; i<inp.length; i++) {
+		outp.push(i);
+	}
+	outp.sort(function(a,b) { return inp[b] - inp[a]; });
+	return outp;
 }
 
 function optimize(hand_names, hand_suits, yourcrib) {
@@ -175,14 +186,18 @@ function optimize(hand_names, hand_suits, yourcrib) {
 		}
 	}
 
-	var tmp = findIndicesOfMax(exp_scores, 3);
+	var tmp = find_indices_ordered(exp_scores);
 
 	return [[hand_names[tmp[0]].concat(hand_suits[tmp[0]]), exp_scores[tmp[0]], 
 					exp_scores_hand[tmp[0]].toFixed(1), exp_scores_crib[tmp[0]].toFixed(1)],
 					[hand_names[tmp[1]].concat(hand_suits[tmp[1]]), exp_scores[tmp[1]], 
 					exp_scores_hand[tmp[1]].toFixed(1), exp_scores_crib[tmp[1]].toFixed(1)],
 					[hand_names[tmp[2]].concat(hand_suits[tmp[2]]), exp_scores[tmp[2]], 
-					exp_scores_hand[tmp[2]].toFixed(1), exp_scores_crib[tmp[2]].toFixed(1)]];
+					exp_scores_hand[tmp[2]].toFixed(1), exp_scores_crib[tmp[2]].toFixed(1)],
+					[hand_names[tmp[3]].concat(hand_suits[tmp[3]]), exp_scores[tmp[3]], 
+					exp_scores_hand[tmp[3]].toFixed(1), exp_scores_crib[tmp[3]].toFixed(1)],
+					[hand_names[tmp[4]].concat(hand_suits[tmp[4]]), exp_scores[tmp[4]], 
+					exp_scores_hand[tmp[4]].toFixed(1), exp_scores_crib[tmp[4]].toFixed(1)]];
 }
 
 
