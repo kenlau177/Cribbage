@@ -4,8 +4,8 @@ body {
 
 .frame {
   width: 100%;
-  height: 130px;
-  line-height: 130px;
+  height: 160px;
+  line-height: 160px;
   padding: 0;
   cursor: pointer;
   margin: 35px 0 0px 0;
@@ -21,7 +21,7 @@ body {
   float: left;
   padding: 0;
   margin: 0 1px 0 0;
-  width: 130px;
+  width: 160px;
   height: 100%;
   color: #ddd;
   text-align: center;

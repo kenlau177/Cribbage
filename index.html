@@ -17,7 +17,7 @@
   <script src="js/sweetalert.min.js"></script>
   <link rel="stylesheet" href="sweetalert.css">
 
-  <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 
   <!-- Checkbox css -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -228,13 +228,13 @@
 					<div class="row">
 						<center>
 							<div class="col-xs-3">
-								<img src="images/spade.png" />
+								<img class="active_suit" src="images/spade.png" />
 							</div>
 							<div class="col-xs-3">
 								<img src="images/heart.png" />
 							</div>
 							<div class="col-xs-3">
-								<img class="active_suit" src="images/club.png" />
+								<img src="images/club.png" />
 							</div>
 							<div class="col-xs-3">
 								<img src="images/diamond.png" />
@@ -300,6 +300,7 @@
 		  	$('.suit').css('display','block');
 		  } else {
 		  	$('.suit').css('display','none');
+		  	reset_suits();
 		  }      
     });
   
@@ -477,14 +478,21 @@
 			}
 
 			if (!$("suits_matter_checkbox").is(':checked')) {
-				if (fh[0] === current_nums[4].concat('-').concat(current_suits[4])) {
-					current_suits[4] = 'H';
-				}
-				if (fh[1] === current_nums[4].concat('-').concat(current_suits[4])) {
-					current_suits[4] = 'C';
-				}
-				if (fh[2] === current_nums[4].concat('-').concat(current_suits[4])) {
-					current_suits[4] = 'D';
+				var suits = ['S','H','C','D'];
+				var fh_tmp = fh.slice();
+				fh_tmp.splice(-1,1)
+				var n = 0;
+				while (fh_tmp.indexOf(current_nums[4].concat('-').concat(current_suits[4])) > -1) {
+					$("#frame_card5_suit img").removeClass("active_suit");
+					$("#frame_card5_suit img:eq(" + (n+1) + ")").addClass('active_suit');
+					current_suits[4] = suits[(n+1)%4];
+					n++;
+					if (n>6) {
+						$("#frame_card5_suit img").removeClass("active_suit");
+						$("#frame_card5_suit img:eq(0)").addClass('active_suit');
+						current_suits[4] = suits[0];
+						break;
+					}
 				}
 			}
 			$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + current_suits[4] + '</td>');	
@@ -560,6 +568,36 @@
 		});
 
 		$('#score_button').on('click', function() {
+			var current_nums = get_current_nums();
+			var current_suits = get_current_suits_abbrev();
+
+			var fh = [];
+
+			for (i in current_nums) {
+				fh.push(current_nums[i].concat('-').concat(current_suits[i]));
+			}
+
+			var cut_num = $('#frame_cut_num .active').text();
+			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4);
+
+			if (!$("suits_matter_checkbox").is(':checked')) {
+				if (fh[0] === current_nums[4].concat('-').concat(current_suits[4])) {
+					$("#frame_card5_suit img").removeClass("active_suit");
+					$("#frame_card5_suit img:eq(1)").addClass('active_suit');
+					current_suits[4] = 'H';
+				}
+				if (fh[1] === current_nums[4].concat('-').concat(current_suits[4])) {
+					$("#frame_card5_suit img").removeClass("active_suit");
+					$("#frame_card5_suit img:eq(2)").addClass('active_suit');
+					current_suits[4] = 'C';
+				}
+				if (fh[2] === current_nums[4].concat('-').concat(current_suits[4])) {
+					$("#frame_card5_suit img").removeClass("active_suit");
+					$("#frame_card5_suit img:eq(3)").addClass('active_suit');
+					current_suits[4] = 'D';
+				}
+			}
+
 			if (check_hand_dup(true)) {
 				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
 				return;
@@ -569,12 +607,6 @@
 			$('#scores_results tbody tr:nth-child(3)').empty();
 			$('#scores_results tbody tr:nth-child(4)').empty();
 			$('#scores_results tbody tr:nth-child(5)').empty();
-
-			var current_nums = get_current_nums();
-			var current_suits = get_current_suits_abbrev();
-
-			var cut_num = $('#frame_cut_num .active').text();
-			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4);
 
 			var score1 = score_hand([cut_num].concat(current_nums.slice(1)), 
 											[cut_suit].concat(current_suits.slice(1)), cut_suit);
