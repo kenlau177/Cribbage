@@ -419,29 +419,33 @@
 		}
 
 		function randomize_hand() {
-			// USE sly.activate(..)
 			var full_num_idx = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 			var full_suit_idx = [0, 1, 2, 3];
 
 			var fh = [];
+			var is_card_chosen = false;
 
-			for (var i=0; i<5; i++) {
-				
+			for (var i=1; i<6; i++) {
+				while (!is_card_chosen) {
+					var rand_num_idx = Math.floor(Math.random() * 12);
+					var rand_suit_idx = Math.floor(Math.random() * 3);
+					var rand_num_suit = full_num_idx[rand_num_idx].toString().concat('-')
+																.concat(full_suit_idx[rand_suit_idx].toString());
+					if (fh.indexOf(rand_num_suit) === -1) {
+						$('#frame_card' + i + '_num').sly('activate', rand_num_idx);
+						$('#frame_card' + i + '_suit img').removeClass("active_suit");
+						$('#frame_card' + i + '_suit img:eq(' + rand_suit_idx + ')').addClass('active_suit');
+						fh.push(rand_num_suit);
+						is_card_chosen = true;
+					}
+				}
+				is_card_chosen = false;
 			}
-
-			$('.suit img').removeClass('active_suit');
-			$('#frame_card1_suit img:eq(0)').addClass('active_suit');
-			$('#frame_card2_suit img:eq(1)').addClass('active_suit');
-			$('#frame_card3_suit img:eq(2)').addClass('active_suit');
-			$('#frame_card4_suit img:eq(3)').addClass('active_suit');
-			$('#frame_card5_suit img:eq(0)').addClass('active_suit');
-			$('#frame_cut_suit img:eq(0)').addClass('active_suit');
 			build_current_cards_table();
+			$('html, body').animate({
+		    scrollTop: $("#frame_card5_num").offset().top
+		  }, 1000);
 		}
-
-
-
-		/*************/
 
 	  $('input').checkboxradio();
 
@@ -559,7 +563,9 @@
 		});
 
 		$('#randomize_button').on('click', function() {
-			swal({title:"Will Be Available Soon", type:"error", allowOutsideClick: true});
+			//swal({title:"Will Be Available Soon", type:"error", allowOutsideClick: true});
+			randomize_hand();
+
 		});
 
 		$('#optimize_button').on('click', function() {
