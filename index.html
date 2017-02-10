@@ -281,61 +281,10 @@
 	<script type="text/javascript">
 
 		/*
-		TODO: Add a first time and demo, message, "watch as we step through this demo"
+		TODO: Add a demo video
 		*/
 
-		// Checkbox	
-	  //$( function() {
-	  $('input').checkboxradio();
-	    //$("#suits_matter_checkbox").checkboxradio();
-	    //$("#crib_radio1").checkboxradio('enable');
-	    //$("#crib_radio2").checkboxradio();
-	  //});
-
-		$("#crib_radio1").prop("checked", true);
-
-		$('.suit').css('display','none');
-	  $('#suits_matter_checkbox').click(function() {
-		  if ($(this).is(':checked')) {
-		  	$('.suit').css('display','block');
-		  } else {
-		  	$('.suit').css('display','none');
-		  	reset_suits();
-		  }      
-    });
-  
-		var card_nums = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-
-		// Append card nums
-		for (c in card_nums) { $('#frame_card1_num ul').append('<li>' + card_nums[c] + '</li>'); }
-		for (c in card_nums) { $('#frame_card2_num ul').append('<li>' + card_nums[c] + '</li>'); }
-		for (c in card_nums) { $('#frame_card3_num ul').append('<li>' + card_nums[c] + '</li>'); }
-		for (c in card_nums) { $('#frame_card4_num ul').append('<li>' + card_nums[c] + '</li>'); }
-		for (c in card_nums) { $('#frame_card5_num ul').append('<li>' + card_nums[c] + '</li>'); }
-		for (c in card_nums) { $('#frame_cut_num ul').append('<li>' + card_nums[c] + '</li>'); }
-
-		var options_card = { horizontal: 1,
-							    	itemNav: 'forceCentered',
-							    	smart: 1,
-							    	startAt: 6,
-							    	activateOn: 'click',
-							    	activateMiddle: 1,
-							    	scrollBy: 1,
-							    	speed: 100,
-							    	mouseDragging: 1,
-							    	touchDragging: 1,
-							    	releaseSwing: 1 };	
-
-		var frame_card1_num = new Sly('#frame_card1_num', options_card).init();
-		var frame_card2_num = new Sly('#frame_card2_num', options_card).init();
-		var frame_card3_num = new Sly('#frame_card3_num', options_card).init();
-		var frame_card4_num = new Sly('#frame_card4_num', options_card).init();
-		options_card['startAt'] = 5;
-		var frame_card5_num = new Sly('#frame_card5_num', options_card).init();
-
-		options_card['startAt'] = 7;
-		var frame_cut_num = new Sly('#frame_cut_num', options_card).init();
-
+		/* FUNCTIONS */
 		function hasDuplicates(array) {
 		  return (new Set(array)).size !== array.length;
 		}
@@ -359,57 +308,6 @@
 				return false;
 			}
 		}
-
-		$('#frame_card1_suit img').on('click', function() {
-			if ($(this).attr('class') === 'active_suit') {
-				return;
-			}
-			$("#frame_card1_suit img").removeClass("active_suit");
-			$(this).addClass('active_suit');
-			build_current_cards_table();
-		});
-		$('#frame_card2_suit img').on('click', function() {
-			if ($(this).attr('class') === 'active_suit') {
-				return;
-			}
-			$("#frame_card2_suit img").removeClass("active_suit");
-			$(this).addClass('active_suit');
-			build_current_cards_table();
-		});
-		$('#frame_card3_suit img').on('click', function() {
-			if ($(this).attr('class') === 'active_suit') {
-				return;
-			}
-			$("#frame_card3_suit img").removeClass("active_suit");
-			$(this).addClass('active_suit');
-			build_current_cards_table();
-		});
-		$('#frame_card4_suit img').on('click', function() {
-			if ($(this).attr('class') === 'active_suit') {
-				return;
-			}
-			$("#frame_card4_suit img").removeClass("active_suit");
-			$(this).addClass('active_suit');
-			build_current_cards_table();
-		});
-		$('#frame_card5_suit img').on('click', function() {
-			if ($(this).attr('class') === 'active_suit') {
-				return;
-			}
-			$("#frame_card5_suit img").removeClass("active_suit");
-			$(this).addClass('active_suit');
-			build_current_cards_table();
-		});
-		$('#frame_cut_suit img').on('click', function() {
-			$("#frame_cut_suit img").removeClass("active_suit");
-			$(this).addClass('active_suit');
-		});
-
-		$('#button_to_optimize').click(function() {
-		  $('html, body').animate({
-	      scrollTop: $("#optimize_tag").offset().top
-	    }, 1000);
-		});
 
 		function reset_suits() {
 			$('.suit img').removeClass('active_suit');
@@ -476,7 +374,6 @@
 					$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + current_suits[i] + '</td>');
 				}
 			}
-
 			if (!$("suits_matter_checkbox").is(':checked')) {
 				var suits = ['S','H','C','D'];
 				var fh_tmp = fh.slice();
@@ -497,24 +394,6 @@
 			}
 			$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + current_suits[4] + '</td>');	
 		}
-
-		build_current_cards_table();
-
-		frame_card1_num.on('active', function(e) {
-			build_current_cards_table();
-		});
-		frame_card2_num.on('active', function(e) {
-			build_current_cards_table();
-		});
-		frame_card3_num.on('active', function(e) {
-			build_current_cards_table();
-		});
-		frame_card4_num.on('active', function(e) {
-			build_current_cards_table();
-		});
-		frame_card5_num.on('active', function(e) {
-			build_current_cards_table();
-		});
 
 		function build_optimization_res_table(optimization_results) {
 			$('#optimization_results tbody tr:nth-child(1)').empty();
@@ -541,7 +420,143 @@
 
 		function randomize_hand() {
 			// USE sly.activate(..)
+			var full_num_idx = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+			var full_suit_idx = [0, 1, 2, 3];
+
+			var fh = [];
+
+			for (var i=0; i<5; i++) {
+				
+			}
+
+			$('.suit img').removeClass('active_suit');
+			$('#frame_card1_suit img:eq(0)').addClass('active_suit');
+			$('#frame_card2_suit img:eq(1)').addClass('active_suit');
+			$('#frame_card3_suit img:eq(2)').addClass('active_suit');
+			$('#frame_card4_suit img:eq(3)').addClass('active_suit');
+			$('#frame_card5_suit img:eq(0)').addClass('active_suit');
+			$('#frame_cut_suit img:eq(0)').addClass('active_suit');
+			build_current_cards_table();
 		}
+
+
+
+		/*************/
+
+	  $('input').checkboxradio();
+
+		$("#crib_radio1").prop("checked", true);
+
+		$('.suit').css('display','none');
+	  $('#suits_matter_checkbox').click(function() {
+		  if ($(this).is(':checked')) {
+		  	$('.suit').css('display','block');
+		  } else {
+		  	$('.suit').css('display','none');
+		  	reset_suits();
+		  }      
+    });
+  
+		var card_nums = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+		// Append card nums
+		for (c in card_nums) { $('#frame_card1_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card2_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card3_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card4_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card5_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_cut_num ul').append('<li>' + card_nums[c] + '</li>'); }
+
+		var options_card = { horizontal: 1,
+							    	itemNav: 'forceCentered',
+							    	smart: 1,
+							    	startAt: 6,
+							    	activateOn: 'click',
+							    	activateMiddle: 1,
+							    	scrollBy: 1,
+							    	speed: 100,
+							    	mouseDragging: 1,
+							    	touchDragging: 1,
+							    	releaseSwing: 1 };	
+
+		var frame_card1_num = new Sly('#frame_card1_num', options_card).init();
+		var frame_card2_num = new Sly('#frame_card2_num', options_card).init();
+		var frame_card3_num = new Sly('#frame_card3_num', options_card).init();
+		var frame_card4_num = new Sly('#frame_card4_num', options_card).init();
+		options_card['startAt'] = 5;
+		var frame_card5_num = new Sly('#frame_card5_num', options_card).init();
+
+		options_card['startAt'] = 7;
+		var frame_cut_num = new Sly('#frame_cut_num', options_card).init();
+
+		$('#frame_card1_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card1_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_card2_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card2_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_card3_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card3_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_card4_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card4_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_card5_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card5_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_cut_suit img').on('click', function() {
+			$("#frame_cut_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+		});
+
+		$('#button_to_optimize').click(function() {
+		  $('html, body').animate({
+	      scrollTop: $("#optimize_tag").offset().top
+	    }, 1000);
+		});
+
+		build_current_cards_table();
+
+		frame_card1_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+		frame_card2_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+		frame_card3_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+		frame_card4_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+		frame_card5_num.on('active', function(e) {
+			build_current_cards_table();
+		});
 
 		$('#randomize_button').on('click', function() {
 			swal({title:"Will Be Available Soon", type:"error", allowOutsideClick: true});
@@ -581,20 +596,21 @@
 			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4);
 
 			if (!$("suits_matter_checkbox").is(':checked')) {
-				if (fh[0] === current_nums[4].concat('-').concat(current_suits[4])) {
-					$("#frame_card5_suit img").removeClass("active_suit");
-					$("#frame_card5_suit img:eq(1)").addClass('active_suit');
-					current_suits[4] = 'H';
-				}
-				if (fh[1] === current_nums[4].concat('-').concat(current_suits[4])) {
-					$("#frame_card5_suit img").removeClass("active_suit");
-					$("#frame_card5_suit img:eq(2)").addClass('active_suit');
-					current_suits[4] = 'C';
-				}
-				if (fh[2] === current_nums[4].concat('-').concat(current_suits[4])) {
-					$("#frame_card5_suit img").removeClass("active_suit");
-					$("#frame_card5_suit img:eq(3)").addClass('active_suit');
-					current_suits[4] = 'D';
+				var suits = ['S','H','C','D'];
+				var fh_tmp = fh.slice();
+				fh_tmp.splice(-1,1)
+				var n = 0;
+				while (fh_tmp.indexOf(cut_num.concat('-').concat(cut_suit)) > -1) {
+					$("#frame_cut_suit img").removeClass("active_suit");
+					$("#frame_cut_suit img:eq(" + (n+1) + ")").addClass('active_suit');
+					cut_suit = suits[(n+1)%4];
+					n++;
+					if (n>6) {
+						$("#frame_cut_suit img").removeClass("active_suit");
+						$("#frame_cut_suit img:eq(0)").addClass('active_suit');
+						cut_suit = suits[0];
+						break;
+					}
 				}
 			}
 
