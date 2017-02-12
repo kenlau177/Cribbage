@@ -167,7 +167,7 @@
 			</div>
 		</div>
 
-		<br><br>
+		<br>
 
 		<div class="row">
 			<div class="col-md-5">
@@ -178,6 +178,7 @@
 						<tr></tr>
 					</tbody>
 				</table>
+				<center><h1 id="raw_hand_score" class="card_title"></h1></center>
 			</div>
 			<div class="col-md-4">
 				<br>
@@ -425,27 +426,43 @@
 			var fh = [];
 			var is_card_chosen = false;
 
+			var rand_num_idx_arr = [];
+			var rand_suit_idx_arr = [];
+
 			for (var i=1; i<6; i++) {
-				while (!is_card_chosen) {
+				while(!is_card_chosen) {
 					var rand_num_idx = Math.floor(Math.random() * 12);
 					var rand_suit_idx = Math.floor(Math.random() * 3);
 					var rand_num_suit = full_num_idx[rand_num_idx].toString().concat('-')
 																.concat(full_suit_idx[rand_suit_idx].toString());
 					if (fh.indexOf(rand_num_suit) === -1) {
-						$('#frame_card' + i + '_num').sly('activate', rand_num_idx);
-						$('#frame_card' + i + '_suit img').removeClass("active_suit");
-						$('#frame_card' + i + '_suit img:eq(' + rand_suit_idx + ')').addClass('active_suit');
+						rand_num_idx_arr.push(rand_num_idx);
+						rand_suit_idx_arr.push(rand_suit_idx);
 						fh.push(rand_num_suit);
 						is_card_chosen = true;
 					}
 				}
 				is_card_chosen = false;
 			}
+
+			var tmp = find_indices_ordered(rand_num_idx_arr);
+			for (var p=1; p<6; p++) {
+				//console.log(i);
+				//console.log(rand_num_idx_arr[tmp[i-1]]);
+				//var tmp_activate = rand_num_idx_arr.slice(tmp[p-1], tmp[p-1]+1);
+				//console.log(tmp_activate[0]);
+				var r = p - 1;
+				$('#frame_card' + p + '_num').sly('activate', rand_num_idx_arr[tmp[p-1]]);
+				$('#frame_card' + p + '_suit img').removeClass("active_suit");
+				$('#frame_card' + p + '_suit img:eq(' + rand_suit_idx_arr[tmp[p-1]] + ')').addClass('active_suit');
+			}
+
 			build_current_cards_table();
 			$('html, body').animate({
 		    scrollTop: $("#frame_card5_num").offset().top
 		  }, 1000);
 		}
+		//******************************//
 
 	  $('input').checkboxradio();
 
@@ -599,19 +616,20 @@
 			}
 
 			var cut_num = $('#frame_cut_num .active').text();
-			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4);
+			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4)
+												.slice(0,1).toUpperCase();
 
 			if (!$("suits_matter_checkbox").is(':checked')) {
 				var suits = ['S','H','C','D'];
 				var fh_tmp = fh.slice();
-				fh_tmp.splice(-1,1)
+				//fh_tmp.splice(-1,1)
 				var n = 0;
 				while (fh_tmp.indexOf(cut_num.concat('-').concat(cut_suit)) > -1) {
 					$("#frame_cut_suit img").removeClass("active_suit");
 					$("#frame_cut_suit img:eq(" + (n+1) + ")").addClass('active_suit');
 					cut_suit = suits[(n+1)%4];
 					n++;
-					if (n>6) {
+					if (n>7) {
 						$("#frame_cut_suit img").removeClass("active_suit");
 						$("#frame_cut_suit img:eq(0)").addClass('active_suit');
 						cut_suit = suits[0];
@@ -642,7 +660,7 @@
 											[cut_suit].concat(current_suits.slice(0,4)), cut_suit);			
 
 			var scores = [score1, score2, score3, score4, score5];
-			var tmp = find_indices_ordered(scores);
+			var tmp = find_indices_ordered(scores, true);
 
 			$('#scores_results tbody tr:nth-child(1)')
 				.append('<td>' + current_nums[tmp[0]] + current_suits[tmp[0]] + '</td>' + '<td>' + scores[tmp[0]] + 
@@ -662,7 +680,7 @@
 		});
 
 		$('#restart_button').on('click', function() {
-			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			$('html, body').animate({ scrollTop: 0 }, 1500);
 			reset_nums();
 			reset_suits();
 			
