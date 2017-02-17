@@ -113,7 +113,8 @@ input[type='radio'] {
 #title_font {
   font: 400 120px/0.8 'Great Vibes', Helvetica, sans-serif;
   color: #000;
-  text-shadow: 4px 4px 3px rgba(0,0,0,0.1); 
+  text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
+  margin-top: 28px;
 }
 
 .btn-group {
@@ -184,6 +185,13 @@ input[type='radio'] {
 }
 .sweet-alert button {
   font-size: 28px;
+}
+
+#score_result {
+  border: 8px solid #800080;
+  padding: 10px;
+  width: 50%;
+  border-radius: 10px;
 }
 
 @media(min-width:992px){

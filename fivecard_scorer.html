@@ -30,7 +30,7 @@
 <body style="margin:0px 0px 0px 0px;">
 	
 	<div class="container">
-		<center><h2 id="title_font">Cribbage Optimizer</h2></center>
+		<center><h2 id="title_font">Cribbage Scorer</h2></center>
 		<div class="row">
 		  <div class="btn-group dropdown">
 			  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
@@ -42,8 +42,8 @@
 			    <li><a href="#">6-Card Game</a></li>
 			    <li class="divider"></li>
 			    <li class="divider"></li>
-			    <li style="background-color:#ffff66;"><a href="#">Optimizer</a></li>
-			    <li><a href="fivecard_scorer.html">Hand Scorer</a></li>
+			    <li><a href="index.html">Optimizer</a></li>
+			    <li style="background-color:#ffff66;"><a href="#">Hand Scorer</a></li>
 			  <ul>	
 			</div>		
 		</div>
@@ -55,7 +55,7 @@
 			  </fieldset>
 			</div>
 			<div class="col-xs-6">
-				<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
+				<button id="randomize_button" type="button" class="btn btn-info">Randomize Cards</button>
 			</div>
 		</div>
 		<div class="row">
@@ -157,132 +157,49 @@
 			</div>
 		</div>
 
+		<br>
 		<div class="row">
-			<div class="col-md-6">
-				<div id="frame_card5_num" class="frame">
-					<ul class="slidee"></ul>
-				</div>
-				<div id="frame_card5_suit" class="suit">
-					<div class="row">
-						<center>
-							<div class="col-xs-3">
-								<img class="active_suit" src="images/spade.png" />
-							</div>
-							<div class="col-xs-3">
-								<img src="images/heart.png" />
-							</div>
-							<div class="col-xs-3">
-								<img src="images/club.png" />
-							</div>
-							<div class="col-xs-3">
-								<img src="images/diamond.png" />
-							</div>
-						</center>
-					</div>
+			<center><h1 class="card_title">What Was Cut?</h1></center>
+			<div id="frame_cut_num" class="frame">
+				<ul class="slidee"></ul>
+			</div>
+
+			<div id="frame_cut_suit" class="suit">
+				<div class="row">
+					<center>
+						<div class="col-xs-3">
+							<img class="active_suit" src="images/spade.png" />
+						</div>
+						<div class="col-xs-3">
+							<img src="images/heart.png" />
+						</div>
+						<div class="col-xs-3">
+							<img src="images/club.png" />
+						</div>
+						<div class="col-xs-3">
+							<img src="images/diamond.png" />
+						</div>
+					</center>
 				</div>
 			</div>
 		</div>
-
-		<br>
-
+		
+		<br><br>
 		<div class="row">
-			<div class="col-md-5">
-				<center><h1 id="optimize_tag" class="card_title">Cards On Hand</h1></center>
-				<table id="current_cards_table" class="table table-bordered" style='text-align:center;'>
-					<tbody>
-						<tr></tr>
-						<tr></tr>
-					</tbody>
-				</table>
-				<center><h1 id="raw_hand_score" class="card_title"></h1></center>
-			</div>
-			<div class="col-md-4">
-				<br>
-				<center>
-					<fieldset data-role="controlgroup" data-type="horizontal">
-					  <label for="crib_radio1" id="crib_label1" class='ui-checkboxradio-checked ui-state-active'>Your Crib</label>
-					  <input type="radio" name="crib_radio1" id="crib_radio1">
-					  <label for="crib_radio2" id="crib_label2">Other's Crib</label>
-					  <input type="radio" name="crib_radio1" id="crib_radio2">
-					</fieldset>
-				</center>
-			</div>
-			<div class="col-md-3">
-				<br><br>
-				<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
-			</div>
-		</div>
-
-		<br>
-		<div class="row">
-			<center><h1 id="optimize_tag" class="card_title">Optimization Results</h1></center>	
-			<table id="optimization_results" class="table table-striped table-bordered" style="text-align:center;">
-				<thead>
-					<tr>
-						<th>Throw</th>
-						<th>Score</th>
-						<th>Hand</th>
-						<th>Crib</th>
-					</tr>
-				</thead>
+			<center><h1 id="optimize_tag" class="card_title">Cards On Hand and Crib</h1></center>
+			<table id="current_cards_table" class="table table-bordered" style='text-align:center;'>
 				<tbody>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
 					<tr></tr>
 					<tr></tr>
 				</tbody>
 			</table>
+			<center><h1 id="raw_hand_score" class="card_title"></h1></center>
 		</div>
-		<div class="row">
-			<div class='col-md-6'>	
-				<center><h1 class="card_title">What Was Cut?</h1></center>
-				<div id="frame_cut_num" class="frame">
-					<ul class="slidee"></ul>
-				</div>
 
-				<div id="frame_cut_suit" class="suit">
-					<div class="row">
-						<center>
-							<div class="col-xs-3">
-								<img class="active_suit" src="images/spade.png" />
-							</div>
-							<div class="col-xs-3">
-								<img src="images/heart.png" />
-							</div>
-							<div class="col-xs-3">
-								<img src="images/club.png" />
-							</div>
-							<div class="col-xs-3">
-								<img src="images/diamond.png" />
-							</div>
-						</center>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<hr>
-				<button id="score_button" type="button" class="btn btn-primary next_card_button">Compute Scores!</button>
-			</div>
-		</div>
-		
-		<br><br><br>
-		<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
-			<thead>
-				<tr>
-					<th>Threw</th>
-					<th>Hand Score</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-			</tbody>
-		</table>
+		<br>
+		<button id="score_button" type="button" class="btn btn-primary next_card_button">Compute Score!</button>
+		<br><br>
+		<center><h1 id="score_result" class="card_title">Hand Score:</h1></center>
 
 		<hr>
 		<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
@@ -302,6 +219,7 @@
 		*/
 
 		/* FUNCTIONS */
+
 		function hasDuplicates(array) {
 		  return (new Set(array)).size !== array.length;
 		}
@@ -328,7 +246,6 @@
 			$('#frame_card2_suit img:eq(1)').addClass('active_suit');
 			$('#frame_card3_suit img:eq(2)').addClass('active_suit');
 			$('#frame_card4_suit img:eq(3)').addClass('active_suit');
-			$('#frame_card5_suit img:eq(0)').addClass('active_suit');
 			$('#frame_cut_suit img:eq(0)').addClass('active_suit');
 			build_current_cards_table();
 		}
@@ -338,32 +255,21 @@
 			frame_card2_num.toCenter();
 			frame_card3_num.toCenter();
 			frame_card4_num.toCenter();
-			frame_card5_num.toCenter();
-			frame_card5_num.prev();
 			frame_cut_num.toCenter();
-			frame_cut_num.next();
+			frame_cut_num.prev();
 		}
 
 		function get_current_nums() {
 			var out = [];
-			for (i=1; i<=5; i++) {
+			for (i=1; i<=4; i++) {
 				out.push($('#frame_card' + i + '_num .active').text());
-			}
-			return out;
-		}
-
-		function get_current_suits() {
-			var out = [];
-			for (i=1; i<=5; i++) {
-				out.push($('#frame_card' + i + '_suit .active_suit')[0].src
-											.replace(/^.*[\\\/]/, '').slice(0,-4));
 			}
 			return out;
 		}
 
 		function get_current_suits_abbrev() {
 			var out = [];
-			for (i=1; i<=5; i++) {
+			for (i=1; i<=4; i++) {
 				out.push($('#frame_card' + i + '_suit .active_suit')[0].src
 											.replace(/^.*[\\\/]/, '').slice(0,-4)
 											.slice(0,1).toUpperCase());
@@ -378,6 +284,10 @@
 			var current_suits = get_current_suits_abbrev();
 			var fh = [];
 
+			var cut_num = $('#frame_cut_num .active').text();
+			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4)
+												.slice(0,1).toUpperCase();
+
 			for (i in current_nums) {
 				fh.push(current_nums[i].concat('-').concat(current_suits[i]));
 				$('#current_cards_table tbody tr:nth-child(1)').append('<td>' + current_nums[i] + '</td>');
@@ -387,48 +297,8 @@
 					$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + current_suits[i] + '</td>');
 				}
 			}
-			if (!$("suits_matter_checkbox").is(':checked')) {
-				var suits = ['S','H','C','D'];
-				var fh_tmp = fh.slice();
-				fh_tmp.splice(-1,1)
-				var n = 0;
-				while (fh_tmp.indexOf(current_nums[4].concat('-').concat(current_suits[4])) > -1) {
-					$("#frame_card5_suit img").removeClass("active_suit");
-					$("#frame_card5_suit img:eq(" + (n+1) + ")").addClass('active_suit');
-					current_suits[4] = suits[(n+1)%4];
-					n++;
-					if (n>6) {
-						$("#frame_card5_suit img").removeClass("active_suit");
-						$("#frame_card5_suit img:eq(0)").addClass('active_suit');
-						current_suits[4] = suits[0];
-						break;
-					}
-				}
-			}
-			$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + current_suits[4] + '</td>');	
-		}
-
-		function build_optimization_res_table(optimization_results) {
-			$('#optimization_results tbody tr:nth-child(1)').empty();
-			$('#optimization_results tbody tr:nth-child(2)').empty();
-			$('#optimization_results tbody tr:nth-child(3)').empty();
-			$('#optimization_results tbody tr:nth-child(4)').empty();
-			$('#optimization_results tbody tr:nth-child(5)').empty();
-			for (i in optimization_results[0]) {
-				$('#optimization_results tbody tr:nth-child(1)').append('<td>' + optimization_results[0][i] + '</td>');
-			}
-			for (i in optimization_results[1]) {
-				$('#optimization_results tbody tr:nth-child(2)').append('<td>' + optimization_results[1][i] + '</td>');
-			}
-			for (i in optimization_results[2]) {
-				$('#optimization_results tbody tr:nth-child(3)').append('<td>' + optimization_results[2][i] + '</td>');
-			}
-			for (i in optimization_results[3]) {
-				$('#optimization_results tbody tr:nth-child(4)').append('<td>' + optimization_results[3][i] + '</td>');
-			}
-			for (i in optimization_results[4]) {
-				$('#optimization_results tbody tr:nth-child(5)').append('<td>' + optimization_results[4][i] + '</td>');
-			}
+			$('#current_cards_table tbody tr:nth-child(1)').append('<td>' + cut_num + '</td>');
+			$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + cut_suit + '</td>');
 		}
 
 		function randomize_hand() {
@@ -458,17 +328,63 @@
 			}
 
 			var tmp = find_indices_ordered(rand_num_idx_arr);
-			for (var p=1; p<6; p++) {
+			for (var p=1; p<5; p++) {
 				$('#frame_card' + p + '_num').sly('activate', rand_num_idx_arr[tmp[p-1]]);
 				$('#frame_card' + p + '_suit img').removeClass("active_suit");
 				$('#frame_card' + p + '_suit img:eq(' + rand_suit_idx_arr[tmp[p-1]] + ')').addClass('active_suit');
 			}
+			$('#frame_cut_num').sly('activate', rand_num_idx_arr[tmp[4]]);
+			$('#frame_cut_suit img').removeClass("active_suit");
+			$('#frame_cut_suit img:eq(' + rand_suit_idx_arr[tmp[4]] + ')').addClass('active_suit');
 
 			build_current_cards_table();
+
 			$('html, body').animate({
-		    scrollTop: $("#frame_card5_num").offset().top
+		    scrollTop: $("#frame_cut_num").offset().top
 		  }, 1000);
 		}
+
+		function compute_score() {
+			var current_nums = get_current_nums();
+			var current_suits = get_current_suits_abbrev();
+			var fh = [];
+
+			for (i in current_nums) {
+				fh.push(current_nums[i].concat('-').concat(current_suits[i]));
+			}
+
+			var cut_num = $('#frame_cut_num .active').text();
+			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4)
+												.slice(0,1).toUpperCase();
+
+			if (!$("suits_matter_checkbox").is(':checked')) {
+				var suits = ['S','H','C','D'];
+				var fh_tmp = fh.slice();
+				var n = 0;
+				while (fh_tmp.indexOf(cut_num.concat('-').concat(cut_suit)) > -1) {
+					$("#frame_cut_suit img").removeClass("active_suit");
+					$("#frame_cut_suit img:eq(" + (n+1) + ")").addClass('active_suit');
+					cut_suit = suits[(n+1)%4];
+					n++;
+					if (n>7) {
+						$("#frame_cut_suit img").removeClass("active_suit");
+						$("#frame_cut_suit img:eq(0)").addClass('active_suit');
+						cut_suit = suits[0];
+						break;
+					}
+				}
+			}
+
+			if (check_hand_dup(true)) {
+				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
+				return;
+			}
+
+			var score = score_hand([cut_num].concat(current_nums), [cut_suit].concat(current_suits), cut_num, cut_suit);
+
+			$('#score_result').text('Hand Score: ' + score);
+		}
+
 		//******************************//
 
 		// Add slideDown animation to Bootstrap dropdown when expanding.
@@ -482,8 +398,6 @@
 	  });
 
 	  $('input').checkboxradio();
-
-		$("#crib_radio1").prop("checked", true);
 
 		$('.suit').css('display','none');
 	  $('#suits_matter_checkbox').click(function() {
@@ -502,7 +416,6 @@
 		for (c in card_nums) { $('#frame_card2_num ul').append('<li>' + card_nums[c] + '</li>'); }
 		for (c in card_nums) { $('#frame_card3_num ul').append('<li>' + card_nums[c] + '</li>'); }
 		for (c in card_nums) { $('#frame_card4_num ul').append('<li>' + card_nums[c] + '</li>'); }
-		for (c in card_nums) { $('#frame_card5_num ul').append('<li>' + card_nums[c] + '</li>'); }
 		for (c in card_nums) { $('#frame_cut_num ul').append('<li>' + card_nums[c] + '</li>'); }
 
 		var options_card = { horizontal: 1,
@@ -521,10 +434,8 @@
 		var frame_card2_num = new Sly('#frame_card2_num', options_card).init();
 		var frame_card3_num = new Sly('#frame_card3_num', options_card).init();
 		var frame_card4_num = new Sly('#frame_card4_num', options_card).init();
-		options_card['startAt'] = 5;
-		var frame_card5_num = new Sly('#frame_card5_num', options_card).init();
 
-		options_card['startAt'] = 7;
+		options_card['startAt'] = 5;
 		var frame_cut_num = new Sly('#frame_cut_num', options_card).init();
 
 		$('#frame_card1_suit img').on('click', function() {
@@ -559,23 +470,10 @@
 			$(this).addClass('active_suit');
 			build_current_cards_table();
 		});
-		$('#frame_card5_suit img').on('click', function() {
-			if ($(this).attr('class') === 'active_suit') {
-				return;
-			}
-			$("#frame_card5_suit img").removeClass("active_suit");
-			$(this).addClass('active_suit');
-			build_current_cards_table();
-		});
 		$('#frame_cut_suit img').on('click', function() {
 			$("#frame_cut_suit img").removeClass("active_suit");
 			$(this).addClass('active_suit');
-		});
-
-		$('#button_to_optimize').click(function() {
-		  $('html, body').animate({
-	      scrollTop: $("#optimize_tag").offset().top
-	    }, 1000);
+			build_current_cards_table();
 		});
 
 		build_current_cards_table();
@@ -592,129 +490,22 @@
 		frame_card4_num.on('active', function(e) {
 			build_current_cards_table();
 		});
-		frame_card5_num.on('active', function(e) {
+		frame_cut_num.on('active', function(e) {
 			build_current_cards_table();
 		});
 
 		$('#randomize_button').on('click', function() {
-			//swal({title:"Will Be Available Soon", type:"error", allowOutsideClick: true});
 			randomize_hand();
 		});
 
-		$('#optimize_button').on('click', function() {
-			if (check_hand_dup(false)) {
-				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
-				return;
-			}
-			if ($('#crib_radio1').is(':checked')) {
-				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), true);
-			  build_optimization_res_table(optimization_res);
-		    $('html, body').animate({
-		        scrollTop: $("#optimization_results").offset().top
-		    }, 1000);
-			} else {
-				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), false);
-			  build_optimization_res_table(optimization_res);
-			  $('html, body').animate({
-		        scrollTop: $("#optimization_results").offset().top
-		    }, 1000);
-			} 
-		});
-
 		$('#score_button').on('click', function() {
-			var current_nums = get_current_nums();
-			var current_suits = get_current_suits_abbrev();
-
-			var fh = [];
-
-			for (i in current_nums) {
-				fh.push(current_nums[i].concat('-').concat(current_suits[i]));
-			}
-
-			var cut_num = $('#frame_cut_num .active').text();
-			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4)
-												.slice(0,1).toUpperCase();
-
-			if (!$("suits_matter_checkbox").is(':checked')) {
-				var suits = ['S','H','C','D'];
-				var fh_tmp = fh.slice();
-				//fh_tmp.splice(-1,1)
-				var n = 0;
-				while (fh_tmp.indexOf(cut_num.concat('-').concat(cut_suit)) > -1) {
-					$("#frame_cut_suit img").removeClass("active_suit");
-					$("#frame_cut_suit img:eq(" + (n+1) + ")").addClass('active_suit');
-					cut_suit = suits[(n+1)%4];
-					n++;
-					if (n>7) {
-						$("#frame_cut_suit img").removeClass("active_suit");
-						$("#frame_cut_suit img:eq(0)").addClass('active_suit');
-						cut_suit = suits[0];
-						break;
-					}
-				}
-			}
-
-			if (check_hand_dup(true)) {
-				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
-				return;
-			}
-			$('#scores_results tbody tr:nth-child(1)').empty();
-			$('#scores_results tbody tr:nth-child(2)').empty();
-			$('#scores_results tbody tr:nth-child(3)').empty();
-			$('#scores_results tbody tr:nth-child(4)').empty();
-			$('#scores_results tbody tr:nth-child(5)').empty();
-
-			var score1 = score_hand([cut_num].concat(current_nums.slice(1)), 
-											[cut_suit].concat(current_suits.slice(1)), cut_num, cut_suit);
-			var score2 = score_hand([cut_num].concat(current_nums.slice(0,1).concat(current_nums.slice(2))),
-												[cut_suit].concat(current_suits.slice(0,1).concat(current_suits.slice(2))), cut_num, cut_suit);
-			var score3 = score_hand([cut_num].concat(current_nums.slice(0,2).concat(current_nums.slice(3))),
-												[cut_suit].concat(current_suits.slice(0,2).concat(current_suits.slice(3))), cut_num, cut_suit);
-			var score4 = score_hand([cut_num].concat(current_nums.slice(0,3).concat(current_nums.slice(4))),
-												[cut_suit].concat(current_suits.slice(0,3).concat(current_suits.slice(4))), cut_num, cut_suit);
-			var score5 = score_hand([cut_num].concat(current_nums.slice(0,4)), 
-											[cut_suit].concat(current_suits.slice(0,4)), cut_num, cut_suit);			
-
-			var scores = [score1, score2, score3, score4, score5];
-			var tmp = find_indices_ordered(scores, true);
-
-			$('#scores_results tbody tr:nth-child(1)')
-				.append('<td>' + current_nums[tmp[0]] + current_suits[tmp[0]] + '</td>' + '<td>' + scores[tmp[0]] + 
-					"</td>");
-			$('#scores_results tbody tr:nth-child(2)')
-					.append('<td>' + current_nums[tmp[1]] + current_suits[tmp[1]] + '</td>' + '<td>' + scores[tmp[1]] + 
-						"</td>");
-			$('#scores_results tbody tr:nth-child(3)')
-					.append('<td>' + current_nums[tmp[2]] + current_suits[tmp[2]] + '</td>' + '<td>' + scores[tmp[2]] + 
-						"</td>");
-			$('#scores_results tbody tr:nth-child(4)')
-					.append('<td>' + current_nums[tmp[3]] + current_suits[tmp[3]] + '</td>' + '<td>' + scores[tmp[3]] + 
-						"</td>");
-			$('#scores_results tbody tr:nth-child(5)')
-					.append('<td>' + current_nums[tmp[4]] + current_suits[tmp[4]] + '</td>' + '<td>' + scores[tmp[4]] + 
-						"</td>");
-
-			$('html, body').animate({
-		     scrollTop: $("#scores_results").offset().top
-		    }, 1000);
+			compute_score();
 		});
 
 		$('#restart_button').on('click', function() {
 			$('html, body').animate({ scrollTop: 0 }, 1500);
-			reset_nums();
 			reset_suits();
-			
-			$('#optimization_results tbody tr:nth-child(1)').empty();
-			$('#optimization_results tbody tr:nth-child(2)').empty();
-			$('#optimization_results tbody tr:nth-child(3)').empty();
-			$('#optimization_results tbody tr:nth-child(4)').empty();
-			$('#optimization_results tbody tr:nth-child(5)').empty();
-			
-			$('#scores_results tbody tr:nth-child(1)').empty();
-			$('#scores_results tbody tr:nth-child(2)').empty();
-			$('#scores_results tbody tr:nth-child(3)').empty();
-			$('#scores_results tbody tr:nth-child(4)').empty();
-			$('#scores_results tbody tr:nth-child(5)').empty();
+			reset_nums();
 		});
 
 		window.onresize = function(event) {
@@ -722,7 +513,6 @@
 			frame_card2_num.reload();
 			frame_card3_num.reload();
 			frame_card4_num.reload();
-			frame_card5_num.reload();
 			frame_cut_num.reload();
 		};
 
@@ -733,4 +523,3 @@
 
 
 </html>
-
