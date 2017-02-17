@@ -30,11 +30,11 @@ function convert_hand_to_ordinal(current_nums) {
 	return out;	
 }
 
-function score_hand(hand_names, hand_suits, cut_card_suit) {
+function score_hand(hand_names, hand_suits, cut_card_name, cut_card_suit) {
 	var hand = convert_hand_to_nums(hand_names);
 	var hand_ordinal = convert_hand_to_ordinal(hand_names);
-	var out = score_15s(hand) + score_pairs(hand_names) + score_flush_hand(hand_suits) + 
-							score_nobs(hand_names, hand_suits, cut_card_suit) + 
+	var out = score_15s(hand) + score_pairs(hand_names) + score_flush_hand(hand_suits, cut_card_suit) + 
+							score_nobs(hand_names, hand_suits, cut_card_name, cut_card_suit) + 
 							score_runs(hand_ordinal);
 	return out;
 }
@@ -70,7 +70,7 @@ function score_pairs(hand) {
 	return score;
 }
 
-function score_flush_hand(hand_suits) {
+function score_flush_hand(hand_suits, cut_suit) {
 	var counted_suits = hand_suits.reduce(function(all_suits, suit) { 
 											  if (suit in all_suits) {
 											    all_suits[suit]++;
@@ -80,11 +80,15 @@ function score_flush_hand(hand_suits) {
 											  }
 											  return all_suits;
 											}, {});
-	counted_suits = Object.values(counted_suits);
-	if (counted_suits.indexOf(5) > -1) {
+	var counted_suits_vals = Object.values(counted_suits);
+	if (counted_suits_vals.indexOf(5) > -1) {
 		return 5;
-	} else if (counted_suits.indexOf(4) > -1) {
-		return 4;
+	} else if (counted_suits_vals.indexOf(4) > -1) {
+		if (counted_suits[cut_suit] === 4) {
+			return 0;
+		} else {
+			return 4;
+		}
 	} else {
 		return 0;
 	}
@@ -104,14 +108,18 @@ function score_flush_crib(hand_suits) {
 	return hand_suits.length;
 }
 
-function score_nobs(hand_names, hand_suits, cut_card_suit) {
-	// Loop over all the cards in the hand, check to see if it's a Jack, and if it is, check the suit.
-	for (i=0; i<hand_names.length; i++) {
-		if (hand_names[i] === 'J' && hand_suits[i] === cut_card_suit) {
-			return 1;
-		}
+function score_nobs(hand_names, hand_suits, cut_card_name, cut_card_suit) {
+	if (cut_card_name === 'J') {
+		return 0;
+	} else {
+		// Loop over all the cards in the hand, check to see if it's a Jack, and if it is, check the suit.
+		for (i=0; i<hand_names.length; i++) {
+			if (hand_names[i] === 'J' && hand_suits[i] === cut_card_suit) {
+				return 1;
+			}
+		}	
 	}
-
+	
 	// We haven't left the routine yet, so the right jack is not in the hand.
 	return 0;
 }

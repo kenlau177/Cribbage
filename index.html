@@ -6,22 +6,27 @@
 
   <title>Cribbage Hand Optimizer</title>
 
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	
+  <script src="js/sly.min.js"></script>
 
   <!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
-  <script src="js/sly.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
   <script src="js/sweetalert.min.js"></script>
   <link rel="stylesheet" href="sweetalert.css">
 
   <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 
-  <!-- Checkbox css -->
+  <!-- Checkbox -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <!-- Dropdown Menu -->
+	<!--<script src="js/dropdowns-enhancement.js"></script>
+  <link rel="stylesheet" href="dropdowns-enhancement.min.css">-->
 
   <link rel="stylesheet" href="style.css">
 
@@ -31,6 +36,20 @@
 	
 	<div class="container">
 		<center><h2 id="title_font">Cribbage Optimizer</h2></center>
+		<div class="row">
+		  <div class="btn-group dropdown">
+			  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
+		  	<ul class="dropdown-menu pull-center">
+		  		<li><a href="#">About this App</a></li>
+			    <li class="divider"></li>
+			    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
+			    <li><a href="#">6-Card Game</a></li>
+			    <li class="divider"></li>
+			    <li style="background-color:#ffffb2;"><a href="#">Optimizer</a></li>
+			    <li><a href="#">Hand Scorer</a></li>
+			  <ul>	
+			</div>		
+		</div>
 		<div class="row">
 			<div class="col-xs-6">
 			  <fieldset>
@@ -447,10 +466,6 @@
 
 			var tmp = find_indices_ordered(rand_num_idx_arr);
 			for (var p=1; p<6; p++) {
-				//console.log(i);
-				//console.log(rand_num_idx_arr[tmp[i-1]]);
-				//var tmp_activate = rand_num_idx_arr.slice(tmp[p-1], tmp[p-1]+1);
-				//console.log(tmp_activate[0]);
 				var r = p - 1;
 				$('#frame_card' + p + '_num').sly('activate', rand_num_idx_arr[tmp[p-1]]);
 				$('#frame_card' + p + '_suit img').removeClass("active_suit");
@@ -463,6 +478,16 @@
 		  }, 1000);
 		}
 		//******************************//
+
+		// Add slideDown animation to Bootstrap dropdown when expanding.
+	  $('.dropdown').on('show.bs.dropdown', function(e){
+		  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(350);
+		});
+
+	  // Add slideUp animation to Bootstrap dropdown when collapsing.
+	  $('.dropdown').on('hide.bs.dropdown', function() {
+	    $(this).find('.dropdown-menu').first().stop(true, true).slideUp(350);
+	  });
 
 	  $('input').checkboxradio();
 
@@ -677,6 +702,10 @@
 			$('#scores_results tbody tr:nth-child(5)')
 					.append('<td>' + current_nums[tmp[4]] + current_suits[tmp[4]] + '</td>' + '<td>' + scores[tmp[4]] + 
 						"</td>");
+
+			$('html, body').animate({
+		     scrollTop: $("#scores_results").offset().top
+		    }, 1000);
 		});
 
 		$('#restart_button').on('click', function() {

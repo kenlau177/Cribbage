@@ -35,7 +35,7 @@ function compute_expected_crib_hand_helper(fh, card, suit) {
 		var suit3 = fh_combn[c][2].split("-")[1];
 		var suit4 = fh_combn[c][3].split("-")[1];		
 
-		tot_score += score_hand([card,card1,card2,card3,card4], [suit,suit1,suit2,suit3,suit4], 
+		tot_score += score_hand([card,card1,card2,card3,card4], [suit,suit1,suit2,suit3,suit4], card4, 
 									suit4);
 		count++;
 	}
@@ -83,6 +83,7 @@ function compute_theoretical_crib_hand_tmp(card) {
 }
 
 function compute_expected_crib_hand(hand_names, hand_suits) {
+	/*
 	var theo_crib = {
 		'A': 4.758,
 		'2': 4.983,
@@ -97,6 +98,21 @@ function compute_expected_crib_hand(hand_names, hand_suits) {
 		'J': 4.936,
 		'Q': 4.602,
 		'K': 4.408 };
+	*/
+	var theo_crib = {
+		'A': 4.456,
+		'2': 4.681,
+		'3': 4.838,
+		'4': 4.844,
+		'5': 6.658,
+		'6': 4.799,
+		'7': 4.688,
+		'8': 4.6455,
+		'9': 4.539,
+		'10': 4.469,
+		'J': 4.676,
+		'Q': 4.2956,
+		'K': 4.103 };
 
 	return [theo_crib[hand_names[0]], theo_crib[hand_names[1]], theo_crib[hand_names[2]], 
 					theo_crib[hand_names[3]], theo_crib[hand_names[4]]];
@@ -112,7 +128,7 @@ function compute_expected_hand_helper(fh, cards_keep, suits_keep) {
 		tot_score += score_hand([card_cut, cards_keep[0], cards_keep[1],
 														cards_keep[2], cards_keep[3]],
 														[suit_cut, suits_keep[0], suits_keep[1],
-														suits_keep[2], suits_keep[3]], suit_cut);
+														suits_keep[2], suits_keep[3]], card_cut, suit_cut);
 		count++;
 	}
   return tot_score/count;
