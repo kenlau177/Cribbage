@@ -219,10 +219,12 @@
 			<table id="optimization_results" class="table table-striped table-bordered" style="text-align:center;">
 				<thead>
 					<tr>
-						<th>Throw</th>
+						<th>Discard</th>
 						<th>Score</th>
 						<th>Hand</th>
 						<th>Crib</th>
+						<th>Min</th>
+						<th>Max</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -233,6 +235,13 @@
 					<tr></tr>
 				</tbody>
 			</table>
+			<center><a id='column_descrips_title' class="card_title">See Column Descriptions</a></center>
+			<ul id='column_descrips_list' class="card_title">
+				<li><strong>Discard:</strong> Card to throw in the crib.</li>
+				<li><strong>Score:</strong> The net expected score including the crib impact.</li>
+				<li><strong>Crib:</strong> The impact of the discarded card thrown in the crib compared to the expected crib score.</li>
+				<li><strong>Min|Max:</strong> The minimum|maximum possible score of the hand if card is discarded.</li>
+			</ul>
 		</div>
 		<div class="row">
 			<div class='col-md-6'>	
@@ -271,7 +280,7 @@
 		<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
 			<thead>
 				<tr>
-					<th>Threw</th>
+					<th>Discarded</th>
 					<th>Hand Score</th>
 				</tr>
 			</thead>
@@ -291,6 +300,12 @@
 
 	<br>
 	<hr>
+	<footer>
+		<center>
+	  	<p class="footer_text">Copyright &copy; 2017 Ken Lau. All rights reserved.</p>
+	  </center>
+	</footer>
+	<br>
 
 	<script src="js/score.js"></script>
 	<script src="js/optimize.js"></script>
@@ -484,6 +499,14 @@
 	  $('input').checkboxradio();
 
 		$("#crib_radio1").prop("checked", true);
+
+		$('#column_descrips_title').on('click', function() {
+			if ($('#column_descrips_list').css('display') === 'none') {
+				$('#column_descrips_list').css('display', 'block');	
+			} else {
+				$('#column_descrips_list').css('display', 'none');	
+			}
+		});
 
 		$('.suit').css('display','none');
 	  $('#suits_matter_checkbox').click(function() {

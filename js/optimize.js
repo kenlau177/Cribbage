@@ -67,7 +67,7 @@ function compute_expected_crib_hand(hand_names, hand_suits) {
 	return [score1, score2, score3, score4, score5];
 }
 */
-function compute_theoretical_crib_hand_tmp(card) {
+function compute_general_crib_hand_tmp(card) {
 	var full_hand_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 	var full_hand_suits = ['S', 'H', 'C', 'D'];
 	var fh = [];
@@ -82,7 +82,7 @@ function compute_theoretical_crib_hand_tmp(card) {
 	return out;
 }
 
-function compute_expected_crib_hand(hand_names, hand_suits) {
+function compute_expected_crib_impact(hand_names, hand_suits) {
 	/*
 	var theo_crib = {
 		'A': 4.758,
@@ -99,7 +99,7 @@ function compute_expected_crib_hand(hand_names, hand_suits) {
 		'Q': 4.602,
 		'K': 4.408 };
 	*/
-	var theo_crib = {
+	var general_crib = {
 		'A': 4.456,
 		'2': 4.681,
 		'3': 4.838,
@@ -114,24 +114,42 @@ function compute_expected_crib_hand(hand_names, hand_suits) {
 		'Q': 4.2956,
 		'K': 4.103 };
 
-	return [theo_crib[hand_names[0]], theo_crib[hand_names[1]], theo_crib[hand_names[2]], 
-					theo_crib[hand_names[3]], theo_crib[hand_names[4]]];
+	var gen_crib_vals = Object.values(general_crib);
+	var total = 0;
+	for(var i = 0; i < gen_crib_vals.length; i++) {
+	    total += gen_crib_vals[i];
+	}
+	var gen_crib_avg = total/gen_crib_vals.length;
+
+	return [general_crib[hand_names[0]]-gen_crib_avg, general_crib[hand_names[1]]-gen_crib_avg, 
+					general_crib[hand_names[2]]-gen_crib_avg, general_crib[hand_names[3]]-gen_crib_avg, 
+					general_crib[hand_names[4]]-gen_crib_avg];
 }
 
 function compute_expected_hand_helper(fh, cards_keep, suits_keep) {
 	var tot_score = 0;
 	var count = 0;
+	var min = 50;
+	var max = -1;
 	for (f in fh) {
 		var card_cut = fh[f].split("-")[0];
 		var suit_cut = fh[f].split("-")[1];
 
-		tot_score += score_hand([card_cut, cards_keep[0], cards_keep[1],
+		var score_tmp = score_hand([card_cut, cards_keep[0], cards_keep[1],
 														cards_keep[2], cards_keep[3]],
 														[suit_cut, suits_keep[0], suits_keep[1],
 														suits_keep[2], suits_keep[3]], card_cut, suit_cut);
+		if (score_tmp < min) {
+			min = score_tmp;
+		}
+		if (score_tmp > max) {
+			max = score_tmp;
+		}
+
+		tot_score += score_tmp;
 		count++;
 	}
-  return tot_score/count;
+  return {'score':tot_score/count, 'min_score':min, 'max_score':max};
 }
 
 function compute_expected_hand(hand_names, hand_suits) {
@@ -191,32 +209,44 @@ function find_indices_ordered(inp, desc) {
 function optimize(hand_names, hand_suits, yourcrib) {
 
 	var exp_scores_hand = compute_expected_hand(hand_names, hand_suits);
-	var exp_scores_crib = compute_expected_crib_hand(hand_names, hand_suits);
+	var exp_scores_crib = compute_expected_crib_impact(hand_names, hand_suits);
 
-	if (yourcrib) {
-		var exp_scores = [];
-		for (var i = 0; i < exp_scores_hand.length; i++){
-	  	exp_scores.push((exp_scores_hand[i] + exp_scores_crib[i]).toFixed(1));
-		}
-	} else {
-		var exp_scores = [];
-		for (var i = 0; i < exp_scores_hand.length; i++){
-	  	exp_scores.push((exp_scores_hand[i] - exp_scores_crib[i]).toFixed(1));
-		}
+	if (!yourcrib) {
+		exp_scores_crib = exp_scores_crib.map(function(x) { return -x; });
+	}
+
+	var exp_scores = [];
+	for (var i = 0; i < exp_scores_hand.length; i++){
+  	exp_scores.push((exp_scores_hand[i].score + exp_scores_crib[i]).toFixed(1));
 	}
 
 	var tmp = find_indices_ordered(exp_scores, true);
 
 	return [[hand_names[tmp[0]].concat(hand_suits[tmp[0]]), exp_scores[tmp[0]], 
-					exp_scores_hand[tmp[0]].toFixed(1), exp_scores_crib[tmp[0]].toFixed(1)],
+					exp_scores_hand[tmp[0]].score.toFixed(1), 
+					exp_scores_crib[tmp[0]].toFixed(1),
+					exp_scores_hand[tmp[0]].min_score.toFixed(0),
+					exp_scores_hand[tmp[0]].max_score.toFixed(0)],
 					[hand_names[tmp[1]].concat(hand_suits[tmp[1]]), exp_scores[tmp[1]], 
-					exp_scores_hand[tmp[1]].toFixed(1), exp_scores_crib[tmp[1]].toFixed(1)],
+					exp_scores_hand[tmp[1]].score.toFixed(1), 
+					exp_scores_crib[tmp[1]].toFixed(1),
+					exp_scores_hand[tmp[1]].min_score.toFixed(0),
+					exp_scores_hand[tmp[1]].max_score.toFixed(0)],
 					[hand_names[tmp[2]].concat(hand_suits[tmp[2]]), exp_scores[tmp[2]], 
-					exp_scores_hand[tmp[2]].toFixed(1), exp_scores_crib[tmp[2]].toFixed(1)],
+					exp_scores_hand[tmp[2]].score.toFixed(1), 
+					exp_scores_crib[tmp[2]].toFixed(1),
+					exp_scores_hand[tmp[2]].min_score.toFixed(0), 
+					exp_scores_hand[tmp[2]].max_score.toFixed(0)],
 					[hand_names[tmp[3]].concat(hand_suits[tmp[3]]), exp_scores[tmp[3]], 
-					exp_scores_hand[tmp[3]].toFixed(1), exp_scores_crib[tmp[3]].toFixed(1)],
+					exp_scores_hand[tmp[3]].score.toFixed(1), 
+					exp_scores_crib[tmp[3]].toFixed(1),
+					exp_scores_hand[tmp[3]].min_score.toFixed(0), 
+					exp_scores_hand[tmp[3]].max_score.toFixed(0)],
 					[hand_names[tmp[4]].concat(hand_suits[tmp[4]]), exp_scores[tmp[4]], 
-					exp_scores_hand[tmp[4]].toFixed(1), exp_scores_crib[tmp[4]].toFixed(1)]];
+					exp_scores_hand[tmp[4]].score.toFixed(1), 
+					exp_scores_crib[tmp[4]].toFixed(1),
+					exp_scores_hand[tmp[4]].min_score.toFixed(0),
+					exp_scores_hand[tmp[4]].max_score.toFixed(0)]];
 }
 
 

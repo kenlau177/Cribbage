@@ -42,6 +42,17 @@ body {
   font-weight: bold;
 }
 
+#column_descrips_list {
+  font-size: 35px;
+  border: #000 solid 2px;
+  border-radius: 5px;
+  display: none;
+}
+
+#column_descrips_list li strong {
+  font-size: 45px;
+}
+
 .suit {
   margin-top: 30px;
   /*display: none;*/
@@ -194,6 +205,10 @@ input[type='radio'] {
   border-radius: 10px;
 }
 
+.footer_text {
+  font-size: 35px;
+}
+
 @media(min-width:992px){
   .frame {
     height: 70px;
@@ -217,7 +232,7 @@ input[type='radio'] {
     font-size: 20px;
   }
   .table {
-    font-size: 20px;
+    font-size: 18px;
   }
   #randomize_button {
     font-size: 20px;

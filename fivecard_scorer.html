@@ -206,8 +206,13 @@
 
 	</div>
 
+	<br><hr>
+	<footer>
+		<center>
+	  	<p class="footer_text">Copyright &copy; 2017 Ken Lau. All rights reserved.</p>
+	  </center>
+	</footer>
 	<br>
-	<hr>
 
 	<script src="js/score.js"></script>
 	<script src="js/optimize.js"></script>
@@ -299,6 +304,8 @@
 			}
 			$('#current_cards_table tbody tr:nth-child(1)').append('<td>' + cut_num + '</td>');
 			$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + cut_suit + '</td>');
+
+			$('#score_result').text('Hand Score:');
 		}
 
 		function randomize_hand() {
