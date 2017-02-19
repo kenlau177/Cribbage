@@ -38,12 +38,14 @@
 		  		<li><a href="#">About this App</a></li>
 			    <li class="divider"></li>
 			    <li class="divider"></li>
+			    <li style="background-color:#ffff66;"><a href="#">Optimizer</a></li>
+			    <li><a href="fivecard_scorer.html">Hand Scorer</a></li>
+			    <li class="divider"></li>
+			    <li class="divider"></li>
 			    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
 			    <li><a href="#">6-Card Game</a></li>
 			    <li class="divider"></li>
 			    <li class="divider"></li>
-			    <li style="background-color:#ffff66;"><a href="#">Optimizer</a></li>
-			    <li><a href="fivecard_scorer.html">Hand Scorer</a></li>
 			  <ul>	
 			</div>		
 		</div>
@@ -302,7 +304,8 @@
 	<hr>
 	<footer>
 		<center>
-	  	<p class="footer_text">Copyright &copy; 2017 Ken Lau. All rights reserved.</p>
+	  	<p class="footer_text">Copyright &copy; 2017 [CribAppName].</p>
+	  	<p class="footer_text">All rights reserved.</p>
 	  </center>
 	</footer>
 	<br>
@@ -485,6 +488,15 @@
 		  }, 1000);
 		}
 		//******************************//
+
+		window.onload = function () { 
+			if (typeof localStorage.init === 'undefined') {
+				swal({title:"Welcome to <CripAppName>", 
+				text:"This app works best on Chrome.\nIf this is your first time, go to the 'About this App' link from the menu bar.",
+				allowOutsideClick: true});	
+			}
+			localStorage.init = true;
+		};
 
 		// Add slideDown animation to Bootstrap dropdown when expanding.
 	  $('.dropdown').on('show.bs.dropdown', function(e){

@@ -135,8 +135,8 @@ input[type='radio'] {
 
 #menu {
   width: 98%;
-  height: 110px;
-  font-size: 56px;
+  height: 130px;
+  font-size: 60px;
   font-weight: bold;
   border: 2px solid #000;
   border-radius: 10px;
@@ -145,13 +145,13 @@ input[type='radio'] {
 .dropdown-menu {
   width: 98%;
   text-align: center;
-  font-size: 56px;
+  font-size: 68px;
   font-weight: bold;
   margin: 5px 5px 5px 0px;
 }
 
 .dropdown-menu li a {
-  padding: 10px;
+  padding: 30px;
 }
 
 #suits_matter_label {
@@ -185,17 +185,23 @@ input[type='radio'] {
 }
 
 .sweet-alert {
-  width: 650px;
-  height: 500px;
-  left: 43%;
-  top: 50%;
-  padding-top: 100px;
+  width: 700px;
+  height: 600px;
+  left: 40.5%;
+  top: 60%;
+  padding-top: 90px;
 }
 .sweet-alert h2 {
-  font-size: 50px;
+  font-size: 60px;
+  padding-bottom: 20px;
+}
+.sweet-alert p {
+  font-size: 38px;
+  padding-bottom: 20px;
 }
 .sweet-alert button {
-  font-size: 28px;
+  font-size: 40px;
+  padding: 20px 80px 20px 80px;
 }
 
 #score_result {
@@ -233,6 +239,14 @@ input[type='radio'] {
   }
   .table {
     font-size: 18px;
+  }
+  #menu {
+    width: 98%;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid #000;
+    border-radius: 10px;
   }
   #randomize_button {
     font-size: 20px;
@@ -289,6 +303,7 @@ input[type='radio'] {
   .sweet-alert button {
     font-size: 17px;
   }
+
 }
 /*
 @media(min-width:1200px){
