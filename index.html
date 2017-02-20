@@ -196,7 +196,6 @@
 						<tr></tr>
 					</tbody>
 				</table>
-				<center><h1 id="raw_hand_score" class="card_title"></h1></center>
 			</div>
 			<div class="col-md-4">
 				<br>
@@ -366,15 +365,6 @@
 			var out = [];
 			for (i=1; i<=5; i++) {
 				out.push($('#frame_card' + i + '_num .active').text());
-			}
-			return out;
-		}
-
-		function get_current_suits() {
-			var out = [];
-			for (i=1; i<=5; i++) {
-				out.push($('#frame_card' + i + '_suit .active_suit')[0].src
-											.replace(/^.*[\\\/]/, '').slice(0,-4));
 			}
 			return out;
 		}
