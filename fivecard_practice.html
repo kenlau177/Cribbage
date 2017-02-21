@@ -45,18 +45,40 @@
 			    <li><a href="#">6-Card Game</a></li>
 			    <li class="divider"></li>
 			    <li class="divider"></li>
-			  <ul>	
-			</div>		
+			  </ul>	
+			</div>
 		</div>
+
 		<div class="row">
 			<br><br>
-			<center><a id="practice_score_tag" class="card_title">Go To Practice Hand Scoring</a></center>
+			<center><a id="practice_score_link" class="card_title">Go To Practice Hand Scoring</a></center>
 			<br>
 		</div>
+
+		<div class="row">
+			<center><h1 class="card_title">Practice Optimization Progress</h1></center>
+			<table id="progress_practice_optimization" class="table table-bordered" style='text-align:center;'>
+				<thead>
+					<tr>
+						<th>Rounds</th>
+						<th>Correct</th>
+						<th>PointsLost</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 		<center><h1 id="optimize_tag" class="card_title">Practice Card Discarding</h1></center>
 		<div class="row">
 			<div class="btn-group" style="margin-top:0px;">
-				<button id="randomize_optimization_button" type="button" class="btn btn-info" style="width:98%; margin-top:0px;">Randomize Crib Turn and Hand</button>
+				<button id="randomize_button" type="button" class="btn btn-info" style="width:98%; margin-top:0px;">Randomize Crib Turn and Hand</button>
 			</div>
 		</div>
 
@@ -65,7 +87,7 @@
 				<br>
 				<center>
 					<fieldset data-role="controlgroup" data-type="horizontal">
-					  <label for="crib_radio1" id="crib_label1" class='ui-checkboxradio-checked ui-state-active'>Your Crib</label>
+					  <label for="crib_radio1" id="crib_label1">Your Crib</label>
 					  <input type="radio" name="crib_radio1" id="crib_radio1">
 					  <label for="crib_radio2" id="crib_label2">Other's Crib</label>
 					  <input type="radio" name="crib_radio1" id="crib_radio2">
@@ -132,7 +154,64 @@
 
 		<hr>
 		<button id="restart_button_optimization" type="button" class="btn btn-warning next_card_button">Practice again with new hand</button>	
+		<hr>
+		<br>
 
+		<div class="row">
+			<center><h1 class="card_title">Practice Scoring Progress</h1></center>
+			<table id="progress_practice_scoring" class="table table-bordered" style='text-align:center;'>
+				<thead>
+					<tr>
+						<th>Rounds</th>
+						<th>Correct</th>
+						<th>PointsDiff</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<center><h1 id="practice_scoring_tag" class="card_title">Practice Hand Scoring</h1></center>
+		<div class="row">
+			<div class="btn-group" style="margin-top:0px;">
+				<button id="randomize_scoring_button" type="button" class="btn btn-info" style="width:98%; margin-top:0px;">Randomize Cards</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<center><h1 class="card_title">Cards on Hand and Crib</h1></center>				
+				<table id="current_cards_table_score" class="table table-bordered" style='text-align:center;'>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+				<center><h1 class="card_title" style="font-size:40px;">*Last column is the crib</h1></center>
+			</div>
+			<br>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+					  	<input type="text" class="form-control" id="score_guess" placeholder="Enter Score">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<button id="score_button" type="button" class="btn btn-primary next_card_button">Check Score!</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<br>
+			<center><h1 id='score_result' class="card_title" style="width:100%;">Result</h1></center>
+		</div>
+	
 	</div>
 
 	<br>
@@ -162,7 +241,6 @@
 			}
 			return out;
 		}
-
 		function get_current_suits_abbrev() {
 			var out = [];
 			for (i=1; i<=5; i++) {
@@ -170,6 +248,20 @@
 			}
 			return out;
 		}
+		function get_current_nums_score() {
+			var out = [];
+			for (i=1; i<=5; i++) {
+				out.push($('#current_cards_table_score tbody tr:nth-child(1) td:nth-child(' + i + ')').text());
+			}
+			return out;
+		}
+		function get_current_suits_abbrev_score() {
+			var out = [];
+			for (i=1; i<=5; i++) {
+				out.push($('#current_cards_table_score tbody tr:nth-child(2) td:nth-child(' + i + ')').text());
+			}
+			return out;
+		}		
 
 		function build_current_cards_table() {
 			$('#current_cards_table tbody tr:nth-child(1)').empty();
@@ -234,6 +326,13 @@
 		function randomize_optimization() {
 			$('#current_cards_table tbody tr:nth-child(1)').empty();
 			$('#current_cards_table tbody tr:nth-child(2)').empty();
+			$('#card_selected').text('');
+			$('#practice_optimization_result').text('');
+			$('#optimization_results tbody tr:nth-child(1)').empty();
+			$('#optimization_results tbody tr:nth-child(2)').empty();
+			$('#optimization_results tbody tr:nth-child(3)').empty();
+			$('#optimization_results tbody tr:nth-child(4)').empty();
+			$('#optimization_results tbody tr:nth-child(5)').empty();
 
 			var full_num_idx = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 			var full_suit_idx = [0, 1, 2, 3];
@@ -275,8 +374,88 @@
 			} else {
 				$("#crib_radio2").click();	
 			}
+
+			$('#current_cards_table td').click(function() {
+				$('#current_cards_table td').css('background-color','#e8e8e8');
+				var col_idx = $(this).parent().children().index($(this));
+				$(this).css('background-color','#ffff66');
+				$(this).parent().siblings().children().eq(col_idx).css('background-color','#ffff66');
+
+				var current_num = get_current_nums()[col_idx];
+				var current_suit = get_current_suits_abbrev()[col_idx];
+				$('#card_selected').text('Card Selected: ' + current_num + current_suit);
+			});
+
+			new_cards_optimization = true;
 		}
+
+		function randomize_score() {
+			$('#current_cards_table_score tbody tr:nth-child(1)').empty();
+			$('#current_cards_table_score tbody tr:nth-child(2)').empty();
+			$('#score_guess').val('');
+			$('#score_result').text('Result');
+
+			var full_num_idx = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+			var full_suit_idx = [0, 1, 2, 3];
+			var full_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+			var full_suits = ['S', 'H', 'C', 'D'];
+
+			var fh = [];
+			var is_card_chosen = false;
+
+			var rand_num_idx_arr = [];
+			var rand_suit_idx_arr = [];
+
+			for (var i=1; i<6; i++) {
+				while(!is_card_chosen) {
+					var rand_num_idx = Math.floor(Math.random() * 12);
+					var rand_suit_idx = Math.floor(Math.random() * 3);
+					var rand_num_suit = full_num_idx[rand_num_idx].toString().concat('-')
+																.concat(full_suit_idx[rand_suit_idx].toString());
+					if (fh.indexOf(rand_num_suit) === -1) {
+						rand_num_idx_arr.push(rand_num_idx);
+						rand_suit_idx_arr.push(rand_suit_idx);
+						fh.push(rand_num_suit);
+						is_card_chosen = true;
+					}
+				}
+				is_card_chosen = false;
+			}
+
+			var tmp = find_indices_ordered(rand_num_idx_arr);
+			for (p in tmp) {
+				$('#current_cards_table_score tbody tr:nth-child(1)').append('<td>' + full_names[rand_num_idx_arr[tmp[p]]] + '</td>');
+			}
+			for (p in tmp) {
+				$('#current_cards_table_score tbody tr:nth-child(2)').append('<td>' + full_suits[rand_suit_idx_arr[tmp[p]]] + '</td>');
+			}
+		}
+
+		function compute_score() {
+			var score_guess = $('#score_guess').val();
+			if (score_guess === '' || !(/^\d+$/.test(score_guess))) {
+				swal({title:"Score guess format is not correct", type:"error", allowOutsideClick: true});
+				return;
+			}
+
+			var current_nums = get_current_nums_score();
+			var current_suits = get_current_suits_abbrev_score();
+			
+			var score = score_hand(current_nums, current_suits, current_nums[4], current_suits[4]);
+			var diff = Math.abs(score_guess - score);
+
+			if (diff === 0) {
+				$('#score_result').text('Good Job. Your score is correct.');	
+			} else {
+				$('#score_result').text('Wrong. The correct score is ' + score + ". You're off by " + diff + '.');	
+			}
+		}
+
 		//******************************//
+
+		// Keep track of each round for practice
+		var new_cards_optimization = false;
+		var new_cards_scoring = false;
 
 		// Add slideDown animation to Bootstrap dropdown when expanding.
 	  $('.dropdown').on('show.bs.dropdown', function(e){
@@ -288,22 +467,10 @@
 	    $(this).find('.dropdown-menu').first().stop(true, true).slideUp(350);
 	  });
 
-	  $('input').checkboxradio();
-
-		$("#crib_radio1").prop("checked", true);
+	  $('#crib_radio1').checkboxradio();
+	  $('#crib_radio2').checkboxradio();
 
 		randomize_optimization();
-
-		$('#current_cards_table td').click(function() {
-			$('#current_cards_table td').css('background-color','#e8e8e8');
-			var col_idx = $(this).parent().children().index($(this));
-			$(this).css('background-color','#ffff66');
-			$(this).parent().siblings().children().eq(col_idx).css('background-color','#ffff66');
-
-			var current_num = get_current_nums()[col_idx];
-			var current_suit = get_current_suits_abbrev()[col_idx];
-			$('#card_selected').text('Card Selected: ' + current_num + current_suit);
-		});
 		
 		$('#column_descrips_title').on('click', function() {
 			if ($('#column_descrips_list').css('display') === 'none') {
@@ -313,8 +480,11 @@
 			}
 		});
   	
-		$('#randomize_optimization_button').on('click', function() {
+		$('#randomize_button').on('click', function() {
 			randomize_optimization();
+			$('html, body').animate({
+		    scrollTop: $("#randomize_button").offset().top
+		  }, 1000);
 		});
 
 		$('#optimize_button').on('click', function() {
@@ -335,21 +505,55 @@
 					selected_score = optimization_res[o][1];
 				}
 			}
-			if (selected_score === opt_score) {
+			var current_rounds = Number($('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text());
+			var current_corrects = Number($('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text());
+			var current_pointslost = Number($('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text());
+			if (new_cards_optimization && selected_score === opt_score) {
 				$('#practice_optimization_result').text('Good Job. Selected Card is Optimal.');
+				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text(current_rounds+1);
+				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text(current_corrects+1);
+				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text(current_pointslost);
+			} else if (new_cards_optimization && selected_score !== opt_score) {
+				$('#practice_optimization_result').text('Wrong. Best card to discard is ' + optimization_res[0][0] + '. You lose an expected score of ' + (opt_score-selected_score).toFixed(1));
+					console.log(current_rounds);
+					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text(current_rounds+1);
+					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text(current_corrects);
+					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text((current_pointslost+opt_score-selected_score).toFixed(1));
 			} else {
-				$('#practice_optimization_result').text('Wrong. Optimal card should be ' + optimization_res[0][0] + '. You lose an expected score of ' + (opt_score-selected_score));
 			}
 
 			build_optimization_res_table(optimization_res);
 			$('html, body').animate({
-		    scrollTop: $("#practice_optimization_result").offset().top
+		    scrollTop: $("#optimize_button").offset().top
+		  }, 1000);
+
+		  new_cards_optimization = false;
+		});
+
+		$('#restart_button_optimization').on('click', function() {
+			randomize_optimization();
+			$('html, body').animate({
+		    scrollTop: $("#randomize_button").offset().top
 		  }, 1000);
 		});
 
-		$('#restart_button').on('click', function() {
-			$('html, body').animate({ scrollTop: 0 }, 1500);
-			randomize_optimization();
+		randomize_score();
+
+		$('#practice_score_link').on('click', function() {
+			$('html, body').animate({
+		    scrollTop: $("#practice_scoring_tag").offset().top
+		  }, 1000);
+		})
+
+		$('#score_button').on('click', function() {
+			compute_score();
+		});
+
+		$('#randomize_scoring_button').on('click', function() {
+			randomize_score();
+			$('html, body').animate({
+		    scrollTop: $("#randomize_scoring_button").offset().top
+		  }, 1000);
 		});
 
 	</script>
