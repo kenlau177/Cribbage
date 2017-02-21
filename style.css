@@ -265,6 +265,9 @@ input[type='radio'] {
     font-size: 18px;
     touch-action: none;
   }
+  .table td {
+    touch-action: none;
+  }
   #menu {
     width: 98%;
     height: 50px;
