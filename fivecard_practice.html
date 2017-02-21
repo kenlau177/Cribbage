@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
   <title>Cribbage Hand Optimizer</title>
 
@@ -376,6 +376,7 @@
 			}
 
 			$('#current_cards_table td').click(function() {
+				/*
 				$('#current_cards_table td').css('background-color','#e8e8e8');
 				var col_idx = $(this).parent().children().index($(this));
 				$(this).css('background-color','#ffff66');
@@ -384,6 +385,7 @@
 				var current_num = get_current_nums()[col_idx];
 				var current_suit = get_current_suits_abbrev()[col_idx];
 				$('#card_selected').text('Card Selected: ' + current_num + current_suit);
+				*/
 			});
 
 			new_cards_optimization = true;
