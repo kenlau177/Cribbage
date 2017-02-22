@@ -429,6 +429,8 @@
 			for (p in tmp) {
 				$('#current_cards_table_score tbody tr:nth-child(2)').append('<td>' + full_suits[rand_suit_idx_arr[tmp[p]]] + '</td>');
 			}
+
+			new_cards_scoring = true;
 		}
 
 		function compute_score() {
@@ -444,11 +446,23 @@
 			var score = score_hand(current_nums, current_suits, current_nums[4], current_suits[4]);
 			var diff = Math.abs(score_guess - score);
 
-			if (diff === 0) {
+			var current_rounds = Number($('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(1)').text());
+			var current_corrects = Number($('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(2)').text());
+			var current_pointsdiff = Number($('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(3)').text());
+
+			if (new_cards_scoring && diff === 0) {
 				$('#score_result').text('Good Job. Your score is correct.');	
-			} else {
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(1)').text(current_rounds+1);
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(2)').text(current_corrects+1);
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(3)').text(current_pointsdiff);
+			} else if (new_cards_scoring && diff !== 0) {
 				$('#score_result').text('Wrong. The correct score is ' + score + ". You're off by " + diff + '.');	
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(1)').text(current_rounds+1);
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(2)').text(current_corrects);
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(3)').text((current_pointsdiff+diff).toFixed(1));
+			} else {
 			}
+			new_cards_scoring = false;
 		}
 
 		//******************************//
