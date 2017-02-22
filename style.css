@@ -109,16 +109,13 @@ hr {
 .table {
   font-size: 36px;
   font-weight: bold;
-  touch-action: none;
 }
 .table td{
   border: #000 solid 2px !important;
-  touch-action: none;
 }
 .table th{
   border: #000 solid 2px !important;
   text-align: center;
-  touch-action: none;
 }
 
 input[type='radio'] { 
