@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=0.4, user-scalable=no">
 
   <title>Cribbage Hand Optimizer</title>
 
@@ -61,6 +61,8 @@
 				<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
 			</div>
 		</div>
+		<hr>
+		<h1>Select the 5 cards in your hand.</h1>
 		<div class="row">
 			<div class="col-md-6">
 				<div id="frame_card1_num" class="frame">
@@ -245,13 +247,14 @@
 				<li><strong>Min|Max:</strong> The minimum|maximum possible score of the hand if card is discarded.</li>
 			</ul>
 		</div>
+		<hr>
+		<h1>Find out what you actually scored.</h1>
 		<div class="row">
 			<div class='col-md-6'>	
 				<center><h1 class="card_title">What Was Cut?</h1></center>
 				<div id="frame_cut_num" class="frame">
 					<ul class="slidee"></ul>
 				</div>
-
 				<div id="frame_cut_suit" class="suit">
 					<div class="row">
 						<center>
@@ -273,12 +276,12 @@
 			</div>
 
 			<div class="col-md-6">
-				<hr>
+				<br><br>
 				<button id="score_button" type="button" class="btn btn-primary next_card_button">Compute Scores!</button>
 			</div>
 		</div>
 		
-		<br><br><br>
+		<br><br>
 		<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
 			<thead>
 				<tr>
@@ -295,7 +298,7 @@
 			</tbody>
 		</table>
 
-		<hr>
+		<br>
 		<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
 
 	</div>

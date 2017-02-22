@@ -4,10 +4,10 @@ body {
 }
 
 hr {
-    border: none;
-    height: 5px;
-    color: #595959; /* old IE */
-    background-color: #595959; /* Modern Browsers */
+  border: none;
+  height: 5px;
+  color: #595959; /* old IE */
+  background-color: #595959; /* Modern Browsers */
 }
 
 .container {
@@ -16,8 +16,8 @@ hr {
 
 .frame {
   width: 100%;
-  height: 180px;
-  line-height: 180px;
+  height: 140px;
+  line-height: 140px;
   padding: 0;
   cursor: pointer;
   margin: 35px 0 0px 0;
@@ -27,13 +27,13 @@ hr {
   padding: 0;
   height: 100%;
   list-style: none;
-  font-size: 40px;
+  font-size: 30px;
 }
 .frame ul li {
   float: left;
   padding: 0;
   margin: 0 1px 0 0;
-  width: 180px;
+  width: 140px;
   height: 100%;
   color: #ddd;
   text-align: center;
@@ -51,14 +51,14 @@ hr {
 }
 
 #column_descrips_list {
-  font-size: 35px;
+  font-size: 28px;
   border: #000 solid 2px;
   border-radius: 5px;
   display: none;
 }
 
 #column_descrips_list li strong {
-  font-size: 45px;
+  font-size: 36px;
 }
 
 .suit {
@@ -67,8 +67,8 @@ hr {
 }
 
 .suit img {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   opacity: 0.1;
 }
@@ -84,11 +84,12 @@ hr {
   font-weight: bold; 
   height: 130px;
   border-radius: 20px;
+  border: #000 solid 2px;
 }
 
 #randomize_button {
   width: 100%;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: bold; 
   height: 120px;
   border-radius: 10px; 
@@ -97,7 +98,7 @@ hr {
 }
 #randomize_scoring_button {
   width: 100%;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: bold; 
   height: 120px;
   border-radius: 10px; 
@@ -106,7 +107,7 @@ hr {
 }
 
 .table {
-  font-size: 18px;
+  font-size: 36px;
   font-weight: bold;
   touch-action: none;
 }
@@ -142,7 +143,7 @@ input[type='radio'] {
 }
 
 #title_font {
-  font: 400 120px/0.8 'Great Vibes', Helvetica, sans-serif;
+  font: 400 100px/0.8 'Great Vibes', Helvetica, sans-serif;
   color: #000;
   text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
   margin-top: 28px;
@@ -165,7 +166,7 @@ input[type='radio'] {
 .dropdown-menu {
   width: 98%;
   text-align: center;
-  font-size: 68px;
+  font-size: 50px;
   font-weight: bold;
   margin: 5px 5px 5px 0px;
 }
@@ -175,11 +176,11 @@ input[type='radio'] {
 }
 
 #suits_matter_label {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: bold;
   height: 120px;
   width: 100%;
-  padding-top: 35px;
+  padding-top: 40px;
   margin-top: 20px;
   border: 2px solid #000;
   border-radius: 10px;
@@ -193,6 +194,7 @@ input[type='radio'] {
   padding-top: 36px;
   margin-right: 10px;
   border-radius: 10px;
+  border: #000 solid 2px;
 }
 
 #crib_label2 {
@@ -202,6 +204,7 @@ input[type='radio'] {
   width: 48%;
   padding-top: 36px;
   border-radius: 10px;
+  border: #000 solid 2px;
 }
 
 .sweet-alert {
@@ -244,16 +247,16 @@ input[type='radio'] {
 
 @media(min-width:992px){
   .frame {
-    height: 70px;
-    line-height: 70px;
+    height: 90px;
+    line-height: 90px;
     margin: 35px 0 35px 0;
     margin: 20px 0 20px 0;
   }
   .frame ul {
-    font-size: 20px;
+    font-size: 24px;
   }
   .frame ul li {
-    width: 70px;
+    width: 90px;
   }
   .suit img {
     width: 35px;
@@ -265,29 +268,24 @@ input[type='radio'] {
     font-size: 20px;
   }
   .table {
-    font-size: 18px;
-    touch-action: none;
-  }
-  .table td {
-    font-size: 18px;
-    touch-action: none;
+    font-size: 22px;
   }
   #menu {
     width: 98%;
-    height: 50px;
-    font-size: 20px;
+    height: 70px;
+    font-size: 40px;
     font-weight: bold;
     border: 2px solid #000;
     border-radius: 10px;
   }
   #randomize_button {
-    font-size: 20px;
-    height: 50px;
+    font-size: 30px;
+    height: 70px;
   }
   #suits_matter_label {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
-    height: 50px;
+    height: 70px;
     padding-top: 15px;
     margin-top: 20px;
     border: 2px solid #000;
@@ -319,7 +317,7 @@ input[type='radio'] {
   } 
   .next_card_button {
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 30px;
     height: 80px;
     border-radius: 20px;
   }
@@ -335,19 +333,10 @@ input[type='radio'] {
   .sweet-alert button {
     font-size: 17px;
   }
-
-}
-/*
-@media(min-width:1200px){
-  .frame {
-    height: 70px;
-    line-height: 70px;
+  #column_descrips_list {
+    font-size: 18px;
   }
-  .frame ul {
-    font-size: 20px;
-  }
-  .frame ul li {
-    width: 70px;
+  #column_descrips_list li strong {
+    font-size: 26px;
   }
 }
-*/
