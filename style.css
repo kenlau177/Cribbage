@@ -46,7 +46,7 @@ hr {
 }
 
 .card_title {
-  font-size: 50px;
+  font-size: 45px;
   font-weight: bold;
 }
 
@@ -80,7 +80,7 @@ hr {
 
 .next_card_button {
   width: 100%;
-  font-size: 50px;
+  font-size: 43px;
   font-weight: bold; 
   height: 130px;
   border-radius: 20px;
@@ -229,7 +229,7 @@ input[type='radio'] {
 }
 
 #score_guess {
-  font-size: 60px;
+  font-size: 40px;
   height: 130px;
   text-align: center;
 }
@@ -237,7 +237,7 @@ input[type='radio'] {
 #score_result {
   border: 8px solid #800080;
   padding: 10px;
-  width: 50%;
+  width: 80%;
   border-radius: 10px;
 }
 
