@@ -163,13 +163,13 @@ input[type='radio'] {
 .dropdown-menu {
   width: 98%;
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   margin: 5px 5px 5px 0px;
 }
 
 .dropdown-menu li a {
-  padding: 30px;
+  padding: 20px;
 }
 
 #suits_matter_label {
@@ -207,12 +207,12 @@ input[type='radio'] {
 .sweet-alert {
   width: 700px;
   height: 600px;
-  left: 40.5%;
+  left: 38.5%;
   top: 60%;
   padding-top: 90px;
 }
 .sweet-alert h2 {
-  font-size: 60px;
+  font-size: 44px;
   padding-bottom: 20px;
   line-height: 60px;
 }
@@ -243,6 +243,12 @@ input[type='radio'] {
 }
 
 @media(min-width:992px){
+  #title_font {
+    font: 400 100px/0.8 'Great Vibes', Helvetica, sans-serif;
+    color: #000;
+    text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
+    margin-top: 28px;
+  }
   .frame {
     height: 90px;
     line-height: 90px;
@@ -303,7 +309,6 @@ input[type='radio'] {
     height: 50px;
     width: 200px;
     padding-top: 15px;
-    margin-top: 20px;
     margin-right: 0px;
   }
   #crib_label2 {
@@ -335,5 +340,15 @@ input[type='radio'] {
   }
   #column_descrips_list li strong {
     font-size: 26px;
+  }
+  .dropdown-menu {
+    width: 98%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 5px 5px 5px 0px;
+  }
+  .dropdown-menu li a {
+    padding: 10px;
   }
 }

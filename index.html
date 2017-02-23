@@ -191,7 +191,7 @@
 		<br>
 
 		<div class="row">
-			<div class="col-md-5">
+			<div class="col-md-6">
 				<center><h1 id="optimize_tag" class="card_title">Cards On Hand</h1></center>
 				<table id="current_cards_table" class="table table-bordered" style='text-align:center;'>
 					<tbody>
@@ -200,7 +200,9 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-6">
+				<hr>
+				<h1>Select who's crib it is.</h1>
 				<br>
 				<center>
 					<fieldset data-role="controlgroup" data-type="horizontal">
@@ -211,10 +213,11 @@
 					</fieldset>
 				</center>
 			</div>
-			<div class="col-md-3">
+		</div>
+
+		<div class="row">
 				<br><br>
 				<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
-			</div>
 		</div>
 
 		<br>
@@ -486,8 +489,8 @@
 		window.onload = function () { 
 			if (typeof localStorage.init === 'undefined') {
 				swal({title:"Welcome to <CripAppName>", 
-				text:"This app works best on Chrome.\nIf this is your first time, go to the 'About this App' link from the menu bar.",
-				allowOutsideClick: true});	
+							text:"This app works best on Chrome and is intended for mobile.\nIf this is your first time, visit the 'About this App' link from the menu bar.",
+							allowOutsideClick: true});	
 			}
 			localStorage.init = true;
 		};
