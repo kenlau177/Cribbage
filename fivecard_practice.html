@@ -52,31 +52,10 @@
 		<h1>Go to:</h1>
 		<a id="practice_optimization_link" class="card_title"><h1>1) Practice Card Discarding</h1></a>
 		<a id="practice_score_link" class="card_title"><h1>2) Practice Hand Scoring</h1></a>
-		
-		<hr>
-		<div class="row">
-			<center><h1 class="card_title">1) Practice Card Discarding</h1></center>
-			<hr>
-			<h1>How are you doing?</h1>
-			<table id="progress_practice_optimization" class="table table-bordered" style='text-align:center;'>
-				<thead>
-					<tr>
-						<th>Rounds</th>
-						<th>Correct</th>
-						<th>PointsLost</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 
+		<center><h1 class="card_title" style="margin-top:50px;">1) Practice Card Discarding</h1></center>
 		<hr>
+
 		<h1>Begin each round by randomizing your hand.</h1>
 		<br>
 		<div class="row">
@@ -155,19 +134,15 @@
 			</ul>
 		</div>
 
-		<br>
-		<button id="restart_button_optimization" type="button" class="btn btn-warning next_card_button">Practice again with new hand</button>	
-		<br><br>
-		<hr>
-	
 		<div class="row">
-			<center><h1 class="card_title">Practice Scoring Progress</h1></center>
-			<table id="progress_practice_scoring" class="table table-bordered" style='text-align:center;'>
+			<hr>
+			<h1>How are you doing in discarding??</h1>
+			<table id="progress_practice_optimization" class="table table-bordered" style='text-align:center;'>
 				<thead>
 					<tr>
 						<th>Rounds</th>
 						<th>Correct</th>
-						<th>PointsDiff</th>
+						<th>PointsLost</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -179,7 +154,15 @@
 				</tbody>
 			</table>
 		</div>
-		<center><h1 id="practice_scoring_tag" class="card_title">Practice Hand Scoring</h1></center>
+
+		<br>
+		<button id="restart_button_optimization" type="button" class="btn btn-warning next_card_button">Practice again with new hand</button>	
+		<br><br>
+		
+		<br><br>
+		<center><h1 id="practice_scoring_tag" class="card_title">2) Practice Hand Scoring</h1></center>
+		<hr>
+		<h1>Begin each round by randomizing your hand.</h1>
 		<div class="row">
 			<div class="btn-group" style="margin-top:0px;">
 				<button id="randomize_scoring_button" type="button" class="btn btn-info" style="width:98%; margin-top:0px;">Randomize Cards</button>
@@ -215,9 +198,28 @@
 			<center><h1 id='score_result' class="card_title" style="width:100%;">Result</h1></center>
 		</div>
 	
+		<div class="row">
+			<hr>
+			<h1>How are you doing in scoring?</h1>
+			<table id="progress_practice_scoring" class="table table-bordered" style='text-align:center;'>
+				<thead>
+					<tr>
+						<th>Rounds</th>
+						<th>Correct</th>
+						<th>PointsDiff</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 
-	<br>
 	<hr>
 	<footer>
 		<center>
@@ -468,6 +470,7 @@
 			new_cards_scoring = false;
 		}
 
+/*
 		function init_progress() {
 			if (typeof localStorage.current_rounds_opt === undefined) {
 				localStorage.current_rounds_opt = 0;
@@ -477,8 +480,15 @@
 				localStorage.current_corrects_score = 0;
 				localStorage.current_pointsdiff_score = 0;
 			} else {
+				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text(localStorage.current_rounds_opt);
+				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text(localStorage.current_corrects_opt);
+				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text(localStorage.current_pointslost_opt);
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(1)').text(localStorage.current_rounds_score);
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(2)').text(localStorage.current_corrects_score);
+				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(3)').text(localStorage.current_pointsdiff_score);
 			}
 		}
+*/
 
 		//******************************//
 
