@@ -51,14 +51,14 @@ hr {
 }
 
 #column_descrips_list {
-  font-size: 28px;
+  font-size: 32px;
   border: #000 solid 2px;
   border-radius: 5px;
   display: none;
 }
 
 #column_descrips_list li strong {
-  font-size: 36px;
+  font-size: 40px;
 }
 
 .suit {
@@ -153,8 +153,8 @@ input[type='radio'] {
 
 #menu {
   width: 98%;
-  height: 130px;
-  font-size: 60px;
+  height: 110px;
+  font-size: 50px;
   font-weight: bold;
   border: 2px solid #000;
   border-radius: 10px;
