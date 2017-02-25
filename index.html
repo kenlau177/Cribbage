@@ -33,33 +33,32 @@
 		<center><h2 id="title_font">Cribbage Optimizer</h2></center>
 		<center><p class="card_title">== 5 Card Version ==</p></center>
 		<div class="row">
-		  <div class="btn-group dropdown">
-			  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
-		  	<ul class="dropdown-menu pull-center">
-		  		<li><a href="#">About this App</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			    <li style="background-color:#ffff66;"><a href="#">Optimizer</a></li>
-			    <li><a href="fivecard_scorer.html">Hand Scorer</a></li>
-			    <li><a href="fivecard_practice.html">Practice</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
-			    <li><a href="#">6-Card Game</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			  <ul>	
-			</div>		
-		</div>
-		<div class="row">
-			<div class="col-xs-6" style="padding: 0 5px 0 0;">
-			  <fieldset>
-			    <label id="suits_matter_label" for="suits_matter_checkbox">Suits Matter?</label>
-			    <input type="checkbox" name="suits_matter_checkbox" id="suits_matter_checkbox">
-			  </fieldset>
-			</div>
-			<div class="col-xs-6" style="padding: 0 0 0 5px;">
-				<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
+		  <div class="col-md-4">
+			  <div class="btn-group dropdown">
+				  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
+			  	<ul class="dropdown-menu pull-center">
+			  		<li><a href="#">About this App</a></li>
+				    <li class="divider"></li>
+				    <li style="background-color:#ffff66;"><a href="#">Optimizer</a></li>
+				    <li><a href="fivecard_scorer.html">Hand Scorer</a></li>
+				    <li><a href="fivecard_practice.html">Practice</a></li>
+				    <li class="divider"></li>
+				    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
+				    <li><a href="#">6-Card Game</a></li>
+				    <li class="divider"></li>
+				  </ul>	
+				</div>
+			</div>	
+			<div class="col-md-8">
+				<div class="col-xs-6">
+				  <fieldset>
+				    <label id="suits_matter_label" for="suits_matter_checkbox">Suits Matter?</label>
+				    <input type="checkbox" name="suits_matter_checkbox" id="suits_matter_checkbox">
+				  </fieldset>
+				</div>
+				<div class="col-xs-6">
+					<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -218,39 +217,41 @@
 		</div>
 
 		<div class="row">
-			<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
+			<div class='col-md-4'>
+				<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
+			</div>
+			<div class='col-md-8'>
+				<br>
+				<center><h1 id="optimize_tag" class="card_title">Optimization Results</h1></center>	
+				<table id="optimization_results" class="table table-striped table-bordered" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>Discard</th>
+							<th>Score</th>
+							<th>Hand</th>
+							<th>Crib</th>
+							<th>Min</th>
+							<th>Max</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+				<center><a id='column_descrips_title'>See Column Descriptions</a></center>
+				<ul id='column_descrips_list' class="card_title">
+					<li><strong>Discard:</strong> Card to throw in the crib.</li>
+					<li><strong>Score:</strong> The net expected score including the crib impact.</li>
+					<li><strong>Crib:</strong> The impact of the discarded card thrown in the crib compared to the expected crib score.</li>
+					<li><strong>Min|Max:</strong> The minimum|maximum possible score of the hand if card is discarded.</li>
+				</ul>
+			</div>
 		</div>
 
-		<br>
-		<div class="row">
-			<center><h1 id="optimize_tag" class="card_title">Optimization Results</h1></center>	
-			<table id="optimization_results" class="table table-striped table-bordered" style="text-align:center;">
-				<thead>
-					<tr>
-						<th>Discard</th>
-						<th>Score</th>
-						<th>Hand</th>
-						<th>Crib</th>
-						<th>Min</th>
-						<th>Max</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-				</tbody>
-			</table>
-			<center><a id='column_descrips_title'>See Column Descriptions</a></center>
-			<ul id='column_descrips_list' class="card_title">
-				<li><strong>Discard:</strong> Card to throw in the crib.</li>
-				<li><strong>Score:</strong> The net expected score including the crib impact.</li>
-				<li><strong>Crib:</strong> The impact of the discarded card thrown in the crib compared to the expected crib score.</li>
-				<li><strong>Min|Max:</strong> The minimum|maximum possible score of the hand if card is discarded.</li>
-			</ul>
-		</div>
 		<div class="row">
 			<hr>
 			<h1 style="margin-bottom:10px;">Find out what you actually scored.</h1>
@@ -288,24 +289,27 @@
 		
 		<br>
 		<div class="row">
-			<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
-				<thead>
-					<tr>
-						<th>Discarded</th>
-						<th>Hand Score</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-				</tbody>
-			</table>
+			<div class="col-md-8">
+				<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>Discarded</th>
+							<th>Hand Score</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
+			</div>
 		</div>
-
-		<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
 
 	</div>
 

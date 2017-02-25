@@ -19,7 +19,15 @@ h1 {
 .col-md-6 {
   padding: 0px;
 }
-
+.col-md-4 {
+  padding: 0px;
+}
+.col-md-8 {
+  padding: 0px;
+}
+.col-xs-6 {
+  padding: 0px;
+}
 .container {
   width: 85%;
 }
@@ -110,12 +118,12 @@ td img {
 }
 
 #randomize_button {
-  width: 97%;
+  width: 95%;
   font-size: 12px;
   font-weight: bold; 
   height: 50px;
   border-radius: 5px; 
-  margin-top: 20px;
+  margin: 15px 0 0 2px;
   border: #000 solid 2px;
 }
 #randomize_scoring_button {
@@ -165,7 +173,7 @@ input[type='radio'] {
 }
 
 #title_font {
-  font: 400 40px/0.8 'Great Vibes', Helvetica, sans-serif;
+  font: 400 36px/0.8 'Great Vibes', Helvetica, sans-serif;
   color: #000;
   text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
 }
@@ -184,23 +192,23 @@ input[type='radio'] {
 }
 
 .dropdown-menu {
-  width: 98%;
+  width: 100%;
   text-align: center;
-  font-size: 40px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .dropdown-menu li a {
-  padding: 20px;
+  padding: 7px;
 }
 
 #suits_matter_label {
   font-size: 12px;
   font-weight: bold;
   height: 50px;
-  width: 100%;
+  width: 96%;
   padding-top: 16px;
-  margin-top: 20px;
+  margin: 15px 2px 0 0;
   border: 2px solid #000;
   border-radius: 5px;
 }
@@ -265,23 +273,30 @@ input[type='radio'] {
 }
 
 @media(min-width:992px){
+  .col-md-6 {
+    padding: 10px;
+  }
+  .col-md-4 {
+    padding: 10px;
+  }
+  .col-md-8 {
+    padding: 10px;
+  }
   #title_font {
-    font: 400 40px/0.8 'Great Vibes', Helvetica, sans-serif;
+    font: 400 50px/0.8 'Great Vibes', Helvetica, sans-serif;
     color: #000;
     text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
     margin-top: 28px;
   }
   .frame {
-    height: 90px;
-    line-height: 90px;
-    margin: 35px 0 35px 0;
-    margin: 20px 0 20px 0;
+    height: 60px;
+    line-height: 60px;
   }
   .frame ul {
-    font-size: 24px;
+    font-size: 16px;
   }
   .frame ul li {
-    width: 90px;
+    width: 60px;
   }
   .suit img {
     width: 35px;
@@ -293,28 +308,30 @@ input[type='radio'] {
     font-size: 20px;
   }
   .table {
-    font-size: 22px;
+    font-size: 18px;
   }
   #menu {
-    width: 98%;
-    height: 70px;
-    font-size: 40px;
+    height: 50px;
+    font-size: 24px;
     font-weight: bold;
     border: 2px solid #000;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   #randomize_button {
-    font-size: 30px;
-    height: 70px;
+    font-size: 20px;
+    height: 50px;
+    margin-top: 0px;
+    width: 98%;
   }
   #suits_matter_label {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
-    height: 70px;
-    padding-top: 15px;
-    margin-top: 20px;
+    height: 50px;
+    padding-top: 12px;
+    margin: 0px;
     border: 2px solid #000;
-    border-radius: 10px;
+    border-radius: 5px;
+    width: 98%;
   }
   .ui-checkboxradio-icon  {
     transform: scale(1);
@@ -340,10 +357,11 @@ input[type='radio'] {
     padding-top: 15px;
   } 
   .next_card_button {
-    margin-top: 30px;
-    font-size: 30px;
-    height: 80px;
-    border-radius: 20px;
+    margin-top: 40px;
+    width: 100%;
+    font-size: 20px;
+    height: 45px;
+    border-radius: 5px;
   }
   .sweet-alert {
     width: 478px;
@@ -358,19 +376,16 @@ input[type='radio'] {
     font-size: 17px;
   }
   #column_descrips_list {
-    font-size: 18px;
+    font-size: 14px;
   }
   #column_descrips_list li strong {
-    font-size: 26px;
+    font-size: 18px;
   }
   .dropdown-menu {
-    width: 98%;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 16px;
     margin: 5px 5px 5px 0px;
   }
   .dropdown-menu li a {
-    padding: 10px;
+    padding: 5px;
   }
 }
