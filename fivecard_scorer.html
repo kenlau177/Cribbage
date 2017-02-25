@@ -303,11 +303,32 @@
 			}
 			for (i in current_nums) {
 				if (i < 4) {
-					$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + current_suits[i] + '</td>');
+					$('#current_cards_table tbody tr:nth-child(2)')
+						.append('<td><img src="' + suit_to_img[current_suits[i]] + '"/></td>');
 				}
 			}
+
+			if (!$("suits_matter_checkbox").is(':checked')) {
+				var suits = ['S','H','C','D'];
+				var fh_tmp = fh.slice();
+				var n = 0;
+				while (fh_tmp.indexOf(cut_num.concat('-').concat(cut_suit)) > -1) {
+					$("#frame_cut_suit img").removeClass("active_suit");
+					$("#frame_cut_suit img:eq(" + (n+1) + ")").addClass('active_suit');
+					cut_suit = suits[(n+1)%4];
+					n++;
+					if (n>7) {
+						$("#frame_cut_suit img").removeClass("active_suit");
+						$("#frame_cut_suit img:eq(0)").addClass('active_suit');
+						cut_suit = suits[0];
+						break;
+					}
+				}
+			}
+
 			$('#current_cards_table tbody tr:nth-child(1)').append('<td>' + cut_num + '</td>');
-			$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + cut_suit + '</td>');
+			$('#current_cards_table tbody tr:nth-child(2)')
+				.append('<td><img src="' + suit_to_img[cut_suit] + '"/></td>');
 
 			$('#score_result').text('Hand Score:');
 		}
@@ -368,24 +389,6 @@
 			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4)
 												.slice(0,1).toUpperCase();
 
-			if (!$("suits_matter_checkbox").is(':checked')) {
-				var suits = ['S','H','C','D'];
-				var fh_tmp = fh.slice();
-				var n = 0;
-				while (fh_tmp.indexOf(cut_num.concat('-').concat(cut_suit)) > -1) {
-					$("#frame_cut_suit img").removeClass("active_suit");
-					$("#frame_cut_suit img:eq(" + (n+1) + ")").addClass('active_suit');
-					cut_suit = suits[(n+1)%4];
-					n++;
-					if (n>7) {
-						$("#frame_cut_suit img").removeClass("active_suit");
-						$("#frame_cut_suit img:eq(0)").addClass('active_suit');
-						cut_suit = suits[0];
-						break;
-					}
-				}
-			}
-
 			if (check_hand_dup(true)) {
 				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
 				return;
@@ -421,6 +424,9 @@
     });
   
 		var card_nums = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+		var suit_to_img = {'S':'images/spade.png', 'H':'images/heart.png', 'C':'images/club.png', 
+												'D':'images/diamond.png'};
 
 		// Append card nums
 		for (c in card_nums) { $('#frame_card1_num ul').append('<li>' + card_nums[c] + '</li>'); }

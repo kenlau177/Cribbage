@@ -249,7 +249,8 @@
 		function get_current_suits_abbrev() {
 			var out = [];
 			for (i=1; i<=5; i++) {
-				out.push($('#current_cards_table tbody tr:nth-child(2) td:nth-child(' + i + ')').text());
+				out.push($('#current_cards_table tbody tr:nth-child(2) td:nth-child(' + i + ') img')[0]
+											.src.replace(/^.*[\\\/]/, '').slice(0,-4).slice(0,1).toUpperCase());
 			}
 			return out;
 		}
@@ -263,47 +264,11 @@
 		function get_current_suits_abbrev_score() {
 			var out = [];
 			for (i=1; i<=5; i++) {
-				out.push($('#current_cards_table_score tbody tr:nth-child(2) td:nth-child(' + i + ')').text());
+				out.push($('#current_cards_table_score tbody tr:nth-child(2) td:nth-child(' + i + ') img')[0]
+											.src.replace(/^.*[\\\/]/, '').slice(0,-4).slice(0,1).toUpperCase());
 			}
 			return out;
 		}		
-
-		function build_current_cards_table() {
-			$('#current_cards_table tbody tr:nth-child(1)').empty();
-			$('#current_cards_table tbody tr:nth-child(2)').empty();
-			var current_nums = get_current_nums();
-			var current_suits = get_current_suits_abbrev();
-			var fh = [];
-
-			for (i in current_nums) {
-				fh.push(current_nums[i].concat('-').concat(current_suits[i]));
-				$('#current_cards_table tbody tr:nth-child(1)').append('<td>' + current_nums[i] + '</td>');
-			}
-			for (i in current_nums) {
-				if (i < 4) {
-					$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + current_suits[i] + '</td>');
-				}
-			}
-			if (!$("suits_matter_checkbox").is(':checked')) {
-				var suits = ['S','H','C','D'];
-				var fh_tmp = fh.slice();
-				fh_tmp.splice(-1,1)
-				var n = 0;
-				while (fh_tmp.indexOf(current_nums[4].concat('-').concat(current_suits[4])) > -1) {
-					$("#frame_card5_suit img").removeClass("active_suit");
-					$("#frame_card5_suit img:eq(" + (n+1) + ")").addClass('active_suit');
-					current_suits[4] = suits[(n+1)%4];
-					n++;
-					if (n>6) {
-						$("#frame_card5_suit img").removeClass("active_suit");
-						$("#frame_card5_suit img:eq(0)").addClass('active_suit');
-						current_suits[4] = suits[0];
-						break;
-					}
-				}
-			}
-			$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + current_suits[4] + '</td>');	
-		}
 
 		function build_optimization_res_table(optimization_results) {
 			$('#optimization_results tbody tr:nth-child(1)').empty();
@@ -371,7 +336,8 @@
 				$('#current_cards_table tbody tr:nth-child(1)').append('<td>' + full_names[rand_num_idx_arr[tmp[p]]] + '</td>');
 			}
 			for (p in tmp) {
-				$('#current_cards_table tbody tr:nth-child(2)').append('<td>' + full_suits[rand_suit_idx_arr[tmp[p]]] + '</td>');
+				$('#current_cards_table tbody tr:nth-child(2)')
+					.append('<td><img src="' + suit_to_img[full_suits[rand_suit_idx_arr[tmp[p]]]] + '"/></td>');
 			}
 
 			if (Math.random() < 0.5) {
@@ -432,7 +398,8 @@
 				$('#current_cards_table_score tbody tr:nth-child(1)').append('<td>' + full_names[rand_num_idx_arr[tmp[p]]] + '</td>');
 			}
 			for (p in tmp) {
-				$('#current_cards_table_score tbody tr:nth-child(2)').append('<td>' + full_suits[rand_suit_idx_arr[tmp[p]]] + '</td>');
+				$('#current_cards_table_score tbody tr:nth-child(2)')
+					.append('<td><img src="' + suit_to_img[full_suits[rand_suit_idx_arr[tmp[p]]]] + '"/></td>');
 			}
 
 			new_cards_scoring = true;
@@ -491,6 +458,9 @@
 */
 
 		//******************************//
+
+		var suit_to_img = {'S':'images/spade.png', 'H':'images/heart.png', 'C':'images/club.png', 
+												'D':'images/diamond.png'};
 
 		// Keep track of each round for practice
 		var new_cards_optimization = false;

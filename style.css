@@ -5,9 +5,19 @@ body {
 
 hr {
   border: none;
-  height: 5px;
+  height: 3px;
   color: #595959; /* old IE */
   background-color: #595959; /* Modern Browsers */
+  margin: 10px 0 10px 0;
+}
+
+h1 {
+  font-size: 14px;
+  margin: 0 0 2px 0;
+}
+
+.col-md-6 {
+  padding: 0px;
 }
 
 .container {
@@ -16,24 +26,24 @@ hr {
 
 .frame {
   width: 100%;
-  height: 140px;
-  line-height: 140px;
+  height: 60px;
+  line-height: 60px;
   padding: 0;
   cursor: pointer;
-  margin: 35px 0 0px 0;
+  margin: 15px 0 0px 0;
 }
 .frame ul {
   margin: 0;
   padding: 0;
   height: 100%;
   list-style: none;
-  font-size: 30px;
+  font-size: 12px;
 }
 .frame ul li {
   float: left;
   padding: 0;
   margin: 0 1px 0 0;
-  width: 140px;
+  width: 60px;
   height: 100%;
   color: #ddd;
   text-align: center;
@@ -46,19 +56,25 @@ hr {
 }
 
 .card_title {
-  font-size: 45px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#column_descrips_title {
+  font-size: 16px;
   font-weight: bold;
 }
 
 #column_descrips_list {
-  font-size: 32px;
+  font-size: 12px;
   border: #000 solid 2px;
   border-radius: 5px;
   display: none;
+  padding-left: 20px;
 }
 
 #column_descrips_list li strong {
-  font-size: 40px;
+  font-size: 14px;
 }
 
 .suit {
@@ -78,21 +94,27 @@ hr {
   opacity: 1;
 }
 
+td img {
+  width: 15px;
+  height: 15px;
+}
+
 .next_card_button {
   width: 100%;
-  font-size: 43px;
+  font-size: 15px;
   font-weight: bold; 
-  height: 130px;
-  border-radius: 20px;
+  height: 50px;
+  border-radius: 5px;
   border: #000 solid 2px;
+  margin-top: 15px;
 }
 
 #randomize_button {
-  width: 100%;
-  font-size: 32px;
+  width: 97%;
+  font-size: 12px;
   font-weight: bold; 
-  height: 120px;
-  border-radius: 10px; 
+  height: 50px;
+  border-radius: 5px; 
   margin-top: 20px;
   border: #000 solid 2px;
 }
@@ -101,37 +123,40 @@ hr {
   font-size: 32px;
   font-weight: bold; 
   height: 120px;
-  border-radius: 10px; 
+  border-radius: 5px; 
   margin-top: 20px;
   border: #000 solid 2px;
 }
 
 .table {
-  font-size: 36px;
+  font-size: 13px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 .table td{
   border: #000 solid 2px !important;
+  padding: 5px !important;
 }
 .table th{
   border: #000 solid 2px !important;
   text-align: center;
+  padding: 3px !important;
 }
 
 input[type='radio'] { 
-  transform: scale(2);
+  transform: scale(1);
 }
 
 .ui-checkboxradio-icon  {
-  transform: scale(2);
-  -ms-transform: scale(2);
-  -webkit-transform: scale(2);
+  transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
 }
 
 .ui-checkboxradio-icon-space  {
-  transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  -webkit-transform: scale(1.5);
+  transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
 }
 
 .btn-default, .raised {
@@ -140,24 +165,22 @@ input[type='radio'] {
 }
 
 #title_font {
-  font: 400 100px/0.8 'Great Vibes', Helvetica, sans-serif;
+  font: 400 40px/0.8 'Great Vibes', Helvetica, sans-serif;
   color: #000;
   text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
-  margin-top: 28px;
 }
 
 .btn-group {
   width: 98%;
-  margin: 20px 0 12px 18px;
 }
 
 #menu {
-  width: 98%;
-  height: 110px;
-  font-size: 50px;
+  width: 100%;
+  height: 45px;
+  font-size: 22px;
   font-weight: bold;
   border: 2px solid #000;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .dropdown-menu {
@@ -165,7 +188,6 @@ input[type='radio'] {
   text-align: center;
   font-size: 40px;
   font-weight: bold;
-  margin: 5px 5px 5px 0px;
 }
 
 .dropdown-menu li a {
@@ -173,34 +195,34 @@ input[type='radio'] {
 }
 
 #suits_matter_label {
-  font-size: 32px;
+  font-size: 12px;
   font-weight: bold;
-  height: 120px;
+  height: 50px;
   width: 100%;
-  padding-top: 40px;
+  padding-top: 16px;
   margin-top: 20px;
   border: 2px solid #000;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 #crib_label1 {
-  font-size: 36px;
+  font-size: 12px;
   font-weight: bold;
-  height: 120px;
+  height: 50px;
   width: 48%;
-  padding-top: 36px;
-  margin-right: 10px;
-  border-radius: 10px;
+  padding-top: 16px;
+  margin-right: 3px;
+  border-radius: 5px;
   border: #000 solid 2px;
 }
 
 #crib_label2 {
-  font-size: 36px;
+  font-size: 12px;
   font-weight: bold;
-  height: 120px;
+  height: 50px;
   width: 48%;
-  padding-top: 36px;
-  border-radius: 10px;
+  padding-top: 16px;
+  border-radius: 5px;
   border: #000 solid 2px;
 }
 
@@ -239,12 +261,12 @@ input[type='radio'] {
 }
 
 .footer_text {
-  font-size: 35px;
+  font-size: 15px;
 }
 
 @media(min-width:992px){
   #title_font {
-    font: 400 100px/0.8 'Great Vibes', Helvetica, sans-serif;
+    font: 400 40px/0.8 'Great Vibes', Helvetica, sans-serif;
     color: #000;
     text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
     margin-top: 28px;

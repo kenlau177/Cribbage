@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=0.4, user-scalable=no">
 
   <title>Cribbage Hand Optimizer</title>
 
@@ -31,7 +31,6 @@
 	
 	<div class="container">
 		<center><h2 id="title_font">Cribbage Optimizer</h2></center>
-		<center><p class="card_title">== 5 Card Version ==</p></center>
 		<div class="row">
 		  <div class="btn-group dropdown">
 			  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
@@ -52,20 +51,18 @@
 			</div>		
 		</div>
 		<div class="row">
-			<div class="col-xs-6" style="padding: 0 5px 0 0;">
+			<div class="col-xs-6">
 			  <fieldset>
 			    <label id="suits_matter_label" for="suits_matter_checkbox">Suits Matter?</label>
 			    <input type="checkbox" name="suits_matter_checkbox" id="suits_matter_checkbox">
 			  </fieldset>
 			</div>
-			<div class="col-xs-6" style="padding: 0 0 0 5px;">
+			<div class="col-xs-6">
 				<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
 			</div>
 		</div>
-		<div class="row">
-			<hr>
-			<h1>Select the 5 cards in your hand.</h1>
-		</div>
+		<hr>
+		<h1>Select the 6 cards in your hand.</h1>
 		<div class="row">
 			<div class="col-md-6">
 				<div id="frame_card1_num" class="frame">
@@ -191,6 +188,32 @@
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="col-md-6">
+				<div id="frame_card6_num" class="frame">
+					<ul class="slidee"></ul>
+				</div>
+				<div id="frame_card6_suit" class="suit">
+					<div class="row">
+						<center>
+							<div class="col-xs-3">
+								<img src="images/spade.png" />
+							</div>
+							<div class="col-xs-3">
+								<img class="active_suit" src="images/heart.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/club.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/diamond.png" />
+							</div>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<br>
 
 		<div class="row">
@@ -205,7 +228,8 @@
 			</div>
 			<div class="col-md-6">
 				<hr>
-				<h1 style="margin-bottom:15px;">Select who's crib it is.</h1>
+				<h1>Select who's crib it is.</h1>
+				<br>
 				<center>
 					<fieldset data-role="controlgroup" data-type="horizontal">
 					  <label for="crib_radio1" id="crib_label1" class='ui-checkboxradio-checked ui-state-active'>Your Crib</label>
@@ -218,7 +242,8 @@
 		</div>
 
 		<div class="row">
-			<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
+				<br><br>
+				<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
 		</div>
 
 		<br>
@@ -243,7 +268,7 @@
 					<tr></tr>
 				</tbody>
 			</table>
-			<center><a id='column_descrips_title'>See Column Descriptions</a></center>
+			<center><a id='column_descrips_title' class="card_title">See Column Descriptions</a></center>
 			<ul id='column_descrips_list' class="card_title">
 				<li><strong>Discard:</strong> Card to throw in the crib.</li>
 				<li><strong>Score:</strong> The net expected score including the crib impact.</li>
@@ -251,10 +276,8 @@
 				<li><strong>Min|Max:</strong> The minimum|maximum possible score of the hand if card is discarded.</li>
 			</ul>
 		</div>
-		<div class="row">
-			<hr>
-			<h1 style="margin-bottom:10px;">Find out what you actually scored.</h1>
-		</div>
+		<hr>
+		<h1>Find out what you actually scored.</h1>
 		<div class="row">
 			<div class='col-md-6'>	
 				<center><h1 class="card_title">What Was Cut?</h1></center>
@@ -282,29 +305,29 @@
 			</div>
 
 			<div class="col-md-6">
+				<br><br>
 				<button id="score_button" type="button" class="btn btn-primary next_card_button">Compute Scores!</button>
 			</div>
 		</div>
 		
-		<br>
-		<div class="row">
-			<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
-				<thead>
-					<tr>
-						<th>Discarded</th>
-						<th>Hand Score</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-				</tbody>
-			</table>
-		</div>
+		<br><br>
+		<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
+			<thead>
+				<tr>
+					<th>Discarded</th>
+					<th>Hand Score</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+			</tbody>
+		</table>
 
+		<br>
 		<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
 
 	</div>
@@ -320,13 +343,9 @@
 	<br>
 
 	<script src="js/score.js"></script>
-	<script src="js/optimize.js"></script>
+	<script src="js/optimize_6card.js"></script>
 
 	<script type="text/javascript">
-
-		/*
-		TODO: Add a demo video
-		*/
 
 		/* FUNCTIONS */
 		function hasDuplicates(array) {
@@ -356,6 +375,7 @@
 			$('#frame_card3_suit img:eq(2)').addClass('active_suit');
 			$('#frame_card4_suit img:eq(3)').addClass('active_suit');
 			$('#frame_card5_suit img:eq(0)').addClass('active_suit');
+			$('#frame_card5_suit img:eq(1)').addClass('active_suit');
 			$('#frame_cut_suit img:eq(0)').addClass('active_suit');
 			build_current_cards_table();
 		}
@@ -367,13 +387,15 @@
 			frame_card4_num.toCenter();
 			frame_card5_num.toCenter();
 			frame_card5_num.prev();
+			frame_card6_num.toCenter();
+			frame_card6_num.prev();
 			frame_cut_num.toCenter();
 			frame_cut_num.next();
 		}
 
 		function get_current_nums() {
 			var out = [];
-			for (i=1; i<=5; i++) {
+			for (i=1; i<=6; i++) {
 				out.push($('#frame_card' + i + '_num .active').text());
 			}
 			return out;
@@ -381,7 +403,7 @@
 
 		function get_current_suits_abbrev() {
 			var out = [];
-			for (i=1; i<=5; i++) {
+			for (i=1; i<=6; i++) {
 				out.push($('#frame_card' + i + '_suit .active_suit')[0].src
 											.replace(/^.*[\\\/]/, '').slice(0,-4)
 											.slice(0,1).toUpperCase());
@@ -409,7 +431,7 @@
 			if (!$("suits_matter_checkbox").is(':checked')) {
 				var suits = ['S','H','C','D'];
 				var fh_tmp = fh.slice();
-				fh_tmp.splice(-1,1)
+				fh_tmp.splice(-2,2);
 				var n = 0;
 				while (fh_tmp.indexOf(current_nums[4].concat('-').concat(current_suits[4])) > -1) {
 					$("#frame_card5_suit img").removeClass("active_suit");
@@ -423,9 +445,24 @@
 						break;
 					}
 				}
+				fh_tmp.push(current_nums[4].concat('-').concat(current_suits[4]));
+				while (fh_tmp.indexOf(current_nums[5].concat('-').concat(current_suits[5])) > -1) {
+					$("#frame_card6_suit img").removeClass("active_suit");
+					$("#frame_card6_suit img:eq(" + (n+1) + ")").addClass('active_suit');
+					current_suits[5] = suits[(n+1)%4];
+					n++;
+					if (n>6) {
+						$("#frame_card6_suit img").removeClass("active_suit");
+						$("#frame_card6_suit img:eq(0)").addClass('active_suit');
+						current_suits[5] = suits[0];
+						break;
+					}
+				}
 			}
 			$('#current_cards_table tbody tr:nth-child(2)')
 				.append('<td><img src="' + suit_to_img[current_suits[4]] + '"/></td>');
+			$('#current_cards_table tbody tr:nth-child(2)')
+				.append('<td><img src="' + suit_to_img[current_suits[5]] + '"/></td>');
 		}
 
 		function build_optimization_res_table(optimization_results) {
@@ -543,6 +580,7 @@
 		for (c in card_nums) { $('#frame_card3_num ul').append('<li>' + card_nums[c] + '</li>'); }
 		for (c in card_nums) { $('#frame_card4_num ul').append('<li>' + card_nums[c] + '</li>'); }
 		for (c in card_nums) { $('#frame_card5_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card6_num ul').append('<li>' + card_nums[c] + '</li>'); }
 		for (c in card_nums) { $('#frame_cut_num ul').append('<li>' + card_nums[c] + '</li>'); }
 
 		var options_card = { horizontal: 1,
@@ -563,6 +601,7 @@
 		var frame_card4_num = new Sly('#frame_card4_num', options_card).init();
 		options_card['startAt'] = 5;
 		var frame_card5_num = new Sly('#frame_card5_num', options_card).init();
+		var frame_card6_num = new Sly('#frame_card6_num', options_card).init();
 
 		options_card['startAt'] = 7;
 		var frame_cut_num = new Sly('#frame_cut_num', options_card).init();
@@ -635,9 +674,11 @@
 		frame_card5_num.on('active', function(e) {
 			build_current_cards_table();
 		});
+		frame_card6_num.on('active', function(e) {
+			build_current_cards_table();
+		});
 
 		$('#randomize_button').on('click', function() {
-			//swal({title:"Will Be Available Soon", type:"error", allowOutsideClick: true});
 			randomize_hand();
 		});
 
@@ -763,6 +804,7 @@
 			frame_card3_num.reload();
 			frame_card4_num.reload();
 			frame_card5_num.reload();
+			frame_card6_num.reload();
 			frame_cut_num.reload();
 		};
 

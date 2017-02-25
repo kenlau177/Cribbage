@@ -1,23 +1,23 @@
 // https://rosettacode.org/wiki/Combinations#JavaScript
 function combinations(arr, k){
-    var i,
-    subI,
-    ret = [],
-    sub,
-    next;
-    for(i = 0; i < arr.length; i++){
-        if(k === 1){
-            ret.push( [ arr[i] ] );
-        }else{
-            sub = combinations(arr.slice(i+1, arr.length), k-1);
-            for(subI = 0; subI < sub.length; subI++ ){
-                next = sub[subI];
-                next.unshift(arr[i]);
-                ret.push( next );
-            }
-        }
-    }
-    return ret;
+  var i,
+  subI,
+  ret = [],
+  sub,
+  next;
+  for(i = 0; i < arr.length; i++){
+      if(k === 1){
+          ret.push( [ arr[i] ] );
+      }else{
+          sub = combinations(arr.slice(i+1, arr.length), k-1);
+          for(subI = 0; subI < sub.length; subI++ ){
+              next = sub[subI];
+              next.unshift(arr[i]);
+              ret.push( next );
+          }
+      }
+  }
+  return ret;
 }
 
 function compute_expected_crib_hand_helper(fh, card, suit) {
@@ -83,22 +83,6 @@ function compute_general_crib_hand_tmp(card) {
 }
 
 function compute_expected_crib_impact(hand_names, hand_suits) {
-	/*
-	var theo_crib = {
-		'A': 4.758,
-		'2': 4.983,
-		'3': 5.14,
-		'4': 5.146,
-		'5': 6.96,
-		'6': 5.1,
-		'7': 4.989,
-		'8': 4.956,
-		'9': 4.838,
-		'10': 4.767,
-		'J': 4.936,
-		'Q': 4.602,
-		'K': 4.408 };
-	*/
 	var general_crib = {
 		'A': 4.456,
 		'2': 4.681,
