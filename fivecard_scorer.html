@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=0.4, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <title>Cribbage Hand Optimizer</title>
 
@@ -32,37 +32,38 @@
 	<div class="container">
 		<center><h2 id="title_font">Cribbage Scorer</h2></center>
 		<div class="row">
-		  <div class="btn-group dropdown">
-			  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
-		  	<ul class="dropdown-menu pull-center">
-		  		<li><a href="#">About this App</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			    <li><a href="index.html">Optimizer</a></li>
-			    <li style="background-color:#ffff66;"><a href="#">Hand Scorer</a></li>
-			    <li><a href="fivecard_practice.html">Practice</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
-			    <li><a href="#">6-Card Game</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			  <ul>	
-			</div>		
+		  <div class="col-md-4">
+			  <div class="btn-group dropdown">
+				  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
+			  	<ul class="dropdown-menu pull-center">
+			  		<li><a href="#">About this App</a></li>
+				    <li class="divider"></li>
+				    <li><a href="index.html">Optimizer</a></li>
+				    <li style="background-color:#ffff66;"><a href="#">Hand Scorer</a></li>
+				    <li><a href="fivecard_practice.html">Practice</a></li>
+				    <li class="divider"></li>
+				    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
+				    <li><a href="#">6-Card Game</a></li>
+				    <li class="divider"></li>
+				  <ul>	
+				</div>		
+			</div>
+			<div class="col-md-8">
+				<div class="col-xs-6">
+				  <fieldset>
+				    <label id="suits_matter_label" for="suits_matter_checkbox">Suits Matter?</label>
+				    <input type="checkbox" name="suits_matter_checkbox" id="suits_matter_checkbox">
+				  </fieldset>
+				</div>
+				<div class="col-xs-6">
+					<button id="randomize_button" type="button" class="btn btn-info">Randomize Cards</button>
+				</div>
+			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-6">
-			  <fieldset>
-			    <label id="suits_matter_label" for="suits_matter_checkbox">Suits Matter?</label>
-			    <input type="checkbox" name="suits_matter_checkbox" id="suits_matter_checkbox">
-			  </fieldset>
-			</div>
-			<div class="col-xs-6">
-				<button id="randomize_button" type="button" class="btn btn-info">Randomize Cards</button>
-			</div>
+			<hr>
+			<h1>Select the 4 cards in your hand and the cut.</h1>
 		</div>
-		<hr>
-		<h1>Select the 4 cards in your hand and the cut.</h1>
 		<div class="row">
 			<div class="col-md-6">
 				<div id="frame_card1_num" class="frame">
@@ -162,9 +163,8 @@
 			</div>
 		</div>
 
-		<br>
 		<div class="row">
-			<center><h1 class="card_title">What Was Cut?</h1></center>
+			<center><h1 class="card_title" style="margin:15px 0 0 0;">What Was Cut?</h1></center>
 			<div id="frame_cut_num" class="frame">
 				<ul class="slidee"></ul>
 			</div>
@@ -189,34 +189,41 @@
 			</div>
 		</div>
 		
-		<br><br>
 		<div class="row">
-			<center><h1 id="optimize_tag" class="card_title">Cards On Hand and Cut</h1></center>
-			<table id="current_cards_table" class="table table-bordered" style='text-align:center;'>
-				<tbody>
-					<tr></tr>
-					<tr></tr>
-				</tbody>
-			</table>
+			<div class="col-md-8">
+				<center><h1 id="optimize_tag" class="card_title" style="margin-top:20px;">Cards On Hand and Cut</h1></center>
+				<table id="current_cards_table" class="table table-bordered" style='text-align:center;'>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<button id="score_button" type="button" class="btn btn-primary next_card_button">Compute Score!</button>
+			</div>
 		</div>
 
-		<br>
-		<button id="score_button" type="button" class="btn btn-primary next_card_button">Compute Score!</button>
-		<br><br>
-		<center><h1 id="score_result" class="card_title">Hand Score:</h1></center>
-		<br>
-
-		<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
-
+		<div class="row">
+			<div class="col-md-6">
+				<center><h1 id="score_result" class="card_title">Hand Score:</h1></center>
+			</div>
+			<div class="col-md-6">
+				<button id="restart_button" type="button" class="btn btn-warning next_card_button" style="margin-top:13px;">Restart Round</button>	
+			</div>
+		</div>
+	
+		<div class="row">
+			<hr>
+			<br>
+			<footer>
+				<center>
+			  	<p class="footer_text">Copyright &copy; 2017 CribAppName. All rights reserved.</p>
+			  </center>
+			</footer>
+			<br>
+		</div>
 	</div>
-
-	<br><hr>
-	<footer>
-		<center>
-	  	<p class="footer_text">Copyright &copy; 2017 CribAppName. All rights reserved.</p>
-	  </center>
-	</footer>
-	<br>
 
 	<script src="js/score.js"></script>
 	<script src="js/optimize.js"></script>

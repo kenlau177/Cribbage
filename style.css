@@ -64,8 +64,9 @@ h1 {
 }
 
 .card_title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
+  margin: 5px 0 5px 0;
 }
 
 #column_descrips_title {
@@ -128,11 +129,10 @@ td img {
 }
 #randomize_scoring_button {
   width: 100%;
-  font-size: 32px;
+  font-size: 14px;
   font-weight: bold; 
-  height: 120px;
+  height: 50px;
   border-radius: 5px; 
-  margin-top: 20px;
   border: #000 solid 2px;
 }
 
@@ -256,16 +256,19 @@ input[type='radio'] {
 }
 
 #score_guess {
-  font-size: 40px;
-  height: 130px;
+  font-size: 16px;
+  height: 50px;
   text-align: center;
+  width: 92%;
+  margin-top: 15px;
 }
 
 #score_result {
-  border: 8px solid #800080;
+  margin-top: 10px;
+  border: 4px solid #800080;
   padding: 10px;
   width: 80%;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .footer_text {
