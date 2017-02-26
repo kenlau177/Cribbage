@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=0.4, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <title>Cribbage Hand Optimizer</title>
 
@@ -31,6 +31,7 @@
 	
 	<div class="container">
 		<center><h2 id="title_font">Cribbage Optimizer</h2></center>
+		<center><p class="card_title">== 6 Card Version ==</p></center>
 		<div class="row">
 		  <div class="btn-group dropdown">
 			  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
@@ -60,10 +61,10 @@
 			<div class="col-xs-6">
 				<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
 			</div>
-		</div>
-		<hr>
-		<h1>Select the 6 cards in your hand.</h1>
+		</div>				
 		<div class="row">
+			<hr>
+			<h1>Select the 6 cards in your hand.</h1>
 			<div class="col-md-6">
 				<div id="frame_card1_num" class="frame">
 					<ul class="slidee"></ul>
@@ -228,8 +229,7 @@
 			</div>
 			<div class="col-md-6">
 				<hr>
-				<h1>Select who's crib it is.</h1>
-				<br>
+				<h1 style="margin-bottom:15px;">Select who's crib it is.</h1>
 				<center>
 					<fieldset data-role="controlgroup" data-type="horizontal">
 					  <label for="crib_radio1" id="crib_label1" class='ui-checkboxradio-checked ui-state-active'>Your Crib</label>
@@ -242,8 +242,7 @@
 		</div>
 
 		<div class="row">
-				<br><br>
-				<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
+			<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
 		</div>
 
 		<br>
@@ -305,30 +304,30 @@
 			</div>
 
 			<div class="col-md-6">
-				<br><br>
 				<button id="score_button" type="button" class="btn btn-primary next_card_button">Compute Scores!</button>
 			</div>
 		</div>
 		
-		<br><br>
-		<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
-			<thead>
-				<tr>
-					<th>Discarded</th>
-					<th>Hand Score</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-			</tbody>
-		</table>
+		<div class="row">
+			<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
+				<thead>
+					<tr>
+						<th>Discarded</th>
+						<th>Hand Score</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+				</tbody>
+			</table>
 
-		<br>
-		<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
+			<br>
+			<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
+		</div>
 
 	</div>
 
