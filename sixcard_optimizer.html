@@ -33,35 +33,33 @@
 		<center><h2 id="title_font">Cribbage Optimizer</h2></center>
 		<center><p class="card_title">== 6 Card Version ==</p></center>
 		<div class="row">
-		  <div class="btn-group dropdown">
-			  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
-		  	<ul class="dropdown-menu pull-center">
-		  		<li><a href="#">About this App</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			    <li style="background-color:#ffff66;"><a href="#">Optimizer</a></li>
-			    <li><a href="fivecard_scorer.html">Hand Scorer</a></li>
-			    <li><a href="fivecard_practice.html">Practice</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
-			    <li><a href="#">6-Card Game</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			  <ul>	
-			</div>		
-		</div>
-		<div class="row">
-			<div class="col-xs-6">
-			  <fieldset>
-			    <label id="suits_matter_label" for="suits_matter_checkbox">Suits Matter?</label>
-			    <input type="checkbox" name="suits_matter_checkbox" id="suits_matter_checkbox">
-			  </fieldset>
+		  <div class="col-md-4">
+			  <div class="btn-group dropdown">
+				  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
+			  	<ul class="dropdown-menu pull-center">
+				    <li><a href="index.html">5-Card Optimizer</a></li>
+				    <li><a href="fivecard_practice.html">5-Card Practice</a></li>
+				    <li class="divider"></li>
+				    <li style="background-color:#ffff66;"><a href="#">6-Card Optimizer</a></li>
+				    <li><a href="sixcard_practice.html">6-Card Practice</a></li>
+				    <li class="divider"></li>
+				    <li><a href="scorer.html">Hand Scorer</a></li>
+				    <li class="divider"></li>
+				  </ul>	
+				</div>
 			</div>
-			<div class="col-xs-6">
-				<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
+			<div class="col-md-8">
+				<div class="col-xs-6">
+				  <fieldset>
+				    <label id="suits_matter_label" for="suits_matter_checkbox">Suits Matter?</label>
+				    <input type="checkbox" name="suits_matter_checkbox" id="suits_matter_checkbox">
+				  </fieldset>
+				</div>
+				<div class="col-xs-6">
+					<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
+				</div>
 			</div>
-		</div>				
+		</div>			
 		<div class="row">
 			<hr>
 			<h1>Select the 6 cards in your hand.</h1>
@@ -187,9 +185,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="row">
 			<div class="col-md-6">
 				<div id="frame_card6_num" class="frame">
 					<ul class="slidee"></ul>
@@ -242,41 +237,55 @@
 		</div>
 
 		<div class="row">
-			<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
+			<div class='col-md-4'>
+				<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
+			</div>
+			<div class='col-md-8'>
+				<br>
+				<center><h1 id="optimize_tag" class="card_title">Optimization Results</h1></center>	
+				<table id="optimization_results" class="table table-striped table-bordered" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>Discard</th>
+							<th>Score</th>
+							<th>Hand</th>
+							<th>Crib</th>
+							<th>Min</th>
+							<th>Max</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+				<center><a id='column_descrips_title'>See Column Descriptions</a></center>
+				<ul id='column_descrips_list' class="card_title">
+					<li><strong>Discard:</strong> Card to throw in the crib.</li>
+					<li><strong>Score:</strong> The net expected score including the crib impact.</li>
+					<li><strong>Crib:</strong> The impact of the discarded card thrown in the crib compared to the expected crib score.</li>
+					<li><strong>Min|Max:</strong> The minimum|maximum possible score of the hand if card is discarded.</li>
+				</ul>
+			</div>
 		</div>
 
-		<br>
 		<div class="row">
-			<center><h1 id="optimize_tag" class="card_title">Optimization Results</h1></center>	
-			<table id="optimization_results" class="table table-striped table-bordered" style="text-align:center;">
-				<thead>
-					<tr>
-						<th>Discard</th>
-						<th>Score</th>
-						<th>Hand</th>
-						<th>Crib</th>
-						<th>Min</th>
-						<th>Max</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-				</tbody>
-			</table>
-			<center><a id='column_descrips_title' class="card_title">See Column Descriptions</a></center>
-			<ul id='column_descrips_list' class="card_title">
-				<li><strong>Discard:</strong> Card to throw in the crib.</li>
-				<li><strong>Score:</strong> The net expected score including the crib impact.</li>
-				<li><strong>Crib:</strong> The impact of the discarded card thrown in the crib compared to the expected crib score.</li>
-				<li><strong>Min|Max:</strong> The minimum|maximum possible score of the hand if card is discarded.</li>
-			</ul>
+			<hr>
+			<h1 style="margin-bottom:10px;">Find out what you actually scored.</h1>
 		</div>
-		<hr>
-		<h1>Find out what you actually scored.</h1>
 		<div class="row">
 			<div class='col-md-6'>	
 				<center><h1 class="card_title">What Was Cut?</h1></center>
@@ -308,25 +317,38 @@
 			</div>
 		</div>
 		
+		<br>
 		<div class="row">
-			<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
-				<thead>
-					<tr>
-						<th>Discarded</th>
-						<th>Hand Score</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-					<tr></tr>
-				</tbody>
-			</table>
-
-			<br>
-			<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
+			<div class="col-md-8">
+				<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>Discarded</th>
+							<th>Hand Score</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
+			</div>
 		</div>
 
 	</div>
@@ -374,7 +396,7 @@
 			$('#frame_card3_suit img:eq(2)').addClass('active_suit');
 			$('#frame_card4_suit img:eq(3)').addClass('active_suit');
 			$('#frame_card5_suit img:eq(0)').addClass('active_suit');
-			$('#frame_card5_suit img:eq(1)').addClass('active_suit');
+			$('#frame_card6_suit img:eq(1)').addClass('active_suit');
 			$('#frame_cut_suit img:eq(0)').addClass('active_suit');
 			build_current_cards_table();
 		}
@@ -465,25 +487,12 @@
 		}
 
 		function build_optimization_res_table(optimization_results) {
-			$('#optimization_results tbody tr:nth-child(1)').empty();
-			$('#optimization_results tbody tr:nth-child(2)').empty();
-			$('#optimization_results tbody tr:nth-child(3)').empty();
-			$('#optimization_results tbody tr:nth-child(4)').empty();
-			$('#optimization_results tbody tr:nth-child(5)').empty();
-			for (i in optimization_results[0]) {
-				$('#optimization_results tbody tr:nth-child(1)').append('<td>' + optimization_results[0][i] + '</td>');
-			}
-			for (i in optimization_results[1]) {
-				$('#optimization_results tbody tr:nth-child(2)').append('<td>' + optimization_results[1][i] + '</td>');
-			}
-			for (i in optimization_results[2]) {
-				$('#optimization_results tbody tr:nth-child(3)').append('<td>' + optimization_results[2][i] + '</td>');
-			}
-			for (i in optimization_results[3]) {
-				$('#optimization_results tbody tr:nth-child(4)').append('<td>' + optimization_results[3][i] + '</td>');
-			}
-			for (i in optimization_results[4]) {
-				$('#optimization_results tbody tr:nth-child(5)').append('<td>' + optimization_results[4][i] + '</td>');
+			for (var i=1; i<16; i++) {
+				$('#optimization_results tbody tr:nth-child(' + i + ')').empty();	
+				for (var j in optimization_results[i]) {
+					$('#optimization_results tbody tr:nth-child(' + i + ')')
+							.append('<td>' + optimization_results[i][j] + '</td>');	
+				}
 			}
 		}
 
@@ -530,7 +539,7 @@
 		window.onload = function () { 
 			if (typeof localStorage.init === 'undefined') {
 				swal({title:"Welcome to <CripAppName>", 
-							text:"This app works best on Chrome and is intended for mobile.\nIf this is your first time, visit the 'About this App' link from the menu bar.",
+							text:"This app works best on Chrome. Use the menu bar to switch between a 5 and 6 card version. You can also switch between optimizing or scoring a hand, or to just get some practice.",
 							allowOutsideClick: true});	
 			}
 			localStorage.init = true;
@@ -645,6 +654,14 @@
 			$(this).addClass('active_suit');
 			build_current_cards_table();
 		});
+		$('#frame_card6_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card6_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
 		$('#frame_cut_suit img').on('click', function() {
 			$("#frame_cut_suit img").removeClass("active_suit");
 			$(this).addClass('active_suit');
@@ -738,41 +755,38 @@
 				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
 				return;
 			}
-			$('#scores_results tbody tr:nth-child(1)').empty();
-			$('#scores_results tbody tr:nth-child(2)').empty();
-			$('#scores_results tbody tr:nth-child(3)').empty();
-			$('#scores_results tbody tr:nth-child(4)').empty();
-			$('#scores_results tbody tr:nth-child(5)').empty();
 
-			var score1 = score_hand([cut_num].concat(current_nums.slice(1)), 
-											[cut_suit].concat(current_suits.slice(1)), cut_num, cut_suit);
-			var score2 = score_hand([cut_num].concat(current_nums.slice(0,1).concat(current_nums.slice(2))),
-												[cut_suit].concat(current_suits.slice(0,1).concat(current_suits.slice(2))), cut_num, cut_suit);
-			var score3 = score_hand([cut_num].concat(current_nums.slice(0,2).concat(current_nums.slice(3))),
-												[cut_suit].concat(current_suits.slice(0,2).concat(current_suits.slice(3))), cut_num, cut_suit);
-			var score4 = score_hand([cut_num].concat(current_nums.slice(0,3).concat(current_nums.slice(4))),
-												[cut_suit].concat(current_suits.slice(0,3).concat(current_suits.slice(4))), cut_num, cut_suit);
-			var score5 = score_hand([cut_num].concat(current_nums.slice(0,4)), 
-											[cut_suit].concat(current_suits.slice(0,4)), cut_num, cut_suit);			
+			for (var i=1; i<16; i++) {
+				$('#scores_results tbody tr:nth-child(' + i + ')').empty();				
+			}
 
-			var scores = [score1, score2, score3, score4, score5];
+			var scores = [];
+			var idx_to_both_hand_names_suits = {};
+			var idx = 0;
+			for (var h1 in current_nums) {
+				for (var h2 in current_nums) {
+					if (h1 < h2) {
+						var tmp_hand_names = current_nums.slice(0);
+						var tmp_hand_suits = current_nums.slice(0);
+						tmp_hand_names.splice(h1,1);
+						tmp_hand_names.splice(h2,1);
+						tmp_hand_suits.splice(h1,1);
+						tmp_hand_suits.splice(h2,1);
+						scores.push(score_hand(tmp_hand_names, tmp_hand_suits, cut_num, cut_suit));
+						idx_to_both_hand_names_suits[idx.toString()] = current_nums[h1].concat(current_suits[h1]).concat('-')
+																														.concat(current_nums[h2]).concat(current_suits[h2]);
+						idx++;
+					}
+				}
+			}
+			
 			var tmp = find_indices_ordered(scores, true);
 
-			$('#scores_results tbody tr:nth-child(1)')
-				.append('<td>' + current_nums[tmp[0]] + current_suits[tmp[0]] + '</td>' + '<td>' + scores[tmp[0]] + 
-					"</td>");
-			$('#scores_results tbody tr:nth-child(2)')
-					.append('<td>' + current_nums[tmp[1]] + current_suits[tmp[1]] + '</td>' + '<td>' + scores[tmp[1]] + 
-						"</td>");
-			$('#scores_results tbody tr:nth-child(3)')
-					.append('<td>' + current_nums[tmp[2]] + current_suits[tmp[2]] + '</td>' + '<td>' + scores[tmp[2]] + 
-						"</td>");
-			$('#scores_results tbody tr:nth-child(4)')
-					.append('<td>' + current_nums[tmp[3]] + current_suits[tmp[3]] + '</td>' + '<td>' + scores[tmp[3]] + 
-						"</td>");
-			$('#scores_results tbody tr:nth-child(5)')
-					.append('<td>' + current_nums[tmp[4]] + current_suits[tmp[4]] + '</td>' + '<td>' + scores[tmp[4]] + 
-						"</td>");
+			for (var s in scores) {
+				$('#scores_results tbody tr:nth-child(' + (Number(s)+1) + ')')
+					.append('<td>' + idx_to_both_hand_names_suits[tmp[s].toString()] + '</td>' + 
+					'<td>' + scores[tmp[s]] + '</td>');
+			}
 
 			$('html, body').animate({
 		     scrollTop: $("#scores_results").offset().top
@@ -784,17 +798,10 @@
 			reset_nums();
 			reset_suits();
 			
-			$('#optimization_results tbody tr:nth-child(1)').empty();
-			$('#optimization_results tbody tr:nth-child(2)').empty();
-			$('#optimization_results tbody tr:nth-child(3)').empty();
-			$('#optimization_results tbody tr:nth-child(4)').empty();
-			$('#optimization_results tbody tr:nth-child(5)').empty();
-			
-			$('#scores_results tbody tr:nth-child(1)').empty();
-			$('#scores_results tbody tr:nth-child(2)').empty();
-			$('#scores_results tbody tr:nth-child(3)').empty();
-			$('#scores_results tbody tr:nth-child(4)').empty();
-			$('#scores_results tbody tr:nth-child(5)').empty();
+			for (var i=1; i<16; i++) {
+				$('#optimization_results tbody tr:nth-child(' + i + ')').empty();
+				$('#scores_results tbody tr:nth-child(' + i + ')').empty();
+			}
 		});
 
 		window.onresize = function(event) {

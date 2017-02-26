@@ -29,7 +29,7 @@
 	
 	<div class="container">
 		<center><h2 id="title_font">Cribbage Practice</h2></center>
-		<center><p class="card_title">== 5 Card Version ==</p></center>
+		<center><p class="card_title">== 6 Card Version ==</p></center>
 		<div class="row">
 		  <div class="col-md-4">
 			  <div class="btn-group dropdown">
@@ -118,6 +118,16 @@
 					</tr>
 				</thead>
 				<tbody>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
 					<tr></tr>
 					<tr></tr>
 					<tr></tr>
@@ -297,11 +307,9 @@
 			$('#current_cards_table tbody tr:nth-child(2)').empty();
 			$('#card_selected').text('');
 			$('#practice_optimization_result').text('');
-			$('#optimization_results tbody tr:nth-child(1)').empty();
-			$('#optimization_results tbody tr:nth-child(2)').empty();
-			$('#optimization_results tbody tr:nth-child(3)').empty();
-			$('#optimization_results tbody tr:nth-child(4)').empty();
-			$('#optimization_results tbody tr:nth-child(5)').empty();
+			for (var i=1; i<16; i++) {
+				$('#optimization_results tbody tr:nth-child(' + i + ')').empty();	
+			}
 
 			var full_num_idx = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 			var full_suit_idx = [0, 1, 2, 3];
@@ -314,7 +322,7 @@
 			var rand_num_idx_arr = [];
 			var rand_suit_idx_arr = [];
 
-			for (var i=1; i<6; i++) {
+			for (var i=1; i<7; i++) {
 				while(!is_card_chosen) {
 					var rand_num_idx = Math.floor(Math.random() * 12);
 					var rand_suit_idx = Math.floor(Math.random() * 3);

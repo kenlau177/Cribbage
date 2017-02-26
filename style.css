@@ -234,10 +234,11 @@ input[type='radio'] {
   border: #000 solid 2px;
 }
 
+/*
 .sweet-alert {
-  width: 700px;
-  height: 600px;
-  left: 38.5%;
+  width: 100px;
+  height: 50px;
+  left: 50%;
   top: 60%;
   padding-top: 90px;
 }
@@ -254,6 +255,7 @@ input[type='radio'] {
   font-size: 40px;
   padding: 20px 80px 20px 80px;
 }
+*/
 
 #score_guess {
   font-size: 16px;
@@ -302,8 +304,8 @@ input[type='radio'] {
     width: 60px;
   }
   .suit img {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     opacity: 0.1;
   }
@@ -366,6 +368,7 @@ input[type='radio'] {
     height: 45px;
     border-radius: 5px;
   }
+  /*
   .sweet-alert {
     width: 478px;
     height: 400px;
@@ -378,6 +381,7 @@ input[type='radio'] {
   .sweet-alert button {
     font-size: 17px;
   }
+  */
   #column_descrips_list {
     font-size: 14px;
   }

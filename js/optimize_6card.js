@@ -115,7 +115,6 @@ function compute_expected_hand(hand_names, hand_suits) {
 	}
 
 	var out = [];
-	var a = 0;
 	for (var h1 in hand_names) {
 		for (var h2 in hand_names) {
 			if (h1 < h2) {
