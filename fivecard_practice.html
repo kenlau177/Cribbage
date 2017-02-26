@@ -30,36 +30,41 @@
 	<div class="container">
 		<center><h2 id="title_font">Cribbage Practice</h2></center>
 		<div class="row">
-		  <div class="btn-group dropdown">
-			  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
-		  	<ul class="dropdown-menu pull-center">
-		  		<li><a href="#">About this App</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			    <li><a href="index.html">Optimizer</a></li>
-			    <li><a href="fivecard_scorer.html">Hand Scorer</a></li>
-			    <li style="background-color:#ffff66;"><a href="#">Practice</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
-			    <li><a href="#">6-Card Game</a></li>
-			    <li class="divider"></li>
-			    <li class="divider"></li>
-			  </ul>	
+		  <div class="col-md-4">
+			  <div class="btn-group dropdown">
+				  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
+			  	<ul class="dropdown-menu pull-center">
+			  		<li><a href="#">About this App</a></li>
+				    <li class="divider"></li>
+				    <li class="divider"></li>
+				    <li><a href="index.html">Optimizer</a></li>
+				    <li><a href="fivecard_scorer.html">Hand Scorer</a></li>
+				    <li style="background-color:#ffff66;"><a href="#">Practice</a></li>
+				    <li class="divider"></li>
+				    <li class="divider"></li>
+				    <li style="background-color:#ffffb2;"><a href="#">5-Card Game</a></li>
+				    <li><a href="#">6-Card Game</a></li>
+				    <li class="divider"></li>
+				    <li class="divider"></li>
+				  </ul>	
+				</div>
+			</div>
+			<div class="col-md-8">
+				<hr>
+				<h1>Go to:</h1>
+				<div class="col-md-6">
+					<a id="practice_optimization_link"><h1 class="card_title" style="margin-bottom:15px;">1) Practice Card Discarding</h1></a>
+				</div>
+				<div class="col-md-6">
+					<a id="practice_score_link"><h1 class="card_title">2) Practice Hand Scoring</h1></a>
+				</div>
 			</div>
 		</div>
+		
 		<div class="row">
-			<hr>
-			<h1>Go to:</h1>
-			<a id="practice_optimization_link"><h1 class="card_title" style="margin-bottom:15px;">1) Practice Card Discarding</h1></a>
-			<a id="practice_score_link"><h1 class="card_title">2) Practice Hand Scoring</h1></a>
-			<center><h1 class="card_title" style="margin-top:20px;">1) Practice Card Discarding</h1></center>
-			
+			<center><h1 class="card_title" style="margin-top:15px;">1) Practice Card Discarding</h1></center>
 			<hr>
 			<h1>Begin each round by randomizing your hand.</h1>
-		</div>
-
-		<div class="row">
 			<div class="btn-group" style="margin-top:10px;">
 				<button id="randomize_button" type="button" class="btn btn-info" style="width:98%; margin-top:0px;">Randomize Crib Turn and Hand</button>
 			</div>
@@ -89,18 +94,17 @@
 				</table>
 			</div>
 			<div class="col-md-3">
-				<div class="row">
-					<center><h1 id="card_selected" class="card_title"></h1></center>
-				</div>
+				<center><h1 id="card_selected" class="card_title"></h1></center>
 			</div>
 		</div>
 
 		<div class="row">
-			<button id="optimize_button" type="button" class="btn btn-success next_card_button">Check Result!</button>
-		</div>
-
-		<div class="row">
-			<center><h1 id='practice_optimization_result' class="card_title"></h1></center>
+			<div class="col-md-6">
+				<button id="optimize_button" type="button" class="btn btn-success next_card_button">Check Result!</button>
+			</div>
+			<div class="col-md-6">
+				<center><h1 id='practice_optimization_result' class="card_title"></h1></center>
+			</div>
 		</div>
 
 		<div class="row">
@@ -531,7 +535,7 @@
 
 			build_optimization_res_table(optimization_res);
 			$('html, body').animate({
-		    scrollTop: $("#optimize_button").offset().top
+		    scrollTop: $("#current_cards_table").offset().top
 		  }, 1000);
 
 		  new_cards_optimization = false;

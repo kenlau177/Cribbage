@@ -391,4 +391,13 @@ input[type='radio'] {
   .dropdown-menu li a {
     padding: 5px;
   }
+  #practice_optimization_result {
+    margin-top: 50px;
+  }
+  #card_selected {
+    margin-top: 50px; 
+  }
+  #score_guess {
+    margin-top: 38px;
+  }
 }
