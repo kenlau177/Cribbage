@@ -80,7 +80,7 @@
 				</center>
 			</div>
 			<hr>
-			<h1>Tap on a column below to guess the card to discard.</h1>
+			<h1>Tap on two columns below to guess the cards to discard. Remove selection by re-tapping column.</h1>
 			<div class="col-md-5">
 				<center><h1 id="optimize_tag" class="card_title">Cards on Hand</h1></center>				
 				<table id="current_cards_table" class="table table-bordered" style='text-align:center;'>
@@ -172,6 +172,7 @@
 
 		<div class="row">
 			<center><h1 id="practice_scoring_tag" class="card_title">2) Practice Hand Scoring</h1></center>
+			<h1 style="margin-top:10px;">Same for 5-Card and 6-Card versions.</h1>
 			<hr>
 			<h1>Begin each round by randomizing your hand.</h1>
 			<div class="btn-group" style="margin-top:10px;">
@@ -239,7 +240,7 @@
 	</div>
 
 	<script src="js/score.js"></script>
-	<script src="js/optimize.js"></script>
+	<script src="js/optimize_6card.js"></script>
 
 	<script type="text/javascript">
 
@@ -250,14 +251,14 @@
 		/* FUNCTIONS */		
 		function get_current_nums() {
 			var out = [];
-			for (i=1; i<=5; i++) {
+			for (i=1; i<=6; i++) {
 				out.push($('#current_cards_table tbody tr:nth-child(1) td:nth-child(' + i + ')').text());
 			}
 			return out;
 		}
 		function get_current_suits_abbrev() {
 			var out = [];
-			for (i=1; i<=5; i++) {
+			for (i=1; i<=6; i++) {
 				out.push($('#current_cards_table tbody tr:nth-child(2) td:nth-child(' + i + ') img')[0]
 											.src.replace(/^.*[\\\/]/, '').slice(0,-4).slice(0,1).toUpperCase());
 			}
@@ -300,6 +301,26 @@
 			for (i in optimization_results[4]) {
 				$('#optimization_results tbody tr:nth-child(5)').append('<td>' + optimization_results[4][i] + '</td>');
 			}
+		}
+
+		function card_selected_text() {
+			var cols_idx = [];
+			var idx = 0;
+			$('#current_cards_table tr:nth-child(1) td').each(function() {
+				if (this.className === 'table_card_selected') {
+					cols_idx.push(idx);
+				}
+				idx++;
+			});
+
+			var text = 'Card Selected: ';
+			for (var i=0; i<cols_idx.length; i++) {
+				if (i === 1) {
+					text = text.concat('-');
+				}
+				text = text.concat(get_current_nums()[cols_idx[i]]).concat(get_current_suits_abbrev()[cols_idx[i]]);
+			}
+			$('#card_selected').text(text);	
 		}
 
 		function randomize_optimization() {
@@ -353,17 +374,21 @@
 				$("#crib_radio2").click();	
 			}
 
+			var num_selected = 0;
 			$('#current_cards_table td').click(function() {
-				$('#current_cards_table td').css('background-color','#e8e8e8');
 				var col_idx = $(this).parent().children().index($(this));
-				$(this).css('background-color','#ffff66');
-				$(this).parent().siblings().children().eq(col_idx).css('background-color','#ffff66');
+				
+				if (this.className !== 'table_card_selected' && $('#current_cards_table .table_card_selected').length < 4) {
+					$(this).addClass('table_card_selected');
+					$(this).parent().siblings().children().eq(col_idx).addClass('table_card_selected');	
+				} else {
+					$(this).removeClass('table_card_selected');
+					$(this).parent().siblings().children().eq(col_idx).removeClass('table_card_selected');	
+				}
 
-				var current_num = get_current_nums()[col_idx];
-				var current_suit = get_current_suits_abbrev()[col_idx];
-				$('#card_selected').text('Card Selected: ' + current_num + current_suit);
+				card_selected_text();
 			});
-
+			
 			new_cards_optimization = true;
 		}
 
@@ -444,26 +469,6 @@
 			new_cards_scoring = false;
 		}
 
-/*
-		function init_progress() {
-			if (typeof localStorage.current_rounds_opt === undefined) {
-				localStorage.current_rounds_opt = 0;
-				localStorage.current_corrects_opt = 0;
-				localStorage.current_pointslost_opt = 0;
-				localStorage.current_rounds_score = 0;
-				localStorage.current_corrects_score = 0;
-				localStorage.current_pointsdiff_score = 0;
-			} else {
-				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text(localStorage.current_rounds_opt);
-				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text(localStorage.current_corrects_opt);
-				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text(localStorage.current_pointslost_opt);
-				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(1)').text(localStorage.current_rounds_score);
-				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(2)').text(localStorage.current_corrects_score);
-				$('#progress_practice_scoring tbody tr:nth-child(1) td:nth-child(3)').text(localStorage.current_pointsdiff_score);
-			}
-		}
-*/
-
 		//******************************//
 
 		var suit_to_img = {'S':'images/spade.png', 'H':'images/heart.png', 'C':'images/club.png', 
@@ -505,8 +510,8 @@
 
 		$('#optimize_button').on('click', function() {
 			var card_selected = $('#card_selected').text().replace('Card Selected: ', '');
-			if (card_selected === '') {
-				swal({title:"Select a card that you think is best to discard first", type:"error", allowOutsideClick: true});
+			if (card_selected.length < 3) {
+				swal({title:"Select two cards that you think are best to discard first", type:"error", allowOutsideClick: true});
 				return;
 			}
 			if ($('#crib_radio1').is(':checked')) {
@@ -525,12 +530,12 @@
 			var current_corrects = Number($('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text());
 			var current_pointslost = Number($('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text());
 			if (new_cards_optimization && selected_score === opt_score) {
-				$('#practice_optimization_result').text('Good Job. Selected Card is Optimal.');
+				$('#practice_optimization_result').text('Good Job. Selected Cards are Optimal.');
 				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text(current_rounds+1);
 				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text(current_corrects+1);
 				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text(current_pointslost);
 			} else if (new_cards_optimization && selected_score !== opt_score) {
-				$('#practice_optimization_result').text('Wrong. Best card to discard is ' + optimization_res[0][0] + '. You lose an expected score of ' + (opt_score-selected_score).toFixed(1));
+				$('#practice_optimization_result').text('Wrong. Best cards to discard are ' + optimization_res[0][0] + '. You lose an expected score of ' + (opt_score-selected_score).toFixed(1));
 					console.log(current_rounds);
 					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text(current_rounds+1);
 					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text(current_corrects);

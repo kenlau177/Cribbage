@@ -16,10 +16,16 @@ h1 {
   margin: 0 0 2px 0;
 }
 
-.col-md-6 {
+.col-md-3 {
   padding: 0px;
 }
 .col-md-4 {
+  padding: 0px;
+}
+.col-md-5 {
+  padding: 0px;
+}
+.col-md-6 {
   padding: 0px;
 }
 .col-md-8 {
@@ -137,7 +143,7 @@ td img {
 }
 
 .table {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;
 }
@@ -149,6 +155,9 @@ td img {
   border: #000 solid 2px !important;
   text-align: center;
   padding: 3px !important;
+}
+.table_card_selected {
+  background-color: #ffff66;
 }
 
 input[type='radio'] { 
