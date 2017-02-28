@@ -281,25 +281,12 @@
 		}		
 
 		function build_optimization_res_table(optimization_results) {
-			$('#optimization_results tbody tr:nth-child(1)').empty();
-			$('#optimization_results tbody tr:nth-child(2)').empty();
-			$('#optimization_results tbody tr:nth-child(3)').empty();
-			$('#optimization_results tbody tr:nth-child(4)').empty();
-			$('#optimization_results tbody tr:nth-child(5)').empty();
-			for (i in optimization_results[0]) {
-				$('#optimization_results tbody tr:nth-child(1)').append('<td>' + optimization_results[0][i] + '</td>');
-			}
-			for (i in optimization_results[1]) {
-				$('#optimization_results tbody tr:nth-child(2)').append('<td>' + optimization_results[1][i] + '</td>');
-			}
-			for (i in optimization_results[2]) {
-				$('#optimization_results tbody tr:nth-child(3)').append('<td>' + optimization_results[2][i] + '</td>');
-			}
-			for (i in optimization_results[3]) {
-				$('#optimization_results tbody tr:nth-child(4)').append('<td>' + optimization_results[3][i] + '</td>');
-			}
-			for (i in optimization_results[4]) {
-				$('#optimization_results tbody tr:nth-child(5)').append('<td>' + optimization_results[4][i] + '</td>');
+			for (var i=1; i<16; i++) {
+				$('#optimization_results tbody tr:nth-child(' + i + ')').empty();	
+				for (var j in optimization_results[i-1]) {
+					$('#optimization_results tbody tr:nth-child(' + i + ')')
+							.append('<td>' + optimization_results[i-1][j] + '</td>');	
+				}
 			}
 		}
 
@@ -536,7 +523,6 @@
 				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text(current_pointslost);
 			} else if (new_cards_optimization && selected_score !== opt_score) {
 				$('#practice_optimization_result').text('Wrong. Best cards to discard are ' + optimization_res[0][0] + '. You lose an expected score of ' + (opt_score-selected_score).toFixed(1));
-					console.log(current_rounds);
 					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text(current_rounds+1);
 					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text(current_corrects);
 					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text((current_pointslost+opt_score-selected_score).toFixed(1));

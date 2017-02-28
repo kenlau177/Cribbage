@@ -524,7 +524,6 @@
 				$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text(current_pointslost);
 			} else if (new_cards_optimization && selected_score !== opt_score) {
 				$('#practice_optimization_result').text('Wrong. Best card to discard is ' + optimization_res[0][0] + '. You lose an expected score of ' + (opt_score-selected_score).toFixed(1));
-					console.log(current_rounds);
 					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(1)').text(current_rounds+1);
 					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(2)').text(current_corrects);
 					$('#progress_practice_optimization tbody tr:nth-child(1) td:nth-child(3)').text((current_pointslost+opt_score-selected_score).toFixed(1));
