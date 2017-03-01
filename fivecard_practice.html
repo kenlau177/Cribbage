@@ -286,20 +286,19 @@
 			$('#optimization_results tbody tr:nth-child(3)').empty();
 			$('#optimization_results tbody tr:nth-child(4)').empty();
 			$('#optimization_results tbody tr:nth-child(5)').empty();
-			for (i in optimization_results[0]) {
-				$('#optimization_results tbody tr:nth-child(1)').append('<td>' + optimization_results[0][i] + '</td>');
-			}
-			for (i in optimization_results[1]) {
-				$('#optimization_results tbody tr:nth-child(2)').append('<td>' + optimization_results[1][i] + '</td>');
-			}
-			for (i in optimization_results[2]) {
-				$('#optimization_results tbody tr:nth-child(3)').append('<td>' + optimization_results[2][i] + '</td>');
-			}
-			for (i in optimization_results[3]) {
-				$('#optimization_results tbody tr:nth-child(4)').append('<td>' + optimization_results[3][i] + '</td>');
-			}
-			for (i in optimization_results[4]) {
-				$('#optimization_results tbody tr:nth-child(5)').append('<td>' + optimization_results[4][i] + '</td>');
+			for (var j = 1; j < 6; j++) {
+				for (i in optimization_results[j-1]) {
+					if (Number(i) !== 3) {
+						var aes = '<td>';
+					} else if (optimization_results[j-1][i] < 0) {
+						var aes = '<td style="color:#ff4c4c;">';
+					} else if (optimization_results[j-1][i] === 0) {
+						var aes = '<td>';
+					} else {
+						var aes = '<td style="color:#66b266;">+';
+					}		
+					$('#optimization_results tbody tr:nth-child(' + j + ')').append(aes + optimization_results[j-1][i] + '</td>');	
+				}
 			}
 		}
 
