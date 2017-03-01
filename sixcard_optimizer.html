@@ -777,12 +777,13 @@
 				for (var h2 in current_nums) {
 					if (h1 < h2) {
 						var tmp_hand_names = current_nums.slice(0);
-						var tmp_hand_suits = current_nums.slice(0);
-						tmp_hand_names.splice(h1,1);
+						var tmp_hand_suits = current_suits.slice(0);
 						tmp_hand_names.splice(h2,1);
-						tmp_hand_suits.splice(h1,1);
+						tmp_hand_names.splice(h1,1);
 						tmp_hand_suits.splice(h2,1);
-						scores.push(score_hand(tmp_hand_names, tmp_hand_suits, cut_num, cut_suit));
+						tmp_hand_suits.splice(h1,1);
+						scores.push(score_hand(tmp_hand_names.concat(cut_num), tmp_hand_suits.concat(cut_suit), 
+																		cut_num, cut_suit));
 						idx_to_both_hand_names_suits[idx.toString()] = current_nums[h1].concat(current_suits[h1]).concat('-')
 																														.concat(current_nums[h2]).concat(current_suits[h2]);
 						idx++;

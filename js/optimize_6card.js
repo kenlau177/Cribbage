@@ -120,10 +120,10 @@ function compute_expected_hand(hand_names, hand_suits) {
 			if (h1 < h2) {
 				var tmp_hand_names = hand_names.slice(0);
 				var tmp_hand_suits = hand_suits.slice(0);
-				tmp_hand_names.splice(h1,1);
 				tmp_hand_names.splice(h2,1);
-				tmp_hand_suits.splice(h1,1);
+				tmp_hand_names.splice(h1,1);
 				tmp_hand_suits.splice(h2,1);
+				tmp_hand_suits.splice(h1,1);
 				out.push(compute_expected_hand_helper(fh, tmp_hand_names, tmp_hand_suits));
 			}
 		}
