@@ -146,7 +146,7 @@
 
 		<div class="row">
 			<hr>
-			<h1>How are you doing in discarding cards?</h1>
+			<h1>How are you doing in discarding the right cards?</h1>
 			<table id="progress_practice_optimization" class="table table-bordered" style='text-align:center; margin-top:10px;'>
 				<thead>
 					<tr>
@@ -190,21 +190,19 @@
 				</table>
 				<center><h1 class="card_title" style="font-size:14px;">*Last column is the cut</h1></center>
 			</div>
-			<div class="col-md-6">
-				<div class="col-xs-6">
-					<div class="form-group">
-				  	<input type="text" class="form-control" id="score_guess" placeholder="Enter Score">
-					</div>
+			<div class="col-md-6" style="margin-top:15px;">
+				<div class="col-xs-7">
+					<h1>Guess the score:</h1>
+					<input id="score_guess">  
 				</div>
-				<div class="col-xs-6">
-					<button id="score_button" type="button" class="btn btn-primary next_card_button">Check Score!</button>
+				<div class="col-xs-5">
+					<button id="score_button" type="button" class="btn btn-primary next_card_button" style="font-size: 13px;">Check Score!</button>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<center><h1 id='score_result' class="card_title" style="width:100%;">Result</h1></center>
 		</div>
-	
 		<div class="row">
 			<hr>
 			<h1 style="margin-bottom:10px;">How are you doing in scoring?</h1>
@@ -372,7 +370,7 @@
 		function randomize_score() {
 			$('#current_cards_table_score tbody tr:nth-child(1)').empty();
 			$('#current_cards_table_score tbody tr:nth-child(2)').empty();
-			$('#score_guess').val('');
+			$('#score_guess').val(4);
 			$('#score_result').text('Result');
 
 			var full_num_idx = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -568,6 +566,10 @@
 		  }, 1000);
 		})
 
+		var score_guess_spinner = $("#score_guess").spinner({
+			min: 0
+		});
+
 		$('#score_button').on('click', function() {
 			compute_score();
 		});
@@ -578,6 +580,10 @@
 		    scrollTop: $("#randomize_scoring_button").offset().top
 		  }, 1000);
 		});
+
+		window.onload = function () { 
+			$("#score_guess").spinner("value", 4);
+		};
 
 	</script>
 
