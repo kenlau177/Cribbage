@@ -98,7 +98,11 @@ function compute_expected_crib_impact(hand_names, hand_suits) {
 		'Q': 4.2956,
 		'K': 4.103 };
 
-	var gen_crib_vals = Object.values(general_crib);
+	//var gen_crib_vals = Object.values(general_crib);
+	var gen_crib_vals = [];
+	for(var key in general_crib) {
+    gen_crib_vals.push(general_crib[key]);
+	}
 	var total = 0;
 	for(var i = 0; i < gen_crib_vals.length; i++) {
 	    total += gen_crib_vals[i];

@@ -80,7 +80,12 @@ function score_flush_hand(hand_suits, cut_suit) {
 											  }
 											  return all_suits;
 											}, {});
-	var counted_suits_vals = Object.values(counted_suits);
+	//var counted_suits_vals = Object.values(counted_suits);
+	var counted_suits_vals = [];
+	for(var key in counted_suits) {
+    counted_suits_vals.push(counted_suits[key]);
+	}
+
 	if (counted_suits_vals.indexOf(5) > -1) {
 		return 5;
 	} else if (counted_suits_vals.indexOf(4) > -1) {
