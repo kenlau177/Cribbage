@@ -434,7 +434,7 @@
 			if (!$("suits_matter_checkbox").is(':checked')) {
 				var suits = ['S','H','C','D'];
 				var fh_tmp = fh.slice();
-				fh_tmp.splice(-1,1)
+				fh_tmp.splice(-1,1);
 				var n = 0;
 				while (fh_tmp.indexOf(current_nums[4].concat('-').concat(current_suits[4])) > -1) {
 					$("#frame_card5_suit img").removeClass("active_suit");
@@ -522,6 +522,7 @@
 							allowOutsideClick: true});	
 			}
 			localStorage.init = true;
+			$("#crib_radio1").prop("checked", true);
 		};
 
 		// Add slideDown animation to Bootstrap dropdown when expanding.
@@ -535,8 +536,6 @@
 	  });
 
 	  $('input').checkboxradio();
-
-		$("#crib_radio1").prop("checked", true);
 
 		$('#column_descrips_title').on('click', function() {
 			if ($('#column_descrips_list').css('display') === 'none') {

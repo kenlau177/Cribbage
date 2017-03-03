@@ -495,8 +495,6 @@
 
 	  $('#crib_radio1').checkboxradio();
 	  $('#crib_radio2').checkboxradio();
-
-		randomize_optimization();
 		
 		$('#column_descrips_title').on('click', function() {
 			if ($('#column_descrips_list').css('display') === 'none') {
@@ -592,6 +590,7 @@
 		});
 
 		window.onload = function () { 
+			randomize_optimization();
 			$("#score_guess").spinner("value", 4);
 		};
 
