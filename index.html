@@ -522,8 +522,7 @@
 							allowOutsideClick: true});	
 			}
 			localStorage.init = true;
-			alert('test2');
-			$('input').checkboxradio();
+			alert('test3');
 		};
 
 		// Add slideDown animation to Bootstrap dropdown when expanding.
@@ -536,15 +535,10 @@
 	    $(this).find('.dropdown-menu').first().stop(true, true).slideUp(350);
 	  });
 
-	  $('input').checkboxradio({
-			  create: function( event, ui ) {
-			  	//$("#crib_radio1").prop("checked", true);
-			  	$("#crib_radio1").click();
-			  }
-			}
-	  );
-
-
+	  $('input').checkboxradio(function() {
+	  	$("#crib_radio1").click();	
+	  });
+		
 		$('#column_descrips_title').on('click', function() {
 			if ($('#column_descrips_list').css('display') === 'none') {
 				$('#column_descrips_list').css('display', 'block');	
