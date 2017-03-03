@@ -216,7 +216,8 @@
 				<h1 style="margin-bottom:15px;">Select who's crib it is.</h1>
 				<center>
 					<fieldset data-role="controlgroup" data-type="horizontal">
-					  <label for="crib_radio1" id="crib_label1" class='ui-checkboxradio-checked ui-state-active'>Your Crib</label>
+					  <!--<label for="crib_radio1" id="crib_label1" class='ui-checkboxradio-checked ui-state-active'>Your Crib</label>-->
+					  <label for="crib_radio1" id="crib_label1">Your Crib</label>
 					  <input type="radio" name="crib_radio1" id="crib_radio1">
 					  <label for="crib_radio2" id="crib_label2">Other's Crib</label>
 					  <input type="radio" name="crib_radio1" id="crib_radio2">
@@ -523,7 +524,7 @@
 			}
 			localStorage.init = true;
 			//alert('test3');
-			$("#crib_radio2").click();
+			$("#crib_radio1").click();
 			//$("#crib_radio1").click();
 		};
 
