@@ -524,7 +524,7 @@
 			}
 			localStorage.init = true;
 			//alert('test3');
-			$("#crib_radio1").click();
+			$("#crib_radio2").click();
 			//$("#crib_radio1").click();
 		};
 
@@ -673,6 +673,8 @@
 				return;
 			}
 			if ($('#crib_radio1').is(':checked')) {
+				alert($('#crib_radio1').is(':checked'));
+				alert($('#crib_radio2').is(':checked'));
 				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), true);
 			  build_optimization_res_table(optimization_res);
 		    $('html, body').animate({
