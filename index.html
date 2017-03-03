@@ -522,6 +522,7 @@
 							allowOutsideClick: true});	
 			}
 			localStorage.init = true;
+			alert('test');
 			$("#crib_radio1").prop("checked", true);
 		};
 
@@ -535,7 +536,8 @@
 	    $(this).find('.dropdown-menu').first().stop(true, true).slideUp(350);
 	  });
 
-	  $('input').checkboxradio();
+	  $('input').checkboxradio(
+	  );
 
 		$('#column_descrips_title').on('click', function() {
 			if ($('#column_descrips_list').css('display') === 'none') {
