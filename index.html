@@ -672,9 +672,9 @@
 				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
 				return;
 			}
+			alert($('#crib_radio1').is(':checked'));
+			alert($('#crib_radio2').is(':checked'));
 			if ($('#crib_radio1').is(':checked')) {
-				alert($('#crib_radio1').is(':checked'));
-				alert($('#crib_radio2').is(':checked'));
 				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), true);
 			  build_optimization_res_table(optimization_res);
 		    $('html, body').animate({
