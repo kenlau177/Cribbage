@@ -522,7 +522,7 @@
 							allowOutsideClick: true});	
 			}
 			localStorage.init = true;
-			alert('test1');
+			alert('test2');
 		};
 
 		// Add slideDown animation to Bootstrap dropdown when expanding.
@@ -537,7 +537,8 @@
 
 	  $('input').checkboxradio({
 			  create: function( event, ui ) {
-			  	$("#crib_radio1").prop("checked", true);
+			  	//$("#crib_radio1").prop("checked", true);
+			  	$("#crib_radio1").click();
 			  }
 			}
 	  );
