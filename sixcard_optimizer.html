@@ -572,7 +572,6 @@
 							allowOutsideClick: true});	
 			}
 			localStorage.init = true;
-			$("#crib_radio1").prop("checked", true);
 		};
 
 		// Add slideDown animation to Bootstrap dropdown when expanding.
@@ -585,7 +584,9 @@
 	    $(this).find('.dropdown-menu').first().stop(true, true).slideUp(350);
 	  });
 
-	  $('input').checkboxradio();
+		$('input').checkboxradio({
+			create: function(event,ui) { $('#crib_radio1').click(); }
+		});
 
 		$('#column_descrips_title').on('click', function() {
 			if ($('#column_descrips_list').css('display') === 'none') {
@@ -731,6 +732,11 @@
 				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
 				return;
 			}
+
+			if (!$('#crib_radio1').is(':checked') && !$('#crib_radio2').is(':checked')) {
+				$('#crib_radio1').click();
+			}
+
 			if ($('#crib_radio1').is(':checked')) {
 				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), true);
 			  build_optimization_res_table(optimization_res);

@@ -373,7 +373,7 @@
 					.append('<td><img src="' + suit_to_img[full_suits[rand_suit_idx_arr[tmp[p]]]] + '"/></td>');
 			}
 
-			if (Math.random() < 0.5) {
+			if (Math.random() < 0.5 || !init) {
 				$("#crib_radio1").click();	
 			} else {
 				$("#crib_radio2").click();	
@@ -395,6 +395,7 @@
 			});
 			
 			new_cards_optimization = true;
+			init = true;
 		}
 
 		function randomize_score() {
@@ -517,6 +518,11 @@
 				swal({title:"Select two cards that you think are best to discard first", type:"error", allowOutsideClick: true});
 				return;
 			}
+
+			if (!$('#crib_radio1').is(':checked') && !$('#crib_radio2').is(':checked')) {
+				$('#crib_radio1').click();
+			}
+
 			if ($('#crib_radio1').is(':checked')) {
 				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), true);
 			} else {
@@ -590,6 +596,7 @@
 		});
 
 		window.onload = function () { 
+			var init = false;
 			randomize_optimization();
 			$("#score_guess").spinner("value", 4);
 		};
