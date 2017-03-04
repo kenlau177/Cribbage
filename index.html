@@ -524,7 +524,7 @@
 			}
 			localStorage.init = true;
 			//alert('test3');
-			$("#crib_radio1").click();
+			//$("#crib_radio1").click();
 		};
 
 		// Add slideDown animation to Bootstrap dropdown when expanding.
@@ -537,6 +537,7 @@
 	    $(this).find('.dropdown-menu').first().stop(true, true).slideUp(350);
 	  });
 
+	  /*
 	  function function1(){
 	    var dfrd1 = $.Deferred();
 	    $('input').checkboxradio();
@@ -550,6 +551,11 @@
 	    return dfrd1.promise();
 		}
 		function1().done(function2()).done();
+		*/
+		$('input').checkboxradio({
+			create: function(event,ui) { $('#crib_radio1').click(); }
+		});
+		//
 		
 		$('#column_descrips_title').on('click', function() {
 			if ($('#column_descrips_list').css('display') === 'none') {
@@ -688,6 +694,8 @@
 			//	$('#crib_radio1').click();
 			//}
 
+			alert($('#crib_radio1').is(':checked'));
+			alert($('#crib_radio2').is(':checked'));
 			if ($('#crib_radio1').is(':checked')) {
 				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), true);
 			  build_optimization_res_table(optimization_res);
