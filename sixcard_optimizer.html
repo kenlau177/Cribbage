@@ -380,7 +380,17 @@
 
 		/* FUNCTIONS */
 		function hasDuplicates(array) {
-		  return (new Set(array)).size !== array.length;
+	    var i = array.length, j, val;
+	    while (i--) {
+        val = array[i];
+        j = i;
+        while (j--) {
+          if (array[j] === val) {
+            return true;
+          }
+        }
+	    }
+	    return false;
 		}
 		
 		function check_hand_dup(cut_included) {
