@@ -305,10 +305,6 @@ input[type='radio'] {
   border-radius: 5px;
 }
 
-#score_guess + a {
-  user-select: none;
-}
-
 .footer_text {
   font-size: 15px;
 }
@@ -438,6 +434,11 @@ input[type='radio'] {
     margin-top: 50px; 
   }
   #score_guess {
-    margin-top: 38px;
+    height: 18px;
+    width: 80%;
+    margin: 10px 0 10px 0;
+  }
+  .ui-button {
+    height: 20px;
   }
 }
