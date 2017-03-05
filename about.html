@@ -60,7 +60,7 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<div class="panel panel-primary">
 		      <div class="panel-heading"><center>Features</center></div>
 		      <div class="panel-body">
@@ -77,7 +77,7 @@
 		      </div>
 		    </div>
 		  </div>
-		  <div class="col-md-6">
+		  <div class="col-md-8">
 		  	<div class="panel panel-primary">
 		  		<div class="panel-heading"><center>Methodology</center></div>
 		  		<div class="panel-body">
@@ -136,9 +136,9 @@
 		  			<p>Where $score_{hand',cut}$ has value given by 5 cards consisting of hand' and cut.</p>
 		  			<p style="text-decoration:underline;">b. Impact of the crib</p>
 		  			<p>Whatever card we discard in the crib ultimately affects the amount of points we get.</p>
-		  			<p>For each card on the hand to discard, we compute the expected score of that card with four other possible cards in the crib let us denote this expectation as $E_{discard,cut}$.</p>
-		  			<p>The crib impact is equal to $$E_{discard,cut}\pm\frac{1}{5}\sum_{discard}E_{discard,cut}$$</p>
-		  			<p>depending on who's crib it is.</p>
+		  			<p>For each card on the hand to discard, we compute the expected score of that card with four other possible cards in the crib. Let us denote this expectation as $E_{discard,cut}=E_{d,c}$.</p>
+		  			<p>The crib impact is equal to $$\pm(E_{d,c}-\frac{1}{5}\sum_{discard}E_{d,c})$$</p>
+		  			<p>with '+' if it is your crib, and '-' if it's your oppenent's crib.</p>
 		  			<hr>
 		  			<p style="font-weight:bold;">Putting everything together, the best card to throw has the highest value of the expected score from hand and cut plus impact of the crib.</p>
 		  			<hr>
