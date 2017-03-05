@@ -198,6 +198,10 @@ input[type='radio'] {
   color: #000;
   text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
 }
+#title_font_about {
+  font-size: 24px;
+  margin: 15px 0 10px 0;
+}
 
 .btn-group {
   width: 98%;
@@ -305,6 +309,14 @@ input[type='radio'] {
   border-radius: 5px;
 }
 
+.panel {
+  margin: 10px 0 10px 0;
+}
+.panel-heading {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .footer_text {
   font-size: 15px;
 }
@@ -345,7 +357,7 @@ input[type='radio'] {
     font-size: 20px;
   }
   .table {
-    font-size: 18px;
+    font-size: 16px;
   }
   #menu {
     height: 50px;
