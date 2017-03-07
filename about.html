@@ -36,12 +36,13 @@
 	<div class="container">
 		
 		<div class="row">
-			<div class="col-md-3"></div>
+			<div class="col-md-3">
+			</div>
 			<div class="col-md-6">
 				<center><h1 id="title_font_about">All About Cribbage Optimizer</h1></center>
 			</div>
 		  <div class="col-md-3">
-			  <div class="btn-group dropdown" style="margin: 10px 0 5px 0;">
+		  	<div class="btn-group dropdown" style="margin: 10px 0 5px 0;">
 				  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
 			  	<ul class="dropdown-menu pull-center">
 				    <li style="background-color:#ffff66;"><a href="#">All About the App</a></li>
@@ -60,92 +61,94 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-		      <div class="panel-heading"><center>Features</center></div>
-		      <div class="panel-body">
-		      	<h1 style="font-weight: bold; margin-bottom:10px;">There are 3 things you could do with this app:</h1>
-		      	<p style="font-weight: bold; text-decoration:underline;">1. Optimize</p>
-		      	<ul><li>Select the cards from your hand, and we compute the best card to discard in the crib.</li></ul>
-		      	<p style="font-weight: bold; text-decoration:underline;">2. Score Hand</p>
-		      	<ul><li>Select the cards from your hand and the cut, and we compute the exact score.</li></ul>
-		      	<p style="font-weight: bold; text-decoration:underline;">3. Practice</p>
-		      	<ul><li>Practice discarding the right cards in the crib and scoring your hand.</li></ul>
-		      	<hr>
-		      	<h1>There are 5 and 6 card versions for the features mentioned above.</h1> 
-		      	<h1 style="margin-top:10px;">Typically, 2-player games use 6-card versions and 3+ player games use 5-card versions.</h1>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="col-md-8">
-		  	<div class="panel panel-primary">
-		  		<div class="panel-heading"><center>Methodology</center></div>
-		  		<div class="panel-body">
-		  			<h1 style="font-weight: bold; margin-bottom:10px; text-decoration:underline;">1. Scoring your Hand + Cut:</h1>
-		  			<p>Using the chart below we compute the exact score in your hand with the cut.</p>
-		  			<table class="table table-bordered table-striped">
-		  				<thead>
-		  					<tr>
-		  						<th>Name</th>
-		  						<th>Points</th>
-		  						<th>Detail</th>
-		  					</tr>
-		  				</thead>
-		  				<tbody style="font-weight:normal;">
-		  					<tr>
-		  						<td>15s</td>
-		  						<td>2</td>
-		  						<td>Any combination of cards summing to 15</td>
-		  					</tr>
-		  					<tr>
-		  						<td>Pairs</td>
-		  						<td>2</td>
-		  						<td></td>
-		  					</tr>
-		  					<tr>
-		  						<td>Nobs</td>
-		  						<td>2</td>
-		  						<td>Jack suit matches cut suit</td>
-		  					</tr>
-		  					<tr>
-		  						<td>Flush</td>
-		  						<td>4 or 5</td>
-		  						<td>4 points if hand is all the same suit. 5 points if cut is also the same.</td>
-		  					</tr>
-		  					<tr>
-		  						<td>Runs</td>
-		  						<td>3+</td>
-		  						<td>3 or more consecutive cards in any order. A point for every card. Eg. 2,3,4,5 earns 4 points.</td>
-		  					</tr>
-		  				</tbody>
-		  			</table>
-		  			<hr>
-		  			<h1 style="font-weight: bold; margin:10px 0 10px 0; text-decoration:underline;">2. Finding the Best Card to Throw:</h1>
-		  			<p>The card to discard affects:</p>
-		  			<ul style="list-style-type: lower-alpha;">
-		  				<li>Score from hand and cut.</li>
-		  				<li>Impact of the crib.</li>
-		  			</ul>
-		  			<p style="text-decoration:underline;">a. Score from hand and cut</p>
-		  			<p>For each card on the hand, we compute what the expected score would be using the remaining cards as possible cuts.</p>
-		  			<p>For the math/stat readers:</p>
-		  			<p>Let us denote Score as a random variable taking on values obtained from the scoring method as defined in (1).</p>
-		  			<p>Furthermore, hand'=hand-{discard}</p>
-		  			<p>E[Score|Hand=hand',Cut]=</p>
-		  			<p>$$\frac{1}{47}\sum_{cut\in remainingcards}score_{hand',cut}$$</p>
-		  			<p>Where $score_{hand',cut}$ has value given by 5 cards consisting of hand' and cut.</p>
-		  			<p style="text-decoration:underline;">b. Impact of the crib</p>
-		  			<p>Whatever card we discard in the crib ultimately affects the amount of points we get.</p>
-		  			<p>For each card on the hand to discard, we compute the expected score of that card with four other possible cards in the crib. Let us denote this expectation as $E_{discard,cut}=E_{d,c}$.</p>
-		  			<p>The crib impact is equal to $$\pm(E_{d,c}-\frac{1}{5}\sum_{discard}E_{d,c})$$</p>
-		  			<p>with '+' if it is your crib, and '-' if it's your oppenent's crib.</p>
-		  			<hr>
-		  			<p style="font-weight:bold;">Putting everything together, the best card to throw has the highest value of the expected score from hand and cut plus impact of the crib.</p>
-		  			<hr>
-		  			<p>It is also worth noting that the importance of a card in pegging is not considered, so if there is a tie between a 'K' and an 'A', choose the 'K' to discard.</p>
-		  		</div>
-		  	</div>
-		  </div>
+			<div class="panel panel-primary">
+	      <div class="panel-heading"><center>Features</center></div>
+	      <div class="panel-body">
+	      	<h1 style="font-weight: bold; margin-bottom:10px;">There are 3 things you could do with this app:</h1>
+	      	<p style="font-weight: bold; text-decoration:underline;">1. Optimize</p>
+	      	<ul><li>Select the cards from your hand, and we compute the best card to discard in the crib.</li></ul>
+	      	<p style="font-weight: bold; text-decoration:underline;">2. Score Hand</p>
+	      	<ul><li>Select the cards from your hand and the cut, and we compute the exact score.</li></ul>
+	      	<p style="font-weight: bold; text-decoration:underline;">3. Practice</p>
+	      	<ul><li>Practice discarding the right cards in the crib and scoring your hand.</li></ul>
+	      	<hr>
+	      	<h1>There are 5 and 6 card versions for the features mentioned above.</h1> 
+	      	<h1 style="margin-top:10px;">Typically, 2-player games use 6-card versions and 3+ player games use 5-card versions.</h1>
+	      </div>
+	    </div>
+	  	<div class="panel panel-primary">
+	  		<div class="panel-heading"><center>Methodology</center></div>
+	  		<div class="panel-body">
+	  			<h1 style="font-weight: bold; margin-bottom:10px; text-decoration:underline;">1. Scoring your Hand + Cut:</h1>
+	  			<p>Using the chart below we compute the exact score in your hand with the cut.</p>
+	  			<table class="table table-bordered table-striped">
+	  				<thead>
+	  					<tr>
+	  						<th>Name</th>
+	  						<th>Points</th>
+	  						<th>Detail</th>
+	  					</tr>
+	  				</thead>
+	  				<tbody style="font-weight:normal;">
+	  					<tr>
+	  						<td>15s</td>
+	  						<td>2</td>
+	  						<td>Any combination of cards summing to 15</td>
+	  					</tr>
+	  					<tr>
+	  						<td>Pairs</td>
+	  						<td>2</td>
+	  						<td></td>
+	  					</tr>
+	  					<tr>
+	  						<td>Nobs</td>
+	  						<td>2</td>
+	  						<td>Jack suit matches cut suit</td>
+	  					</tr>
+	  					<tr>
+	  						<td>Flush</td>
+	  						<td>4 or 5</td>
+	  						<td>4 points if hand is all the same suit. 5 points if cut is also the same.</td>
+	  					</tr>
+	  					<tr>
+	  						<td>Runs</td>
+	  						<td>3-5</td>
+	  						<td>3-5 consecutive cards in any order. A point for every card. Eg. 2,3,4,5 earns 4 points.</td>
+	  					</tr>
+	  				</tbody>
+	  			</table>
+	  			<hr>
+	  			<h1 style="font-weight: bold; margin:10px 0 10px 0; text-decoration:underline;">2. Finding the Best Card to Throw:</h1>
+	  			<p>The card to discard affects:</p>
+	  			<ul style="list-style-type: lower-alpha;">
+	  				<li>Score from hand and cut.</li>
+	  				<li>Impact of the crib.</li>
+	  			</ul>
+	  			<p style="text-decoration:underline;">a. Score from hand and cut</p>
+	  			<p>For each card on the hand, we compute what the expected score would be using the remaining cards as possible cuts.</p>
+	  			<p>For the math/stat readers:</p>
+	  			<p>Let us denote Score as a random variable taking on values obtained from the scoring method as defined in (1).</p>
+	  			<p>Furthermore, hand'=hand-{discard}</p>
+	  			<p>E[Score|Hand=hand',Cut]=</p>
+	  			<p>$$\frac{1}{47}\sum_{cut\in remainingcards}score_{hand',cut}$$</p>
+	  			<p>Where $score_{hand',cut}$ has value given by 5 cards consisting of hand' and cut.</p>
+	  			<p style="text-decoration:underline;">b. Impact of the crib</p>
+	  			<p>Whatever card we discard in the crib ultimately affects the amount of points we get.</p>
+	  			<p>For each card on the hand to discard, we compute the expected score of that card with four other possible cards in the crib. Let us denote this expectation as $E_{discard,cut}=E_{d,c}$.</p>
+	  			<p>The crib impact is equal to $$\pm(E_{d,c}-\frac{1}{5}\sum_{discard}E_{d,c})$$</p>
+	  			<p>with '+' if it is your crib, and '-' if it's your oppenent's crib.</p>
+	  			<hr>
+	  			<p style="font-weight:bold;">Putting everything together, the best card to throw has the highest value of the expected score from hand and cut plus impact of the crib.</p>
+	  			<hr>
+	  			<p>It is also worth noting that the importance of a card in pegging is not considered, so if there is a tie between a 'K' and an 'A', choose the 'K' to discard.</p>
+	  		</div>
+	  	</div>
+	  	<div class="panel panel-primary">
+	  		<div class="panel-heading"><center>Comments and Requests</center></div>
+	  		<div class="panel-body">
+
+	  		</div>
+	  	</div>
 
 		</div>
 
@@ -156,7 +159,8 @@
 			<br>
 			<footer>
 				<center>
-			  	<p class="footer_text">Copyright &copy; 2017 CribAppName. All rights reserved.</p>
+			  	<p class="footer_text">Copyright &copy; 2017 CribbageOptimizer.</p> 
+			  	<p>All rights reserved.</p>
 			  </center>
 			</footer>
 			<br>
