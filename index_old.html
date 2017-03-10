@@ -1,0 +1,811 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Cribbage Hand Optimizer</title>
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  
+	<!-- Bootstrap -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	
+  <script src="js/sly.min.js"></script>
+
+  <script src="js/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="sweetalert.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+
+  <!-- Checkbox -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-71304939-2', 'auto');
+	  ga('send', 'pageview');
+	</script>
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;">
+	
+	<div class="container">
+		<center><h2 id="title_font">Cribbage Optimizer</h2></center>
+		<center><p class="card_title">== 5 Card Version ==</p></center>
+		<div class="row">
+		  <div class="col-md-4">
+			  <div class="btn-group dropdown">
+				  <button type="button" class="btn btn-warning dropdown-toggle" id="menu" data-toggle="dropdown">Menu</button>
+			  	<ul class="dropdown-menu pull-center">
+			  		<li><a href="about.html">All About the App</a></li>
+				    <li class="divider"></li>
+				    <li style="background-color:#ffff66;"><a href="#">5-Card Optimizer</a></li>
+				    <li><a href="fivecard_practice.html">5-Card Practice</a></li>
+				    <li class="divider"></li>
+				    <li><a href="sixcard_optimizer.html">6-Card Optimizer</a></li>
+				    <li><a href="sixcard_practice.html">6-Card Practice</a></li>
+				    <li class="divider"></li>
+				    <li><a href="scorer.html">Hand Scorer</a></li>
+				    <li class="divider"></li>
+				  </ul>	
+				</div>
+			</div>	
+			<div class="col-md-8">
+				<div class="col-xs-6">
+				  <fieldset>
+				    <label id="suits_matter_label" for="suits_matter_checkbox">Suits Matter?</label>
+				    <input type="checkbox" name="suits_matter_checkbox" id="suits_matter_checkbox">
+				  </fieldset>
+				</div>
+				<div class="col-xs-6">
+					<button id="randomize_button" type="button" class="btn btn-info">Randomize Hand</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<hr>
+			<h1>Select the 5 cards in your hand.</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div id="frame_card1_num" class="frame">
+					<ul class="slidee"></ul>
+				</div>
+				<div id="frame_card1_suit" class="suit">
+					<div class="row">
+						<center>
+							<div class="col-xs-3">
+								<img class="active_suit" src="images/spade.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/heart.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/club.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/diamond.png" />
+							</div>
+						</center>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div id="frame_card2_num" class="frame">
+					<ul class="slidee"></ul>
+				</div>
+				<div id="frame_card2_suit" class="suit">
+					<div class="row">
+						<center>
+							<div class="col-xs-3">
+								<img src="images/spade.png"/>
+							</div>
+							<div class="col-xs-3">
+								<img class="active_suit" src="images/heart.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/club.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/diamond.png" />
+							</div>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div id="frame_card3_num" class="frame">
+					<ul class="slidee"></ul>
+				</div>
+				<div id="frame_card3_suit" class="suit">
+					<div class="row">
+						<center>
+							<div class="col-xs-3">
+								<img src="images/spade.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/heart.png" />
+							</div>
+							<div class="col-xs-3">
+								<img class="active_suit" src="images/club.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/diamond.png" />
+							</div>
+						</center>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div id="frame_card4_num" class="frame">
+					<ul class="slidee"></ul>
+				</div>
+				<div id="frame_card4_suit" class="suit">
+					<div class="row">
+						<center>
+							<div class="col-xs-3">
+								<img src="images/spade.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/heart.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/club.png" />
+							</div>
+							<div class="col-xs-3">
+								<img class="active_suit" src="images/diamond.png" />
+							</div>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div id="frame_card5_num" class="frame">
+					<ul class="slidee"></ul>
+				</div>
+				<div id="frame_card5_suit" class="suit">
+					<div class="row">
+						<center>
+							<div class="col-xs-3">
+								<img class="active_suit" src="images/spade.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/heart.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/club.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/diamond.png" />
+							</div>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-md-6">
+				<center><h1 id="optimize_tag" class="card_title">Cards On Hand</h1></center>
+				<table id="current_cards_table" class="table table-bordered" style='text-align:center;'>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-6">
+				<hr>
+				<h1 style="margin-bottom:15px;">Select who's crib it is.</h1>
+				<center>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+					  <!--<label for="crib_radio1" id="crib_label1" class='ui-checkboxradio-checked ui-state-active'>Your Crib</label>-->
+					  <label for="crib_radio1" id="crib_label1">Your Crib</label>
+					  <input type="radio" name="crib_radio1" id="crib_radio1">
+					  <label for="crib_radio2" id="crib_label2">Other's Crib</label>
+					  <input type="radio" name="crib_radio1" id="crib_radio2">
+					</fieldset>
+				</center>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class='col-md-4'>
+				<button id="optimize_button" type="button" class="btn btn-success next_card_button">Optimize!</button>
+			</div>
+			<div class='col-md-8'>
+				<br>
+				<center><h1 id="optimize_tag" class="card_title">Optimization Results</h1></center>	
+				<table id="optimization_results" class="table table-striped table-bordered" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>Discard</th>
+							<th>Score</th>
+							<th>Hand</th>
+							<th>Crib</th>
+							<th>Min</th>
+							<th>Max</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+				<center><a id='column_descrips_title'>See Column Descriptions</a></center>
+				<ul id='column_descrips_list' class="card_title">
+					<li><strong>Discard:</strong> Card to throw in the crib.</li>
+					<li><strong>Score:</strong> The net expected score including the crib impact.</li>
+					<li><strong>Crib:</strong> The impact of the discarded card thrown in the crib compared to the expected crib score.</li>
+					<li><strong>Min|Max:</strong> The minimum|maximum possible score of the hand if card is discarded.</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="row">
+			<hr>
+			<h1 style="margin-bottom:10px;">Find out what you actually scored.</h1>
+		</div>
+		<div class="row">
+			<div class='col-md-6'>	
+				<center><h1 class="card_title">What Was Cut?</h1></center>
+				<div id="frame_cut_num" class="frame">
+					<ul class="slidee"></ul>
+				</div>
+				<div id="frame_cut_suit" class="suit">
+					<div class="row">
+						<center>
+							<div class="col-xs-3">
+								<img class="active_suit" src="images/spade.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/heart.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/club.png" />
+							</div>
+							<div class="col-xs-3">
+								<img src="images/diamond.png" />
+							</div>
+						</center>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<button id="score_button" type="button" class="btn btn-primary next_card_button">Compute Scores!</button>
+			</div>
+		</div>
+		
+		<br>
+		<div class="row">
+			<div class="col-md-8">
+				<table id="scores_results" class="table table-striped table-bordered" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>Discarded</th>
+							<th>Hand Score</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<button id="restart_button" type="button" class="btn btn-warning next_card_button">Restart Round</button>	
+			</div>
+		</div>
+
+		<div class="row">
+			<hr>
+			<br>
+			<footer>
+				<center>
+			  	<p class="footer_text">Copyright &copy; 2017 CribbageOptimizer.</p> 
+			  	<p>All rights reserved.</p>
+			  </center>
+			</footer>
+			<br>
+		</div>
+	</div>
+
+
+	<script src="js/score.js"></script>
+	<script src="js/optimize.js"></script>
+
+	<script type="text/javascript">
+
+		/*
+		TODO: Add a demo video
+		*/
+
+		/* FUNCTIONS */
+		function hasDuplicates(array) {
+	    var i = array.length, j, val;
+	    while (i--) {
+        val = array[i];
+        j = i;
+        while (j--) {
+          if (array[j] === val) {
+            return true;
+          }
+        }
+	    }
+	    return false;
+		  //return (new Set(array)).size !== array.length;
+		}
+		
+		function check_hand_dup(cut_included) {
+			var current_nums = get_current_nums();
+			var current_suits = get_current_suits_abbrev();
+			var fh = [];
+			for (var n in current_nums) {
+				fh.push(current_nums[n].concat('-').concat(current_suits[n]));
+			}
+			if (cut_included) {
+				var cut_num = $('#frame_cut_num .active').text();
+				var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4)
+																	.slice(0,1).toUpperCase();
+				fh.push(cut_num.concat('-').concat(cut_suit));
+			}
+			return hasDuplicates(fh);
+		}
+
+		function reset_suits() {
+			$('.suit img').removeClass('active_suit');
+			$('#frame_card1_suit img:eq(0)').addClass('active_suit');
+			$('#frame_card2_suit img:eq(1)').addClass('active_suit');
+			$('#frame_card3_suit img:eq(2)').addClass('active_suit');
+			$('#frame_card4_suit img:eq(3)').addClass('active_suit');
+			$('#frame_card5_suit img:eq(0)').addClass('active_suit');
+			$('#frame_cut_suit img:eq(0)').addClass('active_suit');
+			build_current_cards_table();
+		}
+
+		function reset_nums() {
+			frame_card1_num.toCenter();
+			frame_card2_num.toCenter();
+			frame_card3_num.toCenter();
+			frame_card4_num.toCenter();
+			frame_card5_num.toCenter();
+			frame_card5_num.prev();
+			frame_cut_num.toCenter();
+			frame_cut_num.next();
+		}
+
+		function get_current_nums() {
+			var out = [];
+			for (i=1; i<=5; i++) {
+				out.push($('#frame_card' + i + '_num .active').text());
+			}
+			return out;
+		}
+
+		function get_current_suits_abbrev() {
+			var out = [];
+			for (i=1; i<=5; i++) {
+				out.push($('#frame_card' + i + '_suit .active_suit')[0].src
+											.replace(/^.*[\\\/]/, '').slice(0,-4)
+											.slice(0,1).toUpperCase());
+			}
+			return out;	
+		}
+
+		function build_current_cards_table() {
+			$('#current_cards_table tbody tr:nth-child(1)').empty();
+			$('#current_cards_table tbody tr:nth-child(2)').empty();
+			var current_nums = get_current_nums();
+			var current_suits = get_current_suits_abbrev();
+			var fh = [];
+
+			for (i in current_nums) {
+				fh.push(current_nums[i].concat('-').concat(current_suits[i]));
+				$('#current_cards_table tbody tr:nth-child(1)').append('<td>' + current_nums[i] + '</td>');
+			}
+			for (i in current_nums) {
+				if (i < 4) {
+					$('#current_cards_table tbody tr:nth-child(2)')
+						.append('<td><img src="' + suit_to_img[current_suits[i]] + '"/></td>');
+				}
+			}
+			if (!$("suits_matter_checkbox").is(':checked')) {
+				var suits = ['S','H','C','D'];
+				var fh_tmp = fh.slice();
+				fh_tmp.splice(-1,1);
+				var n = 0;
+				while (fh_tmp.indexOf(current_nums[4].concat('-').concat(current_suits[4])) > -1) {
+					$("#frame_card5_suit img").removeClass("active_suit");
+					$("#frame_card5_suit img:eq(" + (n+1) + ")").addClass('active_suit');
+					current_suits[4] = suits[(n+1)%4];
+					n++;
+					if (n>6) {
+						$("#frame_card5_suit img").removeClass("active_suit");
+						$("#frame_card5_suit img:eq(0)").addClass('active_suit');
+						current_suits[4] = suits[0];
+						break;
+					}
+				}
+			}
+			$('#current_cards_table tbody tr:nth-child(2)')
+				.append('<td><img src="' + suit_to_img[current_suits[4]] + '"/></td>');
+		}
+
+		function build_optimization_res_table(optimization_results) {
+			$('#optimization_results tbody tr:nth-child(1)').empty();
+			$('#optimization_results tbody tr:nth-child(2)').empty();
+			$('#optimization_results tbody tr:nth-child(3)').empty();
+			$('#optimization_results tbody tr:nth-child(4)').empty();
+			$('#optimization_results tbody tr:nth-child(5)').empty();
+			for (var j = 1; j < 6; j++) {
+				for (i in optimization_results[j-1]) {
+					if (Number(i) !== 3) {
+						var aes = '<td>';
+					} else if (optimization_results[j-1][i] < 0) {
+						var aes = '<td style="color:#ff4c4c;">';
+					} else if (optimization_results[j-1][i] === 0) {
+						var aes = '<td>';
+					} else {
+						var aes = '<td style="color:#66b266;">+';
+					}		
+					$('#optimization_results tbody tr:nth-child(' + j + ')').append(aes + optimization_results[j-1][i] + '</td>');	
+				}
+			}
+		}
+
+		function randomize_hand() {
+			var full_num_idx = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+			var full_suit_idx = [0, 1, 2, 3];
+
+			var fh = [];
+			var is_card_chosen = false;
+
+			var rand_num_idx_arr = [];
+			var rand_suit_idx_arr = [];
+
+			for (var i=1; i<6; i++) {
+				while(!is_card_chosen) {
+					var rand_num_idx = Math.floor(Math.random() * 12);
+					var rand_suit_idx = Math.floor(Math.random() * 3);
+					var rand_num_suit = full_num_idx[rand_num_idx].toString().concat('-')
+																.concat(full_suit_idx[rand_suit_idx].toString());
+					if (fh.indexOf(rand_num_suit) === -1) {
+						rand_num_idx_arr.push(rand_num_idx);
+						rand_suit_idx_arr.push(rand_suit_idx);
+						fh.push(rand_num_suit);
+						is_card_chosen = true;
+					}
+				}
+				is_card_chosen = false;
+			}
+
+			var tmp = find_indices_ordered(rand_num_idx_arr);
+			for (var p=1; p<6; p++) {
+				$('#frame_card' + p + '_num').sly('activate', rand_num_idx_arr[tmp[p-1]]);
+				$('#frame_card' + p + '_suit img').removeClass("active_suit");
+				$('#frame_card' + p + '_suit img:eq(' + rand_suit_idx_arr[tmp[p-1]] + ')').addClass('active_suit');
+			}
+
+			build_current_cards_table();
+			$('html, body').animate({
+		    scrollTop: $("#frame_card5_num").offset().top
+		  }, 1000);
+		}
+		//******************************//
+
+		window.onload = function () { 
+			if (typeof localStorage.init === 'undefined') {
+				swal({title:"Welcome to <CripAppName>", 
+							text:"This app works best on Chrome and is intended for mobile.\nIf this is your first time, visit the 'About this App' link from the menu bar.",
+							allowOutsideClick: true});	
+			}
+			localStorage.init = true;
+			//alert('test3');
+			//$("#crib_radio1").click();
+		};
+
+		// Add slideDown animation to Bootstrap dropdown when expanding.
+	  $('.dropdown').on('show.bs.dropdown', function(e){
+		  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(350);
+		});
+
+	  // Add slideUp animation to Bootstrap dropdown when collapsing.
+	  $('.dropdown').on('hide.bs.dropdown', function() {
+	    $(this).find('.dropdown-menu').first().stop(true, true).slideUp(350);
+	  });
+
+		$('input').checkboxradio({
+			create: function(event,ui) { $('#crib_radio1').click(); }
+		});
+		
+		$('#column_descrips_title').on('click', function() {
+			if ($('#column_descrips_list').css('display') === 'none') {
+				$('#column_descrips_list').css('display', 'block');	
+			} else {
+				$('#column_descrips_list').css('display', 'none');	
+			}
+		});
+
+		$('.suit').css('display','none');
+	  $('#suits_matter_checkbox').click(function() {
+		  if ($(this).is(':checked')) {
+		  	$('.suit').css('display','block');
+		  } else {
+		  	$('.suit').css('display','none');
+		  	reset_suits();
+		  }      
+    });
+  
+		var card_nums = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+		var suit_to_img = {'S':'images/spade.png', 'H':'images/heart.png', 'C':'images/club.png', 
+												'D':'images/diamond.png'};
+
+		// Append card nums
+		for (c in card_nums) { $('#frame_card1_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card2_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card3_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card4_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_card5_num ul').append('<li>' + card_nums[c] + '</li>'); }
+		for (c in card_nums) { $('#frame_cut_num ul').append('<li>' + card_nums[c] + '</li>'); }
+
+		var options_card = { horizontal: 1,
+							    	itemNav: 'forceCentered',
+							    	smart: 1,
+							    	startAt: 6,
+							    	activateOn: 'click',
+							    	activateMiddle: 1,
+							    	scrollBy: 1,
+							    	speed: 100,
+							    	mouseDragging: 1,
+							    	touchDragging: 1,
+							    	releaseSwing: 1 };	
+
+		var frame_card1_num = new Sly('#frame_card1_num', options_card).init();
+		var frame_card2_num = new Sly('#frame_card2_num', options_card).init();
+		var frame_card3_num = new Sly('#frame_card3_num', options_card).init();
+		var frame_card4_num = new Sly('#frame_card4_num', options_card).init();
+		options_card['startAt'] = 5;
+		var frame_card5_num = new Sly('#frame_card5_num', options_card).init();
+
+		options_card['startAt'] = 7;
+		var frame_cut_num = new Sly('#frame_cut_num', options_card).init();
+
+		$('#frame_card1_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card1_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_card2_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card2_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_card3_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card3_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_card4_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card4_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_card5_suit img').on('click', function() {
+			if ($(this).attr('class') === 'active_suit') {
+				return;
+			}
+			$("#frame_card5_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+			build_current_cards_table();
+		});
+		$('#frame_cut_suit img').on('click', function() {
+			$("#frame_cut_suit img").removeClass("active_suit");
+			$(this).addClass('active_suit');
+		});
+
+		$('#button_to_optimize').click(function() {
+		  $('html, body').animate({
+	      scrollTop: $("#optimize_tag").offset().top
+	    }, 1000);
+		});
+
+		build_current_cards_table();
+
+		frame_card1_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+		frame_card2_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+		frame_card3_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+		frame_card4_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+		frame_card5_num.on('active', function(e) {
+			build_current_cards_table();
+		});
+
+		$('#randomize_button').on('click', function() {
+			//swal({title:"Will Be Available Soon", type:"error", allowOutsideClick: true});
+			randomize_hand();
+		});
+
+		$('#optimize_button').on('click', function() {
+			if (check_hand_dup(false)) {
+				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
+				return;
+			}
+
+			if (!$('#crib_radio1').is(':checked') && !$('#crib_radio2').is(':checked')) {
+				$('#crib_radio1').click();
+			}
+
+			if ($('#crib_radio1').is(':checked')) {
+				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), true);
+			  build_optimization_res_table(optimization_res);
+		    $('html, body').animate({
+		        scrollTop: $("#optimization_results").offset().top
+		    }, 1000);
+			} else {
+				var optimization_res = optimize(get_current_nums(), get_current_suits_abbrev(), false);
+			  build_optimization_res_table(optimization_res);
+			  $('html, body').animate({
+		        scrollTop: $("#optimization_results").offset().top
+		    }, 1000);
+			} 
+		});
+
+		$('#score_button').on('click', function() {
+			var current_nums = get_current_nums();
+			var current_suits = get_current_suits_abbrev();
+
+			var fh = [];
+
+			for (i in current_nums) {
+				fh.push(current_nums[i].concat('-').concat(current_suits[i]));
+			}
+
+			var cut_num = $('#frame_cut_num .active').text();
+			var cut_suit = $('#frame_cut_suit .active_suit')[0].src.replace(/^.*[\\\/]/, '').slice(0,-4)
+												.slice(0,1).toUpperCase();
+
+			if (!$("suits_matter_checkbox").is(':checked')) {
+				var suits = ['S','H','C','D'];
+				var fh_tmp = fh.slice();
+				//fh_tmp.splice(-1,1)
+				var n = 0;
+				while (fh_tmp.indexOf(cut_num.concat('-').concat(cut_suit)) > -1) {
+					$("#frame_cut_suit img").removeClass("active_suit");
+					$("#frame_cut_suit img:eq(" + (n+1) + ")").addClass('active_suit');
+					cut_suit = suits[(n+1)%4];
+					n++;
+					if (n>7) {
+						$("#frame_cut_suit img").removeClass("active_suit");
+						$("#frame_cut_suit img:eq(0)").addClass('active_suit');
+						cut_suit = suits[0];
+						break;
+					}
+				}
+			}
+
+			if (check_hand_dup(true)) {
+				swal({title:"Hand Has Duplicates!", type:"error", allowOutsideClick: true});
+				return;
+			}
+			$('#scores_results tbody tr:nth-child(1)').empty();
+			$('#scores_results tbody tr:nth-child(2)').empty();
+			$('#scores_results tbody tr:nth-child(3)').empty();
+			$('#scores_results tbody tr:nth-child(4)').empty();
+			$('#scores_results tbody tr:nth-child(5)').empty();
+
+			var score1 = score_hand([cut_num].concat(current_nums.slice(1)), 
+											[cut_suit].concat(current_suits.slice(1)), cut_num, cut_suit);
+			var score2 = score_hand([cut_num].concat(current_nums.slice(0,1).concat(current_nums.slice(2))),
+												[cut_suit].concat(current_suits.slice(0,1).concat(current_suits.slice(2))), cut_num, cut_suit);
+			var score3 = score_hand([cut_num].concat(current_nums.slice(0,2).concat(current_nums.slice(3))),
+												[cut_suit].concat(current_suits.slice(0,2).concat(current_suits.slice(3))), cut_num, cut_suit);
+			var score4 = score_hand([cut_num].concat(current_nums.slice(0,3).concat(current_nums.slice(4))),
+												[cut_suit].concat(current_suits.slice(0,3).concat(current_suits.slice(4))), cut_num, cut_suit);
+			var score5 = score_hand([cut_num].concat(current_nums.slice(0,4)), 
+											[cut_suit].concat(current_suits.slice(0,4)), cut_num, cut_suit);			
+
+			var scores = [score1, score2, score3, score4, score5];
+			var tmp = find_indices_ordered(scores, true);
+
+			$('#scores_results tbody tr:nth-child(1)')
+				.append('<td>' + current_nums[tmp[0]] + current_suits[tmp[0]] + '</td>' + '<td>' + scores[tmp[0]] + 
+					"</td>");
+			$('#scores_results tbody tr:nth-child(2)')
+					.append('<td>' + current_nums[tmp[1]] + current_suits[tmp[1]] + '</td>' + '<td>' + scores[tmp[1]] + 
+						"</td>");
+			$('#scores_results tbody tr:nth-child(3)')
+					.append('<td>' + current_nums[tmp[2]] + current_suits[tmp[2]] + '</td>' + '<td>' + scores[tmp[2]] + 
+						"</td>");
+			$('#scores_results tbody tr:nth-child(4)')
+					.append('<td>' + current_nums[tmp[3]] + current_suits[tmp[3]] + '</td>' + '<td>' + scores[tmp[3]] + 
+						"</td>");
+			$('#scores_results tbody tr:nth-child(5)')
+					.append('<td>' + current_nums[tmp[4]] + current_suits[tmp[4]] + '</td>' + '<td>' + scores[tmp[4]] + 
+						"</td>");
+
+			$('html, body').animate({
+		     scrollTop: $("#scores_results").offset().top
+		    }, 1000);
+		});
+
+		$('#restart_button').on('click', function() {
+			$('html, body').animate({ scrollTop: 0 }, 1500);
+			reset_nums();
+			reset_suits();
+			
+			$('#optimization_results tbody tr:nth-child(1)').empty();
+			$('#optimization_results tbody tr:nth-child(2)').empty();
+			$('#optimization_results tbody tr:nth-child(3)').empty();
+			$('#optimization_results tbody tr:nth-child(4)').empty();
+			$('#optimization_results tbody tr:nth-child(5)').empty();
+			
+			$('#scores_results tbody tr:nth-child(1)').empty();
+			$('#scores_results tbody tr:nth-child(2)').empty();
+			$('#scores_results tbody tr:nth-child(3)').empty();
+			$('#scores_results tbody tr:nth-child(4)').empty();
+			$('#scores_results tbody tr:nth-child(5)').empty();
+		});
+
+		window.onresize = function(event) {
+		  frame_card1_num.reload();
+			frame_card2_num.reload();
+			frame_card3_num.reload();
+			frame_card4_num.reload();
+			frame_card5_num.reload();
+			frame_cut_num.reload();
+		};
+
+	</script>
+
+
+</body>
+
+
+</html>
+
